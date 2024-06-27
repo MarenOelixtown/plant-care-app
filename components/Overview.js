@@ -10,9 +10,14 @@ const StyledList = styled.li`
   list-style: none;
   border-spacing: 10px;
 `;
+
+const StyledBody = styled.div`
+  text-align: center;
+`;
 export default function Overview() {
   return (
-    <div>
+    <StyledBody>
+      <h1>Discover Plants</h1>
       <ul>
         {plants.map((plant) => (
           <StyledList key={plant.id}>
@@ -23,6 +28,6 @@ export default function Overview() {
           </StyledList>
         ))}
       </ul>
-    </div>
+    </StyledBody>
   );
 }
