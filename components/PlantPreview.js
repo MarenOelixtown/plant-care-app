@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -29,16 +30,18 @@ const StyledInfo = styled.div`
   margin-right: 5px;
 `;
 
-export default function PlantPreview({ name, botanical_name }) {
+export default function PlantPreview({ plant }) {
   return (
     <StyledDiv>
-      <StyledImg
-        src="https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826"
-        alt={name}
-      />
+      <Link href={`/overview/${plant.id}`}>
+        <StyledImg
+          src="https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826"
+          alt={plant.name}
+        />
+      </Link>
       <StyledInfo>
-        <StyledName>{name}</StyledName>
-        <StyledBotanicalName>{botanical_name}</StyledBotanicalName>
+        <StyledName>{plant.name}</StyledName>
+        <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
     </StyledDiv>
   );

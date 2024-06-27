@@ -1,3 +1,5 @@
-export default function PlantCard() {
-  return null;
+import PlantDetails from "@/components/PlantDetails";
+
+export default function PlantDetailsPage() {
+  return <PlantDetails />;
 }
