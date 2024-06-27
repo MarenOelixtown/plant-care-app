@@ -18,16 +18,20 @@ export default function Overview() {
   return (
     <StyledBody>
       <h1>Discover Plants</h1>
-      <ul>
-        {plants.map((plant) => (
-          <StyledList key={plant.id}>
-            <PlantPreview
-              name={plant.name}
-              botanical_name={plant.botanical_name}
-            />
-          </StyledList>
-        ))}
-      </ul>
+      {plants.length === 0 ? (
+        <p>No plants available at the moment. Please come back later!</p>
+      ) : (
+        <ul>
+          {plants.map((plant) => (
+            <StyledList key={plant.id}>
+              <PlantPreview
+                name={plant.name}
+                botanical_name={plant.botanical_name}
+              />
+            </StyledList>
+          ))}
+        </ul>
+      )}
     </StyledBody>
   );
 }

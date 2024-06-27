@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-const StyledBody = styled.div`
-  margin: 10px;
-`;
-
 const StyledName = styled.p`
   margin-right: 5px;
   font-weight: bold;
@@ -18,6 +14,7 @@ const StyledDiv = styled.div`
   color: grey;
   border-style: solid;
   padding: 10px;
+  margin: 10px;
 `;
 const StyledImg = styled.img`
   border-radius: 5px;
@@ -34,17 +31,15 @@ const StyledInfo = styled.div`
 
 export default function PlantPreview({ name, botanical_name }) {
   return (
-    <StyledBody>
-      <StyledDiv>
-        <StyledImg
-          src="https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826"
-          alt={name}
-        />
-        <StyledInfo>
-          <StyledName>{name}</StyledName>
-          <StyledBotanicalName>{botanical_name}</StyledBotanicalName>
-        </StyledInfo>
-      </StyledDiv>
-    </StyledBody>
+    <StyledDiv>
+      <StyledImg
+        src="https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826"
+        alt={name}
+      />
+      <StyledInfo>
+        <StyledName>{name}</StyledName>
+        <StyledBotanicalName>{botanical_name}</StyledBotanicalName>
+      </StyledInfo>
+    </StyledDiv>
   );
 }
