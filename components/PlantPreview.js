@@ -58,7 +58,7 @@ export default function PlantPreview({ plant }) {
   });
 
   function handleAddToMyPlants(plant) {
-    setMyPlants({ ...plant, isMyPlant: true });
+    setMyPlants([...myPlants, { ...plant, isMyPlant: true }]);
     setIsDisabled(true);
   }
 
