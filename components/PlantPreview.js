@@ -50,8 +50,16 @@ const StyledInfo = styled.div`
   text-align: left;
   margin-right: 5px;
 `;
+const StyledMessage = styled.p`
+  color: #4b7a1c;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: normal;
+`;
 
 export default function PlantPreview({ plant }) {
+  const [message, setMessage] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [myPlants, setMyPlants] = useLocalStorageState("myPlants", {
     defaultValue: [],
@@ -60,6 +68,8 @@ export default function PlantPreview({ plant }) {
   function handleAddToMyPlants(plant) {
     setMyPlants([...myPlants, { ...plant, isMyPlant: true }]);
     setIsDisabled(true);
+    setMessage("Done!");
+    setTimeout(() => setMessage(""), 2000);
   }
   function isPlantInMyPlants(plant) {
     return myPlants.some(
@@ -78,11 +88,13 @@ export default function PlantPreview({ plant }) {
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
       <StyledButton
+        title="Add to My Plants"
         disabled={isDisabled || isPlantInMyPlants(plant)}
         onClick={() => handleAddToMyPlants(plant)}
       >
         Add to My Plants
       </StyledButton>
+      {message && <StyledMessage>{message}</StyledMessage>}
     </StyledDiv>
   );
 }
