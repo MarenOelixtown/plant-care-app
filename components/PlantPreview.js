@@ -21,6 +21,15 @@ const StyledImg = styled.img`
   border-radius: 5px;
   width: 100px;
   height: 100px;
+  margin-right: 10px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: green;
+  }
 `;
 
 const StyledInfo = styled.div`
@@ -37,7 +46,9 @@ export default function PlantPreview({ plant }) {
         <StyledImg src={plant.image} alt={plant.name} />
       </Link>
       <StyledInfo>
-        <StyledName>{plant.name}</StyledName>
+        <StyledLink href={`/overview/${plant.id}`}>
+          <StyledName>{plant.name}</StyledName>
+        </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
     </StyledDiv>
