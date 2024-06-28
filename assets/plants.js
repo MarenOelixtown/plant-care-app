@@ -9,7 +9,7 @@ export const plants = [
     care_instructions:
       "Water occasionally, allow soil to dry between waterings. Thrives in indirect light.",
     image:
-      "https://www.thespruce.com/thmb/CpEP-cPmDmz6kwdmVKbhcrdCJuY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/snake-plant-care-overview-1902772-04-d3990a1d0e1d4202a824e929abb12fc1-349b52d646f04f31962707a703b94298.jpeg",
+      "https://images.pexels.com/photos/2123482/pexels-photo-2123482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "c83b7e4a-15a",
@@ -21,7 +21,7 @@ export const plants = [
     care_instructions:
       "Water when the top inch of soil is dry. Prefers bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/7084309/pexels-photo-7084309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "22e8ce12-dc6",
@@ -33,7 +33,7 @@ export const plants = [
     care_instructions:
       "Water deeply but infrequently, allowing soil to dry out. Needs bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/2272643/pexels-photo-2272643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "1580ffe8-4b0",
@@ -45,7 +45,7 @@ export const plants = [
     care_instructions:
       "Keep soil slightly moist. Grows well in indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/11363534/pexels-photo-11363534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "d4db4b1c-072",
@@ -57,7 +57,7 @@ export const plants = [
     care_instructions:
       "Water regularly to keep soil consistently moist. Best in low to moderate light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/3698376/pexels-photo-3698376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "3205843b-70c",
@@ -69,7 +69,7 @@ export const plants = [
     care_instructions:
       "Water when the top inch of soil is dry. Prefers bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/6208090/pexels-photo-6208090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "16a6c8bb-f12",
@@ -81,7 +81,7 @@ export const plants = [
     care_instructions:
       "Water infrequently, allowing soil to dry out between waterings. Thrives in low light conditions.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: "242ee7e6-0b7",
@@ -93,7 +93,7 @@ export const plants = [
     care_instructions:
       "Water when the top inch of soil is dry. Prefers indirect light and can tolerate low light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.unsplash.com/photo-1599791641365-18738b8ffb25?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: "a5c0d55e-dee",
@@ -105,7 +105,7 @@ export const plants = [
     care_instructions:
       "Allow soil to dry between waterings. Grows well in low to moderate light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/20075996/pexels-photo-20075996/free-photo-of-close-up-of-a-pothos-plant-in-a-white-pot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "873ef6fe-7f0",
@@ -117,7 +117,7 @@ export const plants = [
     care_instructions:
       "Keep soil consistently moist. Prefers indirect light and high humidity.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/21273771/pexels-photo-21273771/free-photo-of-close-up-of-a-bright-green-fern-leaf.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "a62be84e-084",
@@ -129,7 +129,7 @@ export const plants = [
     care_instructions:
       "Water thoroughly but infrequently. Needs bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/1136888/pexels-photo-1136888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "0323ad77-437",
@@ -141,7 +141,7 @@ export const plants = [
     care_instructions:
       "Water deeply but infrequently, allowing soil to dry out. Needs bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.unsplash.com/photo-1643579265541-2a6359ff8b57?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: "82a4ad18-5e6",
@@ -153,7 +153,7 @@ export const plants = [
     care_instructions:
       "Keep soil moist but not waterlogged. Thrives in indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/4870776/pexels-photo-4870776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "996b0e79-de3",
@@ -165,7 +165,7 @@ export const plants = [
     care_instructions:
       "Water sparingly, allowing soil to dry out completely. Needs bright, direct light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/7159917/pexels-photo-7159917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "56f9f56c-81f",
@@ -177,7 +177,7 @@ export const plants = [
     care_instructions:
       "Water deeply but infrequently, allowing soil to dry out. Needs full sun.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/207518/pexels-photo-207518.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "0f5d3d8a-ef8",
@@ -189,7 +189,7 @@ export const plants = [
     care_instructions:
       "Water sparingly, allowing soil to dry out completely. Needs bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.unsplash.com/photo-1484325602102-04f5b6bc3ec5?q=80&w=1626&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: "22a1867e-9b0",
@@ -201,7 +201,7 @@ export const plants = [
     care_instructions:
       "Keep soil consistently moist. Prefers low to moderate light and high humidity.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/6754892/pexels-photo-6754892.png?auto=compress&cs=tinysrgb&w=600",
   },
   {
     id: "22788fe8-27a",
@@ -213,7 +213,7 @@ export const plants = [
     care_instructions:
       "Water infrequently, allowing soil to dry out between waterings. Needs bright, indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/12909853/pexels-photo-12909853.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     id: "44fd13bd-b60",
@@ -225,7 +225,7 @@ export const plants = [
     care_instructions:
       "Keep soil slightly moist. Grows well in indirect light.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://www.shutterstock.com/image-illustration/dracaena-braunii-plants-flowerpot-bamboo-600nw-446159569.jpg",
   },
   {
     id: "31082fea-871",
@@ -237,6 +237,6 @@ export const plants = [
     care_instructions:
       "Water when the top inch of soil is dry. Prefers indirect light and high humidity.",
     image:
-      "https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826",
+      "https://images.pexels.com/photos/4040679/pexels-photo-4040679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
 ];

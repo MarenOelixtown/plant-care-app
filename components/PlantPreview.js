@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
 const StyledImg = styled.img`
   border-radius: 5px;
   width: 100px;
-  height: 100 px;
+  height: 100px;
 `;
 
 const StyledInfo = styled.div`
