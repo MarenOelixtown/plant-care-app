@@ -61,7 +61,11 @@ export default function PlantPreview({ plant }) {
     setMyPlants([...myPlants, { ...plant, isMyPlant: true }]);
     setIsDisabled(true);
   }
-
+  function isPlantInMyPlants(plant) {
+    return myPlants.some(
+      (myplant) => myplant.id === plant.id && myplant.isMyPlant
+    );
+  }
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
@@ -74,7 +78,7 @@ export default function PlantPreview({ plant }) {
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
       <StyledButton
-        disabled={isDisabled}
+        disabled={isDisabled || isPlantInMyPlants(plant)}
         onClick={() => handleAddToMyPlants(plant)}
       >
         Add to My Plants
