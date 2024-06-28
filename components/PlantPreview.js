@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -19,7 +20,16 @@ const StyledDiv = styled.div`
 const StyledImg = styled.img`
   border-radius: 5px;
   width: 100px;
-  height: 100 px;
+  height: 100px;
+  margin-right: 10px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: green;
+  }
 `;
 
 const StyledInfo = styled.div`
@@ -29,16 +39,17 @@ const StyledInfo = styled.div`
   margin-right: 5px;
 `;
 
-export default function PlantPreview({ name, botanical_name }) {
+export default function PlantPreview({ plant }) {
   return (
     <StyledDiv>
-      <StyledImg
-        src="https://img.freepik.com/free-photo/decorative-houseplant-isolated-white-background_157027-3500.jpg?t=st=1719484743~exp=1719488343~hmac=0124cb8c89ad44347e3e49f4b0c7ba1a45a4aeb656af770fb64e7e66567451a9&w=826"
-        alt={name}
-      />
+      <Link href={`/overview/${plant.id}`}>
+        <StyledImg src={plant.image} alt={plant.name} />
+      </Link>
       <StyledInfo>
-        <StyledName>{name}</StyledName>
-        <StyledBotanicalName>{botanical_name}</StyledBotanicalName>
+        <StyledLink href={`/overview/${plant.id}`}>
+          <StyledName>{plant.name}</StyledName>
+        </StyledLink>
+        <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
     </StyledDiv>
   );

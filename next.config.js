@@ -17,7 +17,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "img.freepik.com",
+        hostname: "images.pexels.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "www.shutterstock.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
         port: "",
       },
     ],
