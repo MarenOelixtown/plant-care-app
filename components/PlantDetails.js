@@ -3,14 +3,18 @@ import styled from "styled-components";
 import Link from "next/link";
 import { plants } from "@/assets/plants";
 import { useRouter } from "next/router";
+import back from "../public/back.png";
 
 const StyledCare = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
 
-const StyledPlantImage = styled.img`
-  display: block;
+const StyledCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 export default function PlantDetails() {
@@ -23,8 +27,12 @@ export default function PlantDetails() {
   if (!plant) {
     return <h1>No Plant found</h1>;
   }
+
+  const handleBackButton = () => {
+    router.back();
+  };
   return (
-    <div>
+    <StyledCard>
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
       <Image
@@ -36,11 +44,17 @@ export default function PlantDetails() {
       <StyledCare>
         <p>Water-Need: {plant.water_need}</p>
         <p>Fertiliser-Cicle:{plant.fertiliser_season}</p>
-        <p>Light</p>
+        <p>Light: {plant.light_need}</p>
       </StyledCare>
 
-      <p>Care Instructions: </p>
-      <Link href="/overview">Back</Link>
-    </div>
+      <p>Care Instructions: {plant.care_instructions}</p>
+      <button onClick={handleBackButton}>
+        <Image
+          src={back}
+          alt="back"
+          style={{ width: "20px", height: "20px", marginRight: "8px" }}
+        />
+      </button>
+    </StyledCard>
   );
 }
