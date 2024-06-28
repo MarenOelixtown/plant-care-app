@@ -20,7 +20,9 @@ export default function PlantDetails() {
   const plantsIndex = plants.findIndex((plant) => plant.id === id);
 
   const plant = plants[plantsIndex];
-
+  if (!plant) {
+    return <h1>No Plant found</h1>;
+  }
   return (
     <div>
       <h2>{plant.name}</h2>
