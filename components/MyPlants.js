@@ -14,19 +14,24 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-export default function MyPlants() {
+export default function MyPlants({ plants, myPlants, setMyPlants }) {
+  console.log(myPlants);
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      {plants.length === 0 ? (
+      {myPlants.length === 0 ? (
         <p>
           No Plants to show at the moment. Feel free to add your plants here!
         </p>
       ) : (
         <ul>
-          {plants.map((plant) => (
-            <StyledList key={plant.id}>
-              <PlantPreview plant={plant} />
+          {myPlants.map((myplant) => (
+            <StyledList key={myplant.id}>
+              <PlantPreview
+                plant={myplant}
+                myPlants={myPlants}
+                setMyPlants={setMyPlants}
+              />
             </StyledList>
           ))}
         </ul>

@@ -58,12 +58,12 @@ const StyledMessage = styled.p`
   line-height: normal;
 `;
 
-export default function PlantPreview({ plant }) {
+export default function PlantPreview({ plant, myPlants, setMyPlants }) {
   const [message, setMessage] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  const [myPlants, setMyPlants] = useLocalStorageState("myPlants", {
-    defaultValue: [],
-  });
+  // const [myPlants, setMyPlants] = useLocalStorageState("myPlants", {
+  //   defaultValue: [],
+  // });
 
   function handleAddToMyPlants(plant) {
     setMyPlants([...myPlants, { ...plant, isMyPlant: true }]);
@@ -76,6 +76,7 @@ export default function PlantPreview({ plant }) {
       (myplant) => myplant.id === plant.id && myplant.isMyPlant
     );
   }
+
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 
@@ -13,7 +14,7 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-export default function Overview({ plants }) {
+export default function Overview({ plants, myPlants, setMyPlants }) {
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
@@ -23,11 +24,16 @@ export default function Overview({ plants }) {
         <ul>
           {plants.map((plant) => (
             <StyledList key={plant.id}>
-              <PlantPreview plant={plant} />
+              <PlantPreview
+                plant={plant}
+                myPlants={myPlants}
+                setMyPlants={setMyPlants}
+              />
             </StyledList>
           ))}
         </ul>
       )}
+      <Link href="/myplants">Go to My Plants Page</Link>
     </StyledDiv>
   );
 }
