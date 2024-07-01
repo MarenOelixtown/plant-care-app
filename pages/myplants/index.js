@@ -1,6 +1,6 @@
-import PlantPreview from "@/components/PlantPreview";
+import MyPlants from "@/components/MyPlants";
+import { plants } from "@/assets/plants";
 
-//import { plants } from "@/assets/plants";
-export default function MyPlants() {
-  return <PlantPreview plant={plant} />;
+export default function MyPlantsPage() {
+  return <MyPlants plants={plants} />;
 }
