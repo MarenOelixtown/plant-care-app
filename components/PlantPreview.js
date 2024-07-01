@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
 
 const StyledName = styled.p`
@@ -61,9 +60,6 @@ const StyledMessage = styled.p`
 export default function PlantPreview({ plant, myPlants, setMyPlants }) {
   const [message, setMessage] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
-  // const [myPlants, setMyPlants] = useLocalStorageState("myPlants", {
-  //   defaultValue: [],
-  // });
 
   function handleAddToMyPlants(plant) {
     setMyPlants([...myPlants, { ...plant, isMyPlant: true }]);

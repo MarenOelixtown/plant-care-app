@@ -1,6 +1,5 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
-import { plants } from "@/assets/plants";
 
 const StyledList = styled.li`
   display: block;
