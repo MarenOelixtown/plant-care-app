@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
+import ButtonAddPlant from "./ButtonAddPlant";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -49,15 +50,20 @@ const StyledInfo = styled.div`
   text-align: left;
   margin-right: 5px;
 `;
-const StyledMessage = styled.p`
+/* const StyledMessage = styled.p`
   color: #4b7a1c;
   font-family: Inter;
   font-weight: 600;
   font-size: 16px;
   line-height: normal;
-`;
+`; */
 
-export default function PlantPreview({ plant, myPlants, setMyPlants }) {
+export default function PlantPreview({
+  plant,
+  myPlants,
+  setMyPlants,
+  isMyPlant,
+}) {
   const [message, setMessage] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -84,14 +90,18 @@ export default function PlantPreview({ plant, myPlants, setMyPlants }) {
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
-      <StyledButton
-        title="Add to My Plants"
-        disabled={isDisabled || isPlantInMyPlants(plant)}
-        onClick={() => handleAddToMyPlants(plant)}
-      >
-        Add to My Plants
-      </StyledButton>
-      {message && <StyledMessage>{message}</StyledMessage>}
+
+      {plant.isMyPlant ? (
+        <StyledButton>Remove from My Plants</StyledButton>
+      ) : (
+        <ButtonAddPlant
+          isDisabled={isDisabled}
+          handleAddToMyPlants={handleAddToMyPlants}
+          isPlantInMyPlants={isPlantInMyPlants}
+          plant={plant}
+          message={message}
+        />
+      )}
     </StyledDiv>
   );
 }

@@ -13,7 +13,7 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-export default function MyPlants({ plants, myPlants, setMyPlants }) {
+export default function MyPlants({ myPlants, setMyPlants }) {
   console.log(myPlants);
   return (
     <StyledDiv>
@@ -30,6 +30,7 @@ export default function MyPlants({ plants, myPlants, setMyPlants }) {
                 plant={myplant}
                 myPlants={myPlants}
                 setMyPlants={setMyPlants}
+                isMyPlant={myplant.isMyPlant}
               />
             </StyledList>
           ))}
