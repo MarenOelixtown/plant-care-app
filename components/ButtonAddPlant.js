@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import myPlantBlank from "../public/myPlantBlank.png";
-import myPlantColored from "../public/myPlantBlank.png";
+import myPlantColored from "../public/myPlantColored.png";
 import Image from "next/image";
 
 const StyledButton = styled.button`
@@ -29,6 +29,7 @@ export default function ButtonAddPlant({
   message,
 }) {
   const isMyPlant = isPlantInMyPlants(plant);
+
   return (
     <>
       <StyledButton
