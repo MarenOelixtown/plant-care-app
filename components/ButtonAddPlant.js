@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import myPlantBlank from "../public/myPlantBlank.png";
+import myPlantColored from "../public/myPlantBlank.png";
+import Image from "next/image";
 
 const StyledButton = styled.button`
   border: 2px solid black;
@@ -25,14 +28,27 @@ export default function ButtonAddPlant({
   isPlantInMyPlants,
   message,
 }) {
+  const isMyPlant = isPlantInMyPlants(plant);
   return (
     <>
       <StyledButton
+        disabled={isDisabled}
         title="Add to My Plants"
-        disabled={isDisabled || isPlantInMyPlants(plant)}
         onClick={() => handleAddToMyPlants(plant)}
       >
-        Add to My Plants
+        {isMyPlant ? (
+          <Image
+            src={myPlantColored}
+            alt="AddMyPlant"
+            style={{ width: "20px", height: "20px", marginRight: "8px" }}
+          />
+        ) : (
+          <Image
+            src={myPlantBlank}
+            alt="AddMyPlant"
+            style={{ width: "20px", height: "20px", marginRight: "8px" }}
+          />
+        )}
       </StyledButton>
       {message && <StyledMessage>{message}</StyledMessage>}
     </>
