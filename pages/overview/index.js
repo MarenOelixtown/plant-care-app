@@ -5,6 +5,7 @@ export default function OverviewPage({
   plantsInfo,
   setPlantsInfo,
   isMyPlantfunction,
+  handleToggleMyPlants,
 }) {
   return (
     <Overview
@@ -12,6 +13,7 @@ export default function OverviewPage({
       plantsInfo={plantsInfo}
       setPlantsInfo={setPlantsInfo}
       isMyPlantfunction={isMyPlantfunction}
+      handleToggleMyPlants={handleToggleMyPlants}
     />
   );
 }

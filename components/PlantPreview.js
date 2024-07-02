@@ -63,37 +63,13 @@ export default function PlantPreview({
   plantsInfo,
   setPlantsInfo,
   isMyPlantfunction,
+  handleToggleMyPlants,
 }) {
   const [message, setMessage] = useState("");
 
-  const handleToggleMyPlants = () => {
-    const updatedPlantsInfo = plantsInfo.map((info) =>
-      info.id === plant.id ? { ...info, isMyPlant: !info.isMyPlant } : info
-    );
-    console.log(updatedPlantsInfo);
-    setPlantsInfo(updatedPlantsInfo);
-    setMessage(isMyPlantfunction(plant) ? "Removed!" : "Added!");
-    setTimeout(() => setMessage(""), 2000);
-  };
   const isMyPlant = isMyPlantfunction(plant);
-  /*function handleToggleMyPlants(id) {
-    const foundPlant = plantsInfo.find((plant) => plant.id === id);
+  console.log(plantsInfo);
 
-    if (foundPlant) {
-      setPlantsInfo(
-        plantsInfo.map((plant) =>
-          plant.id === foundPlant.id
-            ? { ...plant, isMyPlant: !plant.isMyPlant }
-            : plant
-        )
-      );
-    } else {
-      setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
-      setMessage("Added!");
-      setTimeout(() => setMessage(""), 2000);
-    }
-  }
-  */
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>

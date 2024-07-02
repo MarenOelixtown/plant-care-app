@@ -2,6 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import back from "../public/back.png";
+import ButtonAddPlant from "./ButtonAddPlant";
 
 const StyledCard = styled.div`
   display: flex;
@@ -29,7 +30,11 @@ const StyledCare = styled.div`
   }
 `;
 
-export default function PlantDetails({ plants }) {
+export default function PlantDetails({
+  plants,
+  isMyPlantfunction,
+  handleToggleMyPlants,
+}) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -39,12 +44,17 @@ export default function PlantDetails({ plants }) {
   if (!plant) {
     return <h1>No Plant found</h1>;
   }
-
+  const isMyPlant = isMyPlantfunction(plant);
   const handleBackButton = () => {
     router.back();
   };
   return (
     <StyledCard>
+      <ButtonAddPlant
+        OnToggleMyPlants={handleToggleMyPlants}
+        isMyPlant={isMyPlant}
+        plant={plant}
+      />
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
       <Image src={plant.image} width={300} height={300} alt={plant.name} />

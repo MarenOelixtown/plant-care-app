@@ -17,6 +17,7 @@ export default function MyPlants({
   plantsInfo,
   setPlantsInfo,
   isMyPlantfunction,
+  handleToggleMyPlants,
 }) {
   const myPlants = plantsInfo.filter((info) => info.isMyPlant);
   console.log(myPlants);
@@ -37,6 +38,7 @@ export default function MyPlants({
                 plantsInfo={plantsInfo}
                 setPlantsInfo={setPlantsInfo}
                 isMyPlantfunction={isMyPlantfunction}
+                handleToggleMyPlants={handleToggleMyPlants}
               />
             </StyledList>
           ))}

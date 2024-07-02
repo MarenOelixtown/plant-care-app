@@ -8,17 +8,14 @@ export default function App({ Component, pageProps }) {
     plants.map((plant) => ({ ...plant, isMyPlant: false }))
   );
 
-  /*const togglePlantInMyPlants = (plant) => {
-    if (myPlants.some((myPlant) => myPlant.id === plant.id)) {
-      setMyPlants(myPlants.filter((myPlant) => myPlant.id !== plant.id));
-    } else {
-      setMyPlants([...myPlants, plant]);
-    }
-  };*/
+  const handleToggleMyPlants = (plant) => {
+    const updatedPlantsInfo = plantsInfo.map((info) =>
+      info.id === plant.id ? { ...info, isMyPlant: !info.isMyPlant } : info
+    );
+    console.log(updatedPlantsInfo);
+    setPlantsInfo(updatedPlantsInfo);
+  };
 
-  /*function isMyPlantfunction(plant) {
-    return plantsInfo.find((plantInfo) => plantInfo.id === plant.id)?.isMyPlant;
-  }*/
   const isMyPlantfunction = (plant) => {
     const plantInfo = plantsInfo.find((info) => info.id === plant.id);
     return plantInfo ? plantInfo.isMyPlant : false;
@@ -32,6 +29,7 @@ export default function App({ Component, pageProps }) {
         plantsInfo={plantsInfo}
         setPlantsInfo={setPlantsInfo}
         isMyPlantfunction={isMyPlantfunction}
+        handleToggleMyPlants={handleToggleMyPlants}
       />
     </>
   );

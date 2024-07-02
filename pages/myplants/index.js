@@ -4,6 +4,7 @@ export default function MyPlantsPage({
   plantsInfo,
   setPlantsInfo,
   isMyPlantfunction,
+  handleToggleMyPlants,
 }) {
   console.log(plantsInfo);
   return (
@@ -11,6 +12,7 @@ export default function MyPlantsPage({
       plantsInfo={plantsInfo}
       setPlantsInfo={setPlantsInfo}
       isMyPlantfunction={isMyPlantfunction}
+      handleToggleMyPlants={handleToggleMyPlants}
     />
   );
 }

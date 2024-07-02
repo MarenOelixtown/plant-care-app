@@ -19,6 +19,7 @@ export default function Overview({
   plantsInfo,
   setPlantsInfo,
   isMyPlantfunction,
+  handleToggleMyPlants,
 }) {
   return (
     <StyledDiv>
@@ -28,7 +29,6 @@ export default function Overview({
       ) : (
         <ul>
           {plants.map((plant) => {
-            // const isMyPlant = isMyPlantfunction(plant);
             return (
               <StyledList key={plant.id}>
                 <PlantPreview
@@ -36,6 +36,7 @@ export default function Overview({
                   plantsInfo={plantsInfo}
                   setPlantsInfo={setPlantsInfo}
                   isMyPlantfunction={isMyPlantfunction}
+                  handleToggleMyPlants={handleToggleMyPlants}
                 />
               </StyledList>
             );
