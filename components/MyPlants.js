@@ -13,9 +13,14 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-export default function MyPlants({ plants, setPlants }) {
+export default function MyPlants({
+  plants,
+  setPlants,
+  plantsInfo,
+  setPlantsInfo,
+  isMyPlantfunction,
+}) {
   console.log(plants);
-  const myPlants = plants.filter((plant) => plant.isMyPlant);
 
   return (
     <StyledDiv>
@@ -26,16 +31,21 @@ export default function MyPlants({ plants, setPlants }) {
         </p>
       ) : (
         <ul>
-          {plants.map((plant) => (
-            <StyledList key={plant.id}>
-              <PlantPreview
-                plant={plant}
-                plants={myPlants}
-                setPlants={setPlants}
-                isMyPlant={plant.isMyPlant}
-              />
-            </StyledList>
-          ))}
+          {plants.map((plant) => {
+            // const isMyPlant = isMyPlantfunction(plant);
+            return (
+              <StyledList key={plant.id}>
+                <PlantPreview
+                  plant={plant}
+                  plants={myPlants}
+                  setPlants={setPlants}
+                  isMyPlantfunction={isMyPlantfunction}
+                  plantsInfo={plantsInfo}
+                  setPlantsInfo={setPlantsInfo}
+                />
+              </StyledList>
+            );
+          })}
         </ul>
       )}
     </StyledDiv>

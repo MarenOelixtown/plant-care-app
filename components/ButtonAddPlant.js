@@ -22,8 +22,7 @@ const StyledMessage = styled.p`
 `;
 
 export default function ButtonAddPlant({
-  isDisabled,
-  handleAddToMyPlants,
+  OnToggleMyPlants,
   plant,
   message,
   isMyPlant,
@@ -31,9 +30,8 @@ export default function ButtonAddPlant({
   return (
     <>
       <StyledButton
-        disabled={isDisabled}
         title="Add to My Plants"
-        onClick={() => handleAddToMyPlants(plant)}
+        onClick={() => OnToggleMyPlants(plant)}
       >
         {isMyPlant ? (
           <Image

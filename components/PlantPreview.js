@@ -58,25 +58,50 @@ const StyledInfo = styled.div`
   line-height: normal;
 `; */
 
-export default function PlantPreview({ plant, plants, setPlants }) {
+export default function PlantPreview({
+  plant,
+  plants,
+  setPlants,
+  plantsInfo,
+  setPlantsInfo,
+  isMyPlantfunction,
+}) {
   const [message, setMessage] = useState("");
-  const [isDisabled, setIsDisabled] = useState(false);
+  /* const [isDisabled, setIsDisabled] = useState(false); */
+  const isMyPlant = isMyPlantfunction(plant, plantsInfo);
+  console.log(isMyPlant);
 
-  function handleAddToMyPlants(plant) {
+  function handleToggleMyPlants(id) {
+    const foundPlant = plantsInfo.find((plant) => plant.id === id);
+
+    if (foundPlant) {
+      setPlantsInfo(
+        plantsInfo.map((plant) =>
+          plant.id === foundPlant.id
+            ? { ...plant, isMyPlant: !plant.isMyPlant }
+            : plant
+        )
+      );
+    } else {
+      setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
+      /* setIsDisabled(true); */
+      setMessage("Added!");
+      setTimeout(() => setMessage(""), 2000);
+    }
+  }
+  /* function handleAddToMyPlants(plant) {
     setPlants([...plants, { ...plant, isMyPlant: true }]);
     setIsDisabled(true);
     setMessage("Done!");
     setTimeout(() => setMessage(""), 2000);
-  }
+  } */
   /*   function isPlantInMyPlants(plant) {
     return myPlants.some(
       (myplant) => myplant.id === plant.id && myplant.isMyPlant
     );
   } */
-  const isMyPlant = plants.some(
-    (myplant) => myplant.id === plant.id && myplant.isMyPlant
-  );
 
+  console.log(isMyPlant);
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
@@ -93,8 +118,7 @@ export default function PlantPreview({ plant, plants, setPlants }) {
         <StyledButton>Remove from My Plants</StyledButton>
       ) : (
         <ButtonAddPlant
-          isDisabled={isDisabled}
-          handleAddToMyPlants={handleAddToMyPlants}
+          OnToggleMyPlants={handleToggleMyPlants}
           isMyPlant={isMyPlant}
           plant={plant}
           message={message}

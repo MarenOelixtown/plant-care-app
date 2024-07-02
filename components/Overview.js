@@ -14,7 +14,13 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-export default function Overview({ plants, setPlants }) {
+export default function Overview({
+  plants,
+  setPlants,
+  plantsInfo,
+  setPlantsInfo,
+  isMyPlantfunction,
+}) {
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
@@ -22,15 +28,21 @@ export default function Overview({ plants, setPlants }) {
         <p>No plants available at the moment. Please come back later!</p>
       ) : (
         <ul>
-          {plants.map((plant) => (
-            <StyledList key={plant.id}>
-              <PlantPreview
-                plant={plant}
-                setPlants={setPlants}
-                plants={plants}
-              />
-            </StyledList>
-          ))}
+          {plants.map((plant) => {
+            // const isMyPlant = isMyPlantfunction(plant);
+            return (
+              <StyledList key={plant.id}>
+                <PlantPreview
+                  plant={plant}
+                  setPlants={setPlants}
+                  plants={plants}
+                  isMyPlantfunction={isMyPlantfunction}
+                  plantsInfo={plantsInfo}
+                  setPlantsInfo={setPlantsInfo}
+                />
+              </StyledList>
+            );
+          })}
         </ul>
       )}
       <Link href="/myplants">Go to My Plants Page</Link>
