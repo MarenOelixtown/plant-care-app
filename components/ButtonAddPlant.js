@@ -31,7 +31,7 @@ export default function ButtonAddPlant({
     <>
       <StyledButton
         title="Add to My Plants"
-        onClick={() => OnToggleMyPlants(plant)}
+        onClick={() => OnToggleMyPlants(plant.id)}
       >
         {isMyPlant ? (
           <Image

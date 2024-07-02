@@ -6,8 +6,8 @@ export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
   const [plantsInfo, setPlantsInfo] = useState([]);
 
-  function isMyPlantfunction(plant, plantsInfo) {
-    plantsInfo.find((plantInfo) => plantInfo.id === plant.id)?.isMyPlant;
+  function isMyPlantfunction(plant) {
+    return plantsInfo.find((plantInfo) => plantInfo.id === plant.id)?.isMyPlant;
   }
 
   return (

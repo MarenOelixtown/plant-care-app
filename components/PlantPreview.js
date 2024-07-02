@@ -68,7 +68,7 @@ export default function PlantPreview({
 }) {
   const [message, setMessage] = useState("");
   /* const [isDisabled, setIsDisabled] = useState(false); */
-  const isMyPlant = isMyPlantfunction(plant, plantsInfo);
+  const isMyPlant = isMyPlantfunction(plant);
   console.log(isMyPlant);
 
   function handleToggleMyPlants(id) {
