@@ -1,8 +1,6 @@
 import { useState } from "react";
 import GlobalStyle from "../styles";
 import { initialPlants } from "@/assets/plants";
-import Overview from "@/components/Overview";
-import MyPlants from "@/components/MyPlants";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
@@ -25,7 +23,6 @@ export default function App({ Component, pageProps }) {
     const plantInfo = plantsInfo.find((info) => info.id === plant.id);
     return plantInfo ? plantInfo.isMyPlant : false;
   };
-  console.log(plantsInfo);
   return (
     <>
       <GlobalStyle />
