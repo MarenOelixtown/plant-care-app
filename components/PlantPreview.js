@@ -60,18 +60,23 @@ const StyledInfo = styled.div`
 
 export default function PlantPreview({
   plant,
-  plants,
-  setPlants,
   plantsInfo,
   setPlantsInfo,
   isMyPlantfunction,
 }) {
   const [message, setMessage] = useState("");
-  /* const [isDisabled, setIsDisabled] = useState(false); */
-  const isMyPlant = isMyPlantfunction(plant);
-  console.log(isMyPlant);
 
-  function handleToggleMyPlants(id) {
+  const handleToggleMyPlants = () => {
+    const updatedPlantsInfo = plantsInfo.map((info) =>
+      info.id === plant.id ? { ...info, isMyPlant: !info.isMyPlant } : info
+    );
+    console.log(updatedPlantsInfo);
+    setPlantsInfo(updatedPlantsInfo);
+    setMessage(isMyPlantfunction(plant) ? "Removed!" : "Added!");
+    setTimeout(() => setMessage(""), 2000);
+  };
+  const isMyPlant = isMyPlantfunction(plant);
+  /*function handleToggleMyPlants(id) {
     const foundPlant = plantsInfo.find((plant) => plant.id === id);
 
     if (foundPlant) {
@@ -84,24 +89,11 @@ export default function PlantPreview({
       );
     } else {
       setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
-      /* setIsDisabled(true); */
       setMessage("Added!");
       setTimeout(() => setMessage(""), 2000);
     }
   }
-  /* function handleAddToMyPlants(plant) {
-    setPlants([...plants, { ...plant, isMyPlant: true }]);
-    setIsDisabled(true);
-    setMessage("Done!");
-    setTimeout(() => setMessage(""), 2000);
-  } */
-  /*   function isPlantInMyPlants(plant) {
-    return myPlants.some(
-      (myplant) => myplant.id === plant.id && myplant.isMyPlant
-    );
-  } */
-
-  console.log(isMyPlant);
+  */
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
@@ -113,17 +105,12 @@ export default function PlantPreview({
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
-
-      {plant.isMyPlant ? (
-        <StyledButton>Remove from My Plants</StyledButton>
-      ) : (
-        <ButtonAddPlant
-          OnToggleMyPlants={handleToggleMyPlants}
-          isMyPlant={isMyPlant}
-          plant={plant}
-          message={message}
-        />
-      )}
+      <ButtonAddPlant
+        OnToggleMyPlants={handleToggleMyPlants}
+        isMyPlant={isMyPlant}
+        plant={plant}
+        message={message}
+      />
     </StyledDiv>
   );
 }
