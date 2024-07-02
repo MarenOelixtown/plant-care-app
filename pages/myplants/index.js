@@ -1,7 +1,5 @@
 import MyPlants from "@/components/MyPlants";
 
-export default function MyPlantsPage({ plants, myPlants, setMyPlants }) {
-  return (
-    <MyPlants plants={plants} myPlants={myPlants} setMyPlants={setMyPlants} />
-  );
+export default function MyPlantsPage({ plants, setPlants }) {
+  return <MyPlants plants={plants} setPlants={setPlants} />;
 }

@@ -25,11 +25,9 @@ export default function ButtonAddPlant({
   isDisabled,
   handleAddToMyPlants,
   plant,
-  isPlantInMyPlants,
   message,
+  isMyPlant,
 }) {
-  const isMyPlant = isPlantInMyPlants(plant);
-
   return (
     <>
       <StyledButton

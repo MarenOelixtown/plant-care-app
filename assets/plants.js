@@ -1,4 +1,4 @@
-export const plants = [
+export const initialPlants = [
   {
     id: "eb8fb5fc-880",
     name: "Snake Plant",

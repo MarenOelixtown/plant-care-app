@@ -14,7 +14,7 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-export default function Overview({ plants, myPlants, setMyPlants }) {
+export default function Overview({ plants, setPlants }) {
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
@@ -26,8 +26,8 @@ export default function Overview({ plants, myPlants, setMyPlants }) {
             <StyledList key={plant.id}>
               <PlantPreview
                 plant={plant}
-                myPlants={myPlants}
-                setMyPlants={setMyPlants}
+                setPlants={setPlants}
+                plants={plants}
               />
             </StyledList>
           ))}

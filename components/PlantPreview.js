@@ -58,26 +58,24 @@ const StyledInfo = styled.div`
   line-height: normal;
 `; */
 
-export default function PlantPreview({
-  plant,
-  myPlants,
-  setMyPlants,
-  isMyPlant,
-}) {
+export default function PlantPreview({ plant, plants, setPlants }) {
   const [message, setMessage] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
   function handleAddToMyPlants(plant) {
-    setMyPlants([...myPlants, { ...plant, isMyPlant: true }]);
+    setPlants([...plants, { ...plant, isMyPlant: true }]);
     setIsDisabled(true);
     setMessage("Done!");
     setTimeout(() => setMessage(""), 2000);
   }
-  function isPlantInMyPlants(plant) {
+  /*   function isPlantInMyPlants(plant) {
     return myPlants.some(
       (myplant) => myplant.id === plant.id && myplant.isMyPlant
     );
-  }
+  } */
+  const isMyPlant = plants.some(
+    (myplant) => myplant.id === plant.id && myplant.isMyPlant
+  );
 
   return (
     <StyledDiv>
@@ -97,7 +95,7 @@ export default function PlantPreview({
         <ButtonAddPlant
           isDisabled={isDisabled}
           handleAddToMyPlants={handleAddToMyPlants}
-          isPlantInMyPlants={isPlantInMyPlants}
+          isMyPlant={isMyPlant}
           plant={plant}
           message={message}
         />

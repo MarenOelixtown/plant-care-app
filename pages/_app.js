@@ -1,15 +1,14 @@
+import { useState } from "react";
 import GlobalStyle from "../styles";
-import useLocalStorageState from "use-local-storage-state";
+import { initialPlants } from "@/assets/plants";
 
 export default function App({ Component, pageProps }) {
-  const [myPlants, setMyPlants] = useLocalStorageState("myPlants", {
-    defaultValue: [],
-  });
+  const [plants, setPlants] = useState(initialPlants);
 
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} myPlants={myPlants} setMyPlants={setMyPlants} />
+      <Component {...pageProps} plants={plants} setPlants={setPlants} />
     </>
   );
 }

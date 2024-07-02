@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { plants } from "@/assets/plants";
 import { useRouter } from "next/router";
 import back from "../public/back.png";
 
@@ -30,7 +29,7 @@ const StyledCare = styled.div`
   }
 `;
 
-export default function PlantDetails() {
+export default function PlantDetails({ plants }) {
   const router = useRouter();
   const { id } = router.query;
 
