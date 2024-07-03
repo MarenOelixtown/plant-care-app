@@ -4,21 +4,26 @@ import { initialPlants } from "@/assets/plants";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
-  const [plantsInfo, setPlantsInfo] = useState(
-    plants.map((plant) => ({ ...plant, isMyPlant: false }))
-  );
 
-  const handleToggleMyPlants = (plant) => {
-    const updatedPlantsInfo = plantsInfo.map((info) =>
-      info.id === plant.id ? { ...info, isMyPlant: !info.isMyPlant } : info
-    );
+  function handleToggleMyPlants(selectedplant) {
+    const foundPlant = plants.find((plant) => plant.id === selectedplant.id);
 
-    setPlantsInfo(updatedPlantsInfo);
-  };
+    if (foundPlant) {
+      setPlants(
+        plants.map((plant) =>
+          plant.id === foundPlant.id
+            ? { ...plant, isMyPlant: !plant.isMyPlant }
+            : plant
+        )
+      );
+    } else {
+      setPlantsInfo([...plants, { ...selectedplant, isMyPlant: true }]);
+    }
+  }
 
   const isMyPlantfunction = (plant) => {
-    const plantInfo = plantsInfo.find((info) => info.id === plant.id);
-    return plantInfo ? plantInfo.isMyPlant : false;
+    const plantInfo = plants.find((info) => info.id === plant.id);
+    return plantInfo ? plant.isMyPlant : false;
   };
   return (
     <>
@@ -26,8 +31,7 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         plants={plants}
-        plantsInfo={plantsInfo}
-        setPlantsInfo={setPlantsInfo}
+        setPlants={setPlants}
         isMyPlantfunction={isMyPlantfunction}
         handleToggleMyPlants={handleToggleMyPlants}
       />

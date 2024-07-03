@@ -16,8 +16,6 @@ const StyledDiv = styled.div`
 `;
 export default function Overview({
   plants,
-  plantsInfo,
-  setPlantsInfo,
   isMyPlantfunction,
   handleToggleMyPlants,
 }) {
@@ -34,8 +32,6 @@ export default function Overview({
               <StyledList key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  plantsInfo={plantsInfo}
-                  setPlantsInfo={setPlantsInfo}
                   isMyPlantfunction={isMyPlantfunction}
                   handleToggleMyPlants={handleToggleMyPlants}
                 />

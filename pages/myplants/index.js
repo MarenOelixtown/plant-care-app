@@ -1,15 +1,15 @@
 import MyPlants from "@/components/MyPlants";
 
 export default function MyPlantsPage({
-  plantsInfo,
-  setPlantsInfo,
+  plants,
+  setPlants,
   isMyPlantfunction,
   handleToggleMyPlants,
 }) {
   return (
     <MyPlants
-      plantsInfo={plantsInfo}
-      setPlantsInfo={setPlantsInfo}
+      plants={plants}
+      setPlants={setPlants}
       isMyPlantfunction={isMyPlantfunction}
       handleToggleMyPlants={handleToggleMyPlants}
     />

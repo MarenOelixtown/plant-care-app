@@ -14,12 +14,12 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 export default function MyPlants({
-  plantsInfo,
-  setPlantsInfo,
+  plants,
+  setPlants,
   isMyPlantfunction,
   handleToggleMyPlants,
 }) {
-  const myPlants = plantsInfo.filter((info) => info.isMyPlant);
+  const myPlants = plants.filter((info) => info.isMyPlant);
 
   return (
     <StyledDiv>
@@ -34,8 +34,7 @@ export default function MyPlants({
             <StyledList key={plant.id}>
               <PlantPreview
                 plant={plant}
-                plantsInfo={plantsInfo}
-                setPlantsInfo={setPlantsInfo}
+                setPlants={setPlants}
                 isMyPlantfunction={isMyPlantfunction}
                 handleToggleMyPlants={handleToggleMyPlants}
               />
