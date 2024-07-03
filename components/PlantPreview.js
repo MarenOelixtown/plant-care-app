@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useState } from "react";
 import ButtonAddPlant from "./ButtonAddPlant";
 
 const StyledName = styled.p`
@@ -47,8 +46,6 @@ export default function PlantPreview({
   isMyPlantfunction,
   handleToggleMyPlants,
 }) {
-  const [message, setMessage] = useState("");
-
   const isMyPlant = isMyPlantfunction(plant);
 
   return (
@@ -65,8 +62,7 @@ export default function PlantPreview({
       <ButtonAddPlant
         OnToggleMyPlants={handleToggleMyPlants}
         isMyPlant={isMyPlant}
-        plant={plant}
-        message={message}
+        id={plant.id}
       />
     </StyledDiv>
   );

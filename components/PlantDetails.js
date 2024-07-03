@@ -1,8 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import back from "../public/back.png";
 import ButtonAddPlant from "./ButtonAddPlant";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const StyledCard = styled.div`
   display: flex;
@@ -34,6 +35,16 @@ const StyledCare = styled.div`
   }
 `;
 
+const StyledImage = styled(Image)`
+  width: 20px;
+  height: 20px;
+`;
+
+const BackButton = styled.button`
+  background: none;
+  cursor: pointer;
+`;
+
 export default function PlantDetails({
   plants,
   isMyPlantfunction,
@@ -49,15 +60,13 @@ export default function PlantDetails({
     return <h1>No Plant found</h1>;
   }
   const isMyPlant = isMyPlantfunction(plant);
-  const handleBackButton = () => {
-    router.back();
-  };
+
   return (
     <StyledCard>
       <ButtonAddPlant
         OnToggleMyPlants={handleToggleMyPlants}
         isMyPlant={isMyPlant}
-        plant={plant}
+        id={id}
       />
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
@@ -73,13 +82,11 @@ export default function PlantDetails({
 
       <p>Care Instructions: </p>
       <p>{plant.care_instructions}</p>
-      <button onClick={handleBackButton}>
-        <Image
-          src={back}
-          alt="back"
-          style={{ width: "20px", height: "20px", marginRight: "8px" }}
-        />
-      </button>
+      <Link href="/overview">
+        <BackButton>
+          <StyledImage src={back} alt="back" />
+        </BackButton>
+      </Link>
     </StyledCard>
   );
 }

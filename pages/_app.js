@@ -5,8 +5,8 @@ import { initialPlants } from "@/assets/plants";
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
 
-  function handleToggleMyPlants(selectedplant) {
-    const foundPlant = plants.find((plant) => plant.id === selectedplant.id);
+  function handleToggleMyPlants(id) {
+    const foundPlant = plants.find((plant) => plant.id === id);
 
     if (foundPlant) {
       setPlants(
@@ -16,8 +16,6 @@ export default function App({ Component, pageProps }) {
             : plant
         )
       );
-    } else {
-      setPlantsInfo([...plants, { ...selectedplant, isMyPlant: true }]);
     }
   }
 
@@ -31,7 +29,6 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         plants={plants}
-        setPlants={setPlants}
         isMyPlantfunction={isMyPlantfunction}
         handleToggleMyPlants={handleToggleMyPlants}
       />

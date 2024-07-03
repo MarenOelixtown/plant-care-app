@@ -12,42 +12,26 @@ const StyledButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
-`;
-const StyledMessage = styled.p`
-  color: #4b7a1c;
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: normal;
+  background-color: white;
 `;
 
-export default function ButtonAddPlant({
-  OnToggleMyPlants,
-  plant,
-  message,
-  isMyPlant,
-}) {
+const StyledImage = styled(Image)`
+  width: 25px;
+  height: 25px;
+`;
+
+export default function ButtonAddPlant({ OnToggleMyPlants, id, isMyPlant }) {
   return (
     <>
       <StyledButton
         title="Add to My Plants"
-        onClick={() => OnToggleMyPlants(plant)}
+        onClick={() => OnToggleMyPlants(id)}
       >
-        {isMyPlant ? (
-          <Image
-            src={myPlantColored}
-            alt="AddMyPlant"
-            style={{ width: "20px", height: "20px", marginRight: "8px" }}
-          />
-        ) : (
-          <Image
-            src={myPlantBlank}
-            alt="AddMyPlant"
-            style={{ width: "20px", height: "20px", marginRight: "8px" }}
-          />
-        )}
+        <StyledImage
+          src={isMyPlant ? myPlantColored : myPlantBlank}
+          alt="AddMyPlant"
+        />
       </StyledButton>
-      {message && <StyledMessage>{message}</StyledMessage>}
     </>
   );
 }
