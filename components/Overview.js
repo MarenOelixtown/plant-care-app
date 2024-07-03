@@ -24,6 +24,7 @@ export default function Overview({
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
+      <Link href="/myplants">Go to My Plants Page</Link>
       {plants.length === 0 ? (
         <p>No plants available at the moment. Please come back later!</p>
       ) : (
@@ -43,7 +44,6 @@ export default function Overview({
           })}
         </ul>
       )}
-      <Link href="/myplants">Go to My Plants Page</Link>
     </StyledDiv>
   );
 }

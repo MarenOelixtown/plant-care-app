@@ -20,8 +20,7 @@ export default function MyPlants({
   handleToggleMyPlants,
 }) {
   const myPlants = plantsInfo.filter((info) => info.isMyPlant);
-  console.log(myPlants);
-  console.log(plantsInfo);
+
   return (
     <StyledDiv>
       <h1>My Plants</h1>

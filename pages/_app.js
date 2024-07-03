@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
     const updatedPlantsInfo = plantsInfo.map((info) =>
       info.id === plant.id ? { ...info, isMyPlant: !info.isMyPlant } : info
     );
-    console.log(updatedPlantsInfo);
+
     setPlantsInfo(updatedPlantsInfo);
   };
 

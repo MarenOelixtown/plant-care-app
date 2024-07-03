@@ -34,41 +34,22 @@ const StyledLink = styled(Link)`
     color: green;
   }
 `;
-const StyledButton = styled.button`
-  border: 2px solid black;
-  font-size: 1em;
-  padding: 6px 12px;
-  border-radius: 10%;
-  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-`;
+
 const StyledInfo = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-right: 5px;
 `;
-/* const StyledMessage = styled.p`
-  color: #4b7a1c;
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: normal;
-`; */
 
 export default function PlantPreview({
   plant,
-  plantsInfo,
-  setPlantsInfo,
   isMyPlantfunction,
   handleToggleMyPlants,
 }) {
   const [message, setMessage] = useState("");
 
   const isMyPlant = isMyPlantfunction(plant);
-  console.log(plantsInfo);
 
   return (
     <StyledDiv>

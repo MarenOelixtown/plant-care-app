@@ -6,7 +6,6 @@ export default function MyPlantsPage({
   isMyPlantfunction,
   handleToggleMyPlants,
 }) {
-  console.log(plantsInfo);
   return (
     <MyPlants
       plantsInfo={plantsInfo}
