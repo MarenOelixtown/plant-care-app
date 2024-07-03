@@ -1,6 +1,5 @@
 import CreatPlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
-import { uid } from "uid";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -29,14 +28,25 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
-export default function CreatPlantFormPage() {
-  /*  function handleCreatePlant(newPlant) {
-    setPlants([{ id: uid(), ...newPlant }, ...plants]);
-    console.log(setPlants);
-  } */
+export default function CreatPlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
+  const [seasons, setSeasons] = useState({
+    spring: false,
+    summer: false,
+    fall: false,
+    winter: false,
+  });
 
-  function createPlant(event) {
+  console.log(seasons);
+
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target;
+    setSeasons((prevSeasons) => ({
+      ...prevSeasons,
+      [id]: checked,
+    }));
+  };
+  function addPlant(event) {
     event.preventDefault();
     console.log("form submitted");
 
@@ -44,8 +54,11 @@ export default function CreatPlantFormPage() {
     const plantData = Object.fromEntries(formData);
     const newPlant = plantData;
     console.log(newPlant);
-
-    /* handleCreatePlant(newPlant); */
+    const selectedSeasons = Object.keys(seasons).filter(
+      (season) => seasons[season]
+    );
+    plantData.fertiliser_season = selectedSeasons;
+    handleAddPlant(newPlant);
 
     event.target.reset();
     event.target.name.focus();
@@ -55,7 +68,12 @@ export default function CreatPlantFormPage() {
   return (
     <FormPageContainer>
       <Heading id="create-plant">Create a Plant</Heading>
-      <CreatPlantForm formName={"create-plant"} onSubmit={createPlant} />
+      <CreatPlantForm
+        formName={"create-plant"}
+        onSubmit={addPlant}
+        seasons={seasons}
+        onCheckboxChange={handleCheckboxChange}
+      />
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
       <StyledLink href="/myplants">
         <StyledButton>Go to my plants</StyledButton>

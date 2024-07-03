@@ -1,10 +1,14 @@
 import { useState } from "react";
 import GlobalStyle from "../styles";
 import { initialPlants } from "@/assets/plants";
+import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
-
+  console.log(plants);
+  function handleAddPlant(newPlant) {
+    setPlants([{ id: uid(), ...newPlant }, ...plants]);
+  }
   function handleToggleMyPlants(id) {
     const foundPlant = plants.find((plant) => plant.id === id);
 
@@ -26,6 +30,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         plants={plants}
         handleToggleMyPlants={handleToggleMyPlants}
+        handleAddPlant={handleAddPlant}
       />
     </>
   );
