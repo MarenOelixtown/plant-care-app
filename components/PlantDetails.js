@@ -45,11 +45,7 @@ const BackButton = styled.button`
   cursor: pointer;
 `;
 
-export default function PlantDetails({
-  plants,
-  isMyPlantfunction,
-  handleToggleMyPlants,
-}) {
+export default function PlantDetails({ plants, handleToggleMyPlants }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -59,13 +55,12 @@ export default function PlantDetails({
   if (!plant) {
     return <h1>No Plant found</h1>;
   }
-  const isMyPlant = isMyPlantfunction(plant);
 
   return (
     <StyledCard>
       <ButtonAddPlant
         OnToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={isMyPlant}
+        isMyPlant={plant.isMyPlant}
         id={id}
       />
       <h2>{plant.name}</h2>

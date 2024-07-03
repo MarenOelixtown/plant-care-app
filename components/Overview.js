@@ -21,11 +21,7 @@ const StyledButton = styled.button`
   padding: 5px;
 `;
 
-export default function Overview({
-  plants,
-  isMyPlantfunction,
-  handleToggleMyPlants,
-}) {
+export default function Overview({ plants, handleToggleMyPlants }) {
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
@@ -41,7 +37,6 @@ export default function Overview({
               <StyledList key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  isMyPlantfunction={isMyPlantfunction}
                   handleToggleMyPlants={handleToggleMyPlants}
                 />
               </StyledList>

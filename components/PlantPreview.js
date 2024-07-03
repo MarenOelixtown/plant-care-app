@@ -41,13 +41,7 @@ const StyledInfo = styled.div`
   margin-right: 5px;
 `;
 
-export default function PlantPreview({
-  plant,
-  isMyPlantfunction,
-  handleToggleMyPlants,
-}) {
-  const isMyPlant = isMyPlantfunction(plant);
-
+export default function PlantPreview({ plant, handleToggleMyPlants }) {
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
@@ -61,7 +55,7 @@ export default function PlantPreview({
       </StyledInfo>
       <ButtonAddPlant
         OnToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={isMyPlant}
+        isMyPlant={plant.isMyPlant}
         id={plant.id}
       />
     </StyledDiv>

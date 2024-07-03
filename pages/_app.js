@@ -19,17 +19,12 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  const isMyPlantfunction = (plant) => {
-    const plantInfo = plants.find((info) => info.id === plant.id);
-    return plantInfo ? plant.isMyPlant : false;
-  };
   return (
     <>
       <GlobalStyle />
       <Component
         {...pageProps}
         plants={plants}
-        isMyPlantfunction={isMyPlantfunction}
         handleToggleMyPlants={handleToggleMyPlants}
       />
     </>

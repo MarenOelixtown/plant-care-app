@@ -27,12 +27,7 @@ const BackButton = styled.button`
   cursor: pointer;
 `;
 
-export default function MyPlants({
-  plants,
-  setPlants,
-  isMyPlantfunction,
-  handleToggleMyPlants,
-}) {
+export default function MyPlants({ plants, handleToggleMyPlants }) {
   const myPlants = plants.filter((info) => info.isMyPlant);
 
   return (
@@ -53,8 +48,6 @@ export default function MyPlants({
             <StyledList key={plant.id}>
               <PlantPreview
                 plant={plant}
-                setPlants={setPlants}
-                isMyPlantfunction={isMyPlantfunction}
                 handleToggleMyPlants={handleToggleMyPlants}
               />
             </StyledList>
