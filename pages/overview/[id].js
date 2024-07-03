@@ -1,15 +1,7 @@
 import PlantDetails from "@/components/PlantDetails";
 
-export default function PlantDetailsPage({
-  plants,
-  isMyPlantfunction,
-  handleToggleMyPlants,
-}) {
+export default function PlantDetailsPage({ plants, handleToggleMyPlants }) {
   return (
-    <PlantDetails
-      plants={plants}
-      isMyPlantfunction={isMyPlantfunction}
-      handleToggleMyPlants={handleToggleMyPlants}
-    />
+    <PlantDetails plants={plants} handleToggleMyPlants={handleToggleMyPlants} />
   );
 }
