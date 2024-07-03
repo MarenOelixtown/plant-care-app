@@ -1,6 +1,7 @@
 import Overview from "@/components/Overview";
-import { plants } from "@/assets/plants";
 
-export default function OverviewPage() {
-  return <Overview plants={plants} />;
+export default function OverviewPage({ plants, handleToggleMyPlants }) {
+  return (
+    <Overview plants={plants} handleToggleMyPlants={handleToggleMyPlants} />
+  );
 }

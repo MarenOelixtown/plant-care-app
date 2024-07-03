@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import ButtonAddPlant from "./ButtonAddPlant";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -11,6 +12,7 @@ const StyledBotanicalName = styled.p`
 
 const StyledDiv = styled.div`
   display: flex;
+  position: relative;
   margin-bottom: 5px;
   color: grey;
   border-style: solid;
@@ -39,7 +41,7 @@ const StyledInfo = styled.div`
   margin-right: 5px;
 `;
 
-export default function PlantPreview({ plant }) {
+export default function PlantPreview({ plant, handleToggleMyPlants }) {
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
@@ -51,6 +53,11 @@ export default function PlantPreview({ plant }) {
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
+      <ButtonAddPlant
+        OnToggleMyPlants={handleToggleMyPlants}
+        isMyPlant={plant.isMyPlant}
+        id={plant.id}
+      />
     </StyledDiv>
   );
 }
