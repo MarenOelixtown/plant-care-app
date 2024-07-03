@@ -5,7 +5,6 @@ import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
-  console.log(plants);
   function handleAddPlant(newPlant) {
     setPlants([{ id: uid(), ...newPlant }, ...plants]);
   }

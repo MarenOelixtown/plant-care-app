@@ -1,13 +1,17 @@
 import CreatPlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
+import back from "../../public/back.png";
 import { useState } from "react";
 
 const FormPageContainer = styled.div`
   width: 500px;
   margin: 10px auto;
   padding: 10px;
+  background-color: #d4e0ee;
 `;
+
 const Heading = styled.h2`
   text-align: center;
 `;
@@ -16,8 +20,9 @@ const StyledLink = styled(Link)`
 `;
 const StyledButton = styled.button`
   display: block;
-  width: 100%;
-  margin-top: 0.5rem;
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px 24px;
 `;
 const SuccessMessage = styled.p`
   font-family: inherit;
@@ -26,6 +31,16 @@ const SuccessMessage = styled.p`
   border: 3px solid green;
   border-radius: 0.5rem;
   padding: 0.5rem;
+`;
+
+const BackButton = styled.button`
+  background: none;
+  cursor: pointer;
+`;
+
+const StyledImage = styled(Image)`
+  width: 20px;
+  height: 20px;
 `;
 
 export default function CreatPlantFormPage({ handleAddPlant }) {
@@ -37,8 +52,6 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
     winter: false,
   });
 
-  console.log(seasons);
-
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
     setSeasons((prevSeasons) => ({
@@ -48,12 +61,11 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
   };
   function addPlant(event) {
     event.preventDefault();
-    console.log("form submitted");
 
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
     const newPlant = plantData;
-    console.log(newPlant);
+
     const selectedSeasons = Object.keys(seasons).filter(
       (season) => seasons[season]
     );
@@ -63,21 +75,32 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
     event.target.reset();
     event.target.name.focus();
     setSuccessMessage("Success! Your plant has been added.");
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
   }
 
   return (
     <FormPageContainer>
-      <Heading id="create-plant">Create a Plant</Heading>
+      <Link href="/overview">
+        <BackButton>
+          <StyledImage src={back} alt="back" />
+        </BackButton>
+      </Link>
+      <Heading id="create-plant">Add a new plant</Heading>
+
       <CreatPlantForm
         formName={"create-plant"}
         onSubmit={addPlant}
         seasons={seasons}
         onCheckboxChange={handleCheckboxChange}
       />
-      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      <StyledButton type="submit">Add Plant</StyledButton>
       <StyledLink href="/myplants">
-        <StyledButton>Go to my plants</StyledButton>
+        <StyledButton>Go to My Plants</StyledButton>
       </StyledLink>
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
   );
 }

@@ -40,6 +40,13 @@ const StyledImage = styled(Image)`
   height: 20px;
 `;
 
+const StyledButton = styled.button`
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 10px;
+`;
+
 const BackButton = styled.button`
   background: none;
   cursor: pointer;
@@ -81,6 +88,9 @@ export default function PlantDetails({ plants, handleToggleMyPlants }) {
         <BackButton>
           <StyledImage src={back} alt="back" />
         </BackButton>
+      </Link>
+      <Link href="/myplants">
+        <StyledButton>Go to My Plants Page</StyledButton>
       </Link>
     </StyledCard>
   );

@@ -22,6 +22,13 @@ const StyledImage = styled(Image)`
   height: 20px;
 `;
 
+const StyledButton = styled.button`
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 10px;
+`;
+
 const BackButton = styled.button`
   background: none;
   cursor: pointer;
@@ -38,6 +45,11 @@ export default function MyPlants({ plants, handleToggleMyPlants }) {
           <StyledImage src={back} alt="back" />
         </BackButton>
       </Link>
+      <br />
+      <Link href="/createplant">
+        <StyledButton>Add a new plant</StyledButton>
+      </Link>
+
       {myPlants.length === 0 ? (
         <p>
           No Plants to show at the moment. Feel free to add your plants here!

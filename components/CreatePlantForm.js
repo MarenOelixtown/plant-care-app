@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
 
 const FormContainer = styled.form`
   display: grid;
@@ -132,10 +131,6 @@ export default function CreatPlantForm({
       ></Textarea>
       <Label htmlFor="image">*Image Url: </Label>
       <Input id="image" name="image" type="text" required />
-      <button type="submit">Create plant</button>
     </FormContainer>
   );
 }
-
-/* For Button = {defaultData ? "Update plant" : "Add plant"} */
-/* defaultValue={defaultData?.image} */
