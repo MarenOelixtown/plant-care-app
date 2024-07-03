@@ -8,6 +8,10 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  width: 500px;
+  margin: 10px auto;
+  padding: 10px;
 `;
 const StyledCare = styled.div`
   display: flex;
