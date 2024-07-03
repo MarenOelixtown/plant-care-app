@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const FormContainer = styled.form`
   display: grid;
@@ -28,6 +29,23 @@ const Legend = styled.legend`
 `;
 
 export default function CreatPlantForm({ formName, onSubmit }) {
+  const [selectedSeasons, setSelectedSeasons] = useState([]);
+
+  console.log(selectedSeasons);
+
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedSeasons((prevSelectedSeasons) => [
+        ...prevSelectedSeasons,
+        value,
+      ]);
+    } else {
+      setSelectedSeasons((prevSelectedSeasons) =>
+        prevSelectedSeasons.filter((season) => season !== value)
+      );
+    }
+  };
   return (
     <FormContainer aria-labelledby={formName} onSubmit={onSubmit}>
       <Label htmlFor="name">Plant Name: </Label>
@@ -85,6 +103,8 @@ export default function CreatPlantForm({ formName, onSubmit }) {
             id="spring"
             name="fertiliser_season[]"
             value="spring"
+            checked={selectedSeasons.includes("spring")}
+            onChange={handleCheckboxChange}
           />
         </Label>{" "}
         <Label htmlFor="summer">
@@ -94,6 +114,8 @@ export default function CreatPlantForm({ formName, onSubmit }) {
             id="summer"
             name="fertiliser_season[]"
             value="summer"
+            checked={selectedSeasons.includes("summer")}
+            onChange={handleCheckboxChange}
           />
         </Label>{" "}
         <Label htmlFor="fall">
@@ -103,6 +125,8 @@ export default function CreatPlantForm({ formName, onSubmit }) {
             id="fall"
             name="fertiliser_season[]"
             value="fall"
+            checked={selectedSeasons.includes("fall")}
+            onChange={handleCheckboxChange}
           />
         </Label>{" "}
         <Label htmlFor="winter">
@@ -112,6 +136,8 @@ export default function CreatPlantForm({ formName, onSubmit }) {
             id="winter"
             name="fertiliser_season[]"
             value="winter"
+            checked={selectedSeasons.includes("winter")}
+            onChange={handleCheckboxChange}
           />
         </Label>
       </fieldset>
@@ -136,4 +162,5 @@ export default function CreatPlantForm({ formName, onSubmit }) {
     </FormContainer>
   );
 }
+
 /* For Button = {defaultData ? "Update plant" : "Add plant"} */
