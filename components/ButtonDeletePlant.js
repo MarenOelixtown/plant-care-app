@@ -9,9 +9,6 @@ const StyledButton = styled.button`
   padding: 6px 12px;
   border-radius: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
   background-color: white;
 `;
 

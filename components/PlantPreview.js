@@ -42,6 +42,13 @@ const StyledInfo = styled.div`
   margin-right: 5px;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 10px;
+`;
+
 export default function PlantPreview({
   plant,
   isMyPlant,
@@ -60,14 +67,16 @@ export default function PlantPreview({
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
-      <ButtonAddPlant
-        OnToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={isMyPlant}
-        id={plant.id}
-      />
-      {isUserPlant && (
-        <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
-      )}
+      <ButtonContainer>
+        <ButtonAddPlant
+          OnToggleMyPlants={handleToggleMyPlants}
+          isMyPlant={isMyPlant}
+          id={plant.id}
+        />
+        {isUserPlant && (
+          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+        )}
+      </ButtonContainer>
     </StyledDiv>
   );
 }

@@ -36,6 +36,14 @@ const StyledCare = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
@@ -89,13 +97,18 @@ export default function PlantDetails({
   const isUserPlant = isUserPlantFunction(plant.id);
   return (
     <StyledCard>
-      <ButtonAddPlant
-        OnToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={isMyPlant}
-        id={plant.id}
-      />
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
+      <ButtonContainer>
+        <ButtonAddPlant
+          OnToggleMyPlants={handleToggleMyPlants}
+          isMyPlant={isMyPlant}
+          id={plant.id}
+        />
+        {isUserPlant && (
+          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+        )}
+      </ButtonContainer>
       <Image src={plant.image} width={300} height={300} alt={plant.name} />
       <StyledCare>
         <p>Water Need: {plant.water_need}</p>
@@ -113,9 +126,6 @@ export default function PlantDetails({
       <Link href="/myplants">
         <StyledButton>Go to My Plants Page</StyledButton>
       </Link>
-      {isUserPlant && (
-        <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
-      )}
     </StyledCard>
   );
 }
