@@ -34,8 +34,12 @@ const BackButton = styled.button`
   cursor: pointer;
 `;
 
-export default function MyPlants({ plants, handleToggleMyPlants }) {
-  const myPlants = plants.filter((info) => info.isMyPlant);
+export default function MyPlants({
+  plants,
+  isMyPlantFunction,
+  handleToggleMyPlants,
+}) {
+  const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
 
   return (
     <StyledDiv>
@@ -56,14 +60,18 @@ export default function MyPlants({ plants, handleToggleMyPlants }) {
         </p>
       ) : (
         <ul>
-          {myPlants.map((plant) => (
-            <StyledList key={plant.id}>
-              <PlantPreview
-                plant={plant}
-                handleToggleMyPlants={handleToggleMyPlants}
-              />
-            </StyledList>
-          ))}
+          {myPlants.map((plant) => {
+            const isMyPlant = isMyPlantFunction(plant.id);
+            return (
+              <StyledList key={plant.id}>
+                <PlantPreview
+                  plant={plant}
+                  isMyPlant={isMyPlant}
+                  handleToggleMyPlants={handleToggleMyPlants}
+                />
+              </StyledList>
+            );
+          })}
         </ul>
       )}
     </StyledDiv>

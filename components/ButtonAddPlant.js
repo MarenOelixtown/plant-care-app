@@ -20,7 +20,7 @@ const StyledImage = styled(Image)`
   height: 25px;
 `;
 
-export default function ButtonAddPlant({ OnToggleMyPlants, id, isMyPlant }) {
+export default function ButtonAddPlant({ OnToggleMyPlants, isMyPlant, id }) {
   return (
     <>
       <StyledButton

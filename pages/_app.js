@@ -1,33 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GlobalStyle from "../styles";
 import { initialPlants } from "@/assets/plants";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
+  const [plantsInfo, setPlantsInfo] = useState([]);
+
   function handleAddPlant(newPlant) {
-    setPlants([{ id: uid(), ...newPlant }, ...plants]);
+    // We are using functional updates to ensure the latest state is used.
+    const newPlantWithId = { id: uid(), ...newPlant };
+    setPlants((plants) => {
+      const updatedPlants = [newPlantWithId, ...plants];
+      setPlantsInfo((plantsInfo) => [
+        { id: newPlantWithId.id, isMyPlant: true, isUserPlant: true },
+        ...plantsInfo,
+      ]);
+      return updatedPlants;
+    });
   }
   function handleToggleMyPlants(id) {
-    const foundPlant = plants.find((plant) => plant.id === id);
+    const foundPlant = plantsInfo.find((plant) => plant.id === id);
 
     if (foundPlant) {
-      setPlants(
-        plants.map((plant) =>
+      setPlantsInfo(
+        plantsInfo.map((plant) =>
           plant.id === foundPlant.id
             ? { ...plant, isMyPlant: !plant.isMyPlant }
             : plant
         )
       );
+    } else {
+      setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
     }
   }
-
+  const isMyPlantFunction = (id) =>
+    plantsInfo.find((info) => info.id === id)?.isMyPlant;
   return (
     <>
       <GlobalStyle />
       <Component
         {...pageProps}
         plants={plants}
+        isMyPlantFunction={isMyPlantFunction}
         handleToggleMyPlants={handleToggleMyPlants}
         handleAddPlant={handleAddPlant}
       />

@@ -33,7 +33,11 @@ const StyledImage = styled(Image)`
   height: 20px;
 `;
 
-export default function Overview({ plants, handleToggleMyPlants }) {
+export default function Overview({
+  plants,
+  isMyPlantFunction,
+  handleToggleMyPlants,
+}) {
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
@@ -51,10 +55,12 @@ export default function Overview({ plants, handleToggleMyPlants }) {
       ) : (
         <ul>
           {plants.map((plant) => {
+            const isMyPlant = isMyPlantFunction(plant.id);
             return (
               <StyledList key={plant.id}>
                 <PlantPreview
                   plant={plant}
+                  isMyPlant={isMyPlant}
                   handleToggleMyPlants={handleToggleMyPlants}
                 />
               </StyledList>

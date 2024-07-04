@@ -52,7 +52,11 @@ const BackButton = styled.button`
   cursor: pointer;
 `;
 
-export default function PlantDetails({ plants, handleToggleMyPlants }) {
+export default function PlantDetails({
+  plants,
+  isMyPlantFunction,
+  handleToggleMyPlants,
+}) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -62,13 +66,13 @@ export default function PlantDetails({ plants, handleToggleMyPlants }) {
   if (!plant) {
     return <h1>No Plant found</h1>;
   }
-
+  const isMyPlant = isMyPlantFunction(plant.id);
   return (
     <StyledCard>
       <ButtonAddPlant
         OnToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={plant.isMyPlant}
-        id={id}
+        isMyPlant={isMyPlant}
+        id={plant.id}
       />
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
@@ -76,8 +80,8 @@ export default function PlantDetails({ plants, handleToggleMyPlants }) {
       <StyledCare>
         <p>Water Need: {plant.water_need}</p>
         <p>
-          Fertiliser Cycle: {plant.fertiliser_season[0]}{" "}
-          {plant.fertiliser_season[1]}{" "}
+          Fertiliser Cycle: {plant.fertiliser_season[0]}
+          {plant.fertiliser_season[1]}
         </p>
         <p>Light: {plant.light_need}</p>
       </StyledCare>
