@@ -66,14 +66,21 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
     const plantData = Object.fromEntries(formData);
     const newPlant = plantData;
 
-    const selectedSeasons = Object.keys(seasons).filter(
-      (season) => seasons[season]
-    );
+    const selectedSeasons = Object.keys(seasons)
+      .filter((season) => seasons[season])
+      .map((season) => season.charAt(0).toUpperCase() + season.slice(1));
+
     plantData.fertiliser_season = selectedSeasons;
     handleAddPlant(newPlant);
 
     event.target.reset();
     event.target.name.focus();
+    setSeasons({
+      spring: false,
+      summer: false,
+      fall: false,
+      winter: false,
+    });
     setSuccessMessage("Success! Your plant has been added.");
 
     setTimeout(() => {
@@ -89,7 +96,6 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
         </BackButton>
       </Link>
       <Heading id="create-plant">Add a new plant</Heading>
-
       <CreatPlantForm
         formName={"create-plant"}
         onSubmit={addPlant}

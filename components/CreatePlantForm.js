@@ -88,7 +88,7 @@ export default function CreatPlantForm({
               type="checkbox"
               id="spring"
               name="fertiliser_season"
-              value="spring"
+              value="Spring"
               checked={seasons.spring}
               onChange={onCheckboxChange}
             />
@@ -99,7 +99,7 @@ export default function CreatPlantForm({
               type="checkbox"
               id="summer"
               name="fertiliser_season"
-              value="summer"
+              value="Summer"
               checked={seasons.summer}
               onChange={onCheckboxChange}
             />
@@ -110,7 +110,7 @@ export default function CreatPlantForm({
               type="checkbox"
               id="fall"
               name="fertiliser_season"
-              value="fall"
+              value="Fall"
               checked={seasons.fall}
               onChange={onCheckboxChange}
             />
@@ -121,7 +121,7 @@ export default function CreatPlantForm({
               type="checkbox"
               id="winter"
               name="fertiliser_season"
-              value="winter"
+              value="Winter"
               checked={seasons.winter}
               onChange={onCheckboxChange}
             />

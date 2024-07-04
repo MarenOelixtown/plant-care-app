@@ -36,10 +36,11 @@ const BackButton = styled.button`
 
 export default function MyPlants({
   plants,
+  isMyPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
 }) {
-  const myPlants = plants.filter((info) => info.isMyPlant);
+  const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
 
   return (
     <StyledDiv>
@@ -60,16 +61,20 @@ export default function MyPlants({
         </p>
       ) : (
         <ul>
-          {myPlants.map((plant) => (
-            <StyledList key={plant.id}>
-              <PlantPreview
-                plant={plant}
-                handleToggleMyPlants={handleToggleMyPlants}
-                showDeleteButton={true}
-                handleDeletePlant={handleDeletePlant}
-              />
-            </StyledList>
-          ))}
+          {myPlants.map((plant) => {
+            const isMyPlant = isMyPlantFunction(plant.id);
+            return (
+              <StyledList key={plant.id}>
+                <PlantPreview
+                  plant={plant}
+                  isMyPlant={isMyPlant}
+                  handleToggleMyPlants={handleToggleMyPlants}
+                  showDeleteButton={true}
+                  handleDeletePlant={handleDeletePlant}
+                />
+              </StyledList>
+            );
+          })}
         </ul>
       )}
     </StyledDiv>
