@@ -96,7 +96,6 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
         seasons={seasons}
         onCheckboxChange={handleCheckboxChange}
       />
-      <StyledButton type="submit">Add Plant</StyledButton>
       <StyledLink href="/myplants">
         <StyledButton>Go to My Plants</StyledButton>
       </StyledLink>

@@ -13,6 +13,13 @@ const Input = styled.input`
 `;
 const Select = styled.select``;
 
+const StyledButton = styled.button`
+  display: block;
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px 24px;
+`;
+
 const Textarea = styled.textarea`
   font-family: inherit;
   border: 3px solid black;
@@ -131,6 +138,7 @@ export default function CreatPlantForm({
       ></Textarea>
       <Label htmlFor="image">*Image Url: </Label>
       <Input id="image" name="image" type="text" required />
+      <StyledButton type="submit">Add Plant</StyledButton>
     </FormContainer>
   );
 }
