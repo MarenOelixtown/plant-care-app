@@ -74,6 +74,12 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
 
     event.target.reset();
     event.target.name.focus();
+    setSeasons({
+      spring: false,
+      summer: false,
+      fall: false,
+      winter: false,
+    });
     setSuccessMessage("Success! Your plant has been added.");
 
     setTimeout(() => {
