@@ -3,6 +3,7 @@ import MyPlants from "@/components/MyPlants";
 export default function MyPlantsPage({
   plants,
   isMyPlantFunction,
+  isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
 }) {
@@ -10,6 +11,7 @@ export default function MyPlantsPage({
     <MyPlants
       plants={plants}
       isMyPlantFunction={isMyPlantFunction}
+      isUserPlantFunction={isUserPlantFunction}
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
     />

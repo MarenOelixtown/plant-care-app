@@ -45,8 +45,8 @@ const StyledInfo = styled.div`
 export default function PlantPreview({
   plant,
   isMyPlant,
+  isUserPlant,
   handleToggleMyPlants,
-  showDeleteButton,
   handleDeletePlant,
 }) {
   return (
@@ -65,7 +65,7 @@ export default function PlantPreview({
         isMyPlant={isMyPlant}
         id={plant.id}
       />
-      {showDeleteButton && (
+      {isUserPlant && (
         <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
       )}
     </StyledDiv>
