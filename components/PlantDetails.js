@@ -4,6 +4,7 @@ import back from "../public/back.png";
 import ButtonAddPlant from "./ButtonAddPlant";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ButtonDeletePlant from "./ButtonDeletePlant";
 
 const StyledCard = styled.div`
   display: flex;
@@ -35,6 +36,10 @@ const StyledCare = styled.div`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const StyledImage = styled(Image)`
   width: 20px;
   height: 20px;
@@ -52,10 +57,17 @@ const BackButton = styled.button`
   cursor: pointer;
 `;
 
+const StyledDiv = styled.div`
+  padding: 10px;
+  margin-top: 20px;
+`;
+
 export default function PlantDetails({
   plants,
   isMyPlantFunction,
+  isUserPlantFunction,
   handleToggleMyPlants,
+  handleDeletePlant,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -64,9 +76,17 @@ export default function PlantDetails({
 
   const plant = plants[plantsIndex];
   if (!plant) {
-    return <h1>No Plant found</h1>;
+    return (
+      <StyledDiv>
+        <h1>Plant Not Found!</h1>
+        <StyledLink href="/overview">
+          <p>Go to Plants Overview Page and discover new plants.</p>
+        </StyledLink>
+      </StyledDiv>
+    );
   }
   const isMyPlant = isMyPlantFunction(plant.id);
+  const isUserPlant = isUserPlantFunction(plant.id);
   return (
     <StyledCard>
       <ButtonAddPlant
@@ -93,6 +113,9 @@ export default function PlantDetails({
       <Link href="/myplants">
         <StyledButton>Go to My Plants Page</StyledButton>
       </Link>
+      {isUserPlant && (
+        <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+      )}
     </StyledCard>
   );
 }

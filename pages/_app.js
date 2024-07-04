@@ -35,10 +35,6 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  // function handleDeletePlant(id) {
-  //   setPlants(plants.filter((plant) => plant.id !== id));
-  // }
-
   function handleDeletePlant(id) {
     setPlants(plants.filter((plant) => plant.id !== id));
     setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
@@ -57,10 +53,10 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         plants={plants}
         isMyPlantFunction={isMyPlantFunction}
+        isUserPlantFunction={isUserPlantFunction}
         handleToggleMyPlants={handleToggleMyPlants}
         handleAddPlant={handleAddPlant}
         handleDeletePlant={handleDeletePlant}
-        isUserPlantFunction={isUserPlantFunction}
       />
     </>
   );
