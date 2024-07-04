@@ -5,6 +5,7 @@ import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
+
   function handleAddPlant(newPlant) {
     setPlants([{ id: uid(), ...newPlant }, ...plants]);
   }
@@ -22,6 +23,10 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  function handleDeletePlant(id) {
+    setPlants(plants.filter((plant) => plant.id !== id));
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -30,6 +35,7 @@ export default function App({ Component, pageProps }) {
         plants={plants}
         handleToggleMyPlants={handleToggleMyPlants}
         handleAddPlant={handleAddPlant}
+        handleDeletePlant={handleDeletePlant}
       />
     </>
   );
