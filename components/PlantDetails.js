@@ -79,10 +79,7 @@ export default function PlantDetails({
       <Image src={plant.image} width={300} height={300} alt={plant.name} />
       <StyledCare>
         <p>Water Need: {plant.water_need}</p>
-        <p>
-          Fertiliser Cycle: {plant.fertiliser_season[0]}
-          {plant.fertiliser_season[1]}
-        </p>
+        <p>Fertiliser Cycle: {plant.fertiliser_season.join(", ")}</p>
         <p>Light: {plant.light_need}</p>
       </StyledCare>
 
