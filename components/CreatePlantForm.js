@@ -63,22 +63,24 @@ export default function CreatPlantForm({
         required
         maxLength={150}
       />
-      <Label htmlFor="water_need">*Water Needs:</Label>{" "}
-      <Select id="water_need" name="water_need" required>
-        {" "}
-        <option value="">Select water needs</option>{" "}
-        <option value="Low">Low</option>{" "}
-        <option value="Moderate">Moderate</option>{" "}
-        <option value="High">High</option>{" "}
+      <Label htmlFor="water_need">*Water Needs:</Label>
+      <Select id="water_need" name="water_need">
+        <option value="" disabled hidden>
+          Select water needs
+        </option>
+        <option value="Low">Low</option>
+        <option value="Moderate">Moderate</option>
+        <option value="High">High</option>
       </Select>{" "}
-      <Label htmlFor="light_need">*Light Needs:</Label>{" "}
+      <Label htmlFor="light_need">*Light Needs:</Label>
       <Select id="light_need" name="light_need" required>
-        {" "}
-        <option value="">Select light needs</option>{" "}
-        <option value="Partial shade">Partial shade</option>{" "}
-        <option value="Bright">Bright</option>{" "}
-        <option value="Shady">Shady</option>{" "}
-      </Select>{" "}
+        <option value="" disabled hidden>
+          Select light needs
+        </option>
+        <option value="Partial shade">Partial shade</option>
+        <option value="Bright">Bright</option>
+        <option value="Shady">Shady</option>
+      </Select>
       <Fieldset>
         <Legend>Please choose your fertiliser seasons</Legend>
         <CheckboxContainer>
@@ -86,10 +88,10 @@ export default function CreatPlantForm({
             Spring
             <Input
               type="checkbox"
-              id="spring"
+              id="Spring"
               name="fertiliser_season"
               value="Spring"
-              checked={seasons.spring}
+              checked={seasons.Spring}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -97,10 +99,10 @@ export default function CreatPlantForm({
             Summer
             <Input
               type="checkbox"
-              id="summer"
+              id="Summer"
               name="fertiliser_season"
               value="Summer"
-              checked={seasons.summer}
+              checked={seasons.Summer}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -108,10 +110,10 @@ export default function CreatPlantForm({
             Fall
             <Input
               type="checkbox"
-              id="fall"
+              id="Fall"
               name="fertiliser_season"
               value="Fall"
-              checked={seasons.fall}
+              checked={seasons.Fall}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -119,10 +121,10 @@ export default function CreatPlantForm({
             Winter
             <Input
               type="checkbox"
-              id="winter"
+              id="Winter"
               name="fertiliser_season"
               value="Winter"
-              checked={seasons.winter}
+              checked={seasons.Winter}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>

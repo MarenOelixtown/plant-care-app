@@ -46,10 +46,10 @@ const StyledImage = styled(Image)`
 export default function CreatPlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
   const [seasons, setSeasons] = useState({
-    spring: false,
-    summer: false,
-    fall: false,
-    winter: false,
+    Spring: false,
+    Summer: false,
+    Fall: false,
+    Winter: false,
   });
 
   const handleCheckboxChange = (event) => {
@@ -66,9 +66,9 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
     const plantData = Object.fromEntries(formData);
     const newPlant = plantData;
 
-    const selectedSeasons = Object.keys(seasons)
-      .filter((season) => seasons[season])
-      .map((season) => season.charAt(0).toUpperCase() + season.slice(1));
+    const selectedSeasons = Object.keys(seasons).filter(
+      (season) => seasons[season]
+    );
 
     plantData.fertiliser_season = selectedSeasons;
     handleAddPlant(newPlant);
@@ -76,10 +76,10 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
     event.target.reset();
     event.target.name.focus();
     setSeasons({
-      spring: false,
-      summer: false,
-      fall: false,
-      winter: false,
+      Spring: false,
+      Summer: false,
+      Fall: false,
+      Winter: false,
     });
     setSuccessMessage("Success! Your plant has been added.");
 
