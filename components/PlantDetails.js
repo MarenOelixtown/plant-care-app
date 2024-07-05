@@ -4,6 +4,7 @@ import back from "../public/back.png";
 import ButtonAddPlant from "./ButtonAddPlant";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ButtonDeletePlant from "./ButtonDeletePlant";
 
 const StyledCard = styled.div`
   display: flex;
@@ -35,6 +36,14 @@ const StyledCare = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
 const StyledImage = styled(Image)`
   width: 20px;
   height: 20px;
@@ -54,10 +63,17 @@ const StyledLink = styled(Link)`
   font-size: 0.8rem;
 `;
 
+const StyledDiv = styled.div`
+  padding: 10px;
+  margin-top: 20px;
+`;
+
 export default function PlantDetails({
   plants,
   isMyPlantFunction,
+  isUserPlantFunction,
   handleToggleMyPlants,
+  handleDeletePlant,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -66,18 +82,31 @@ export default function PlantDetails({
 
   const plant = plants[plantsIndex];
   if (!plant) {
-    return <h1>No Plant found</h1>;
+    return (
+      <StyledDiv>
+        <h1>Plant Not Found!</h1>
+        <StyledLink href="/overview">
+          <p>Go to Plants Overview Page and discover new plants.</p>
+        </StyledLink>
+      </StyledDiv>
+    );
   }
   const isMyPlant = isMyPlantFunction(plant.id);
+  const isUserPlant = isUserPlantFunction(plant.id);
   return (
     <StyledCard>
-      <ButtonAddPlant
-        onToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={isMyPlant}
-        id={plant.id}
-      />
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
+      <ButtonContainer>
+        <ButtonAddPlant
+          onToggleMyPlants={handleToggleMyPlants}
+          isMyPlant={isMyPlant}
+          id={plant.id}
+        />
+        {isUserPlant && (
+          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+        )}
+      </ButtonContainer>
       <Image src={plant.image} width={300} height={300} alt={plant.name} />
       <StyledCare>
         <p>Water Need: {plant.water_need}</p>

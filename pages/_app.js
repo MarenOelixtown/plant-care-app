@@ -34,8 +34,18 @@ export default function App({ Component, pageProps }) {
       setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
     }
   }
+
+  function handleDeletePlant(id) {
+    setPlants(plants.filter((plant) => plant.id !== id));
+    setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
+  }
+
+  const isUserPlantFunction = (id) =>
+    plantsInfo.find((info) => info.id === id)?.isUserPlant;
+
   const isMyPlantFunction = (id) =>
     plantsInfo.find((info) => info.id === id)?.isMyPlant;
+
   return (
     <>
       <GlobalStyle />
@@ -43,8 +53,10 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         plants={plants}
         isMyPlantFunction={isMyPlantFunction}
+        isUserPlantFunction={isUserPlantFunction}
         handleToggleMyPlants={handleToggleMyPlants}
         handleAddPlant={handleAddPlant}
+        handleDeletePlant={handleDeletePlant}
       />
     </>
   );

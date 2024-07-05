@@ -11,7 +11,11 @@ const Input = styled.input`
   border: 3px solid black;
   border-radius: 0.5rem;
 `;
-const Select = styled.select``;
+const Select = styled.select`
+  border: 3px solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
 
 const StyledButton = styled.button`
   display: block;
@@ -84,10 +88,10 @@ export default function CreatPlantForm({
             Spring
             <Input
               type="checkbox"
-              id="spring"
+              id="Spring"
               name="fertiliser_season"
               value="Spring"
-              checked={seasons.spring}
+              checked={seasons.Spring}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -95,10 +99,10 @@ export default function CreatPlantForm({
             Summer
             <Input
               type="checkbox"
-              id="summer"
+              id="Summer"
               name="fertiliser_season"
               value="Summer"
-              checked={seasons.summer}
+              checked={seasons.Summer}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -106,10 +110,10 @@ export default function CreatPlantForm({
             Fall
             <Input
               type="checkbox"
-              id="fall"
+              id="Fall"
               name="fertiliser_season"
               value="Fall"
-              checked={seasons.fall}
+              checked={seasons.Fall}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -117,10 +121,10 @@ export default function CreatPlantForm({
             Winter
             <Input
               type="checkbox"
-              id="winter"
+              id="Winter"
               name="fertiliser_season"
               value="Winter"
-              checked={seasons.winter}
+              checked={seasons.Winter}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>
