@@ -58,7 +58,7 @@ export default function PlantPreview({
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
       <ButtonAddPlant
-        OnToggleMyPlants={handleToggleMyPlants}
+        onToggleMyPlants={handleToggleMyPlants}
         isMyPlant={isMyPlant}
         id={plant.id}
       />

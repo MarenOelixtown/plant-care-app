@@ -55,12 +55,11 @@ export default function Overview({
       ) : (
         <ul>
           {plants.map((plant) => {
-            const isMyPlant = isMyPlantFunction(plant.id);
             return (
               <StyledList key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  isMyPlant={isMyPlant}
+                  isMyPlant={isMyPlantFunction(plant.id)}
                   handleToggleMyPlants={handleToggleMyPlants}
                 />
               </StyledList>

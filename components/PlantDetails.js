@@ -70,7 +70,7 @@ export default function PlantDetails({
   return (
     <StyledCard>
       <ButtonAddPlant
-        OnToggleMyPlants={handleToggleMyPlants}
+        onToggleMyPlants={handleToggleMyPlants}
         isMyPlant={isMyPlant}
         id={plant.id}
       />
