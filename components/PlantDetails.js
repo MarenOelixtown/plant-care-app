@@ -46,7 +46,17 @@ const StyledButton = styled.button`
   padding: 5px;
   margin-top: 10px;
 `;
-
+const StyledLink = styled(Link)`
+  top: 50px;
+  right: 50px;
+  border: 3px solid green;
+  background-color: lightcyan;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  color: green;
+  text-decoration: none;
+  font-weight: bold;
+`;
 const BackButton = styled.button`
   background: none;
   cursor: pointer;
@@ -86,13 +96,9 @@ export default function PlantDetails({
       <p>Care Instructions: </p>
       <p>{plant.care_instructions}</p>
       <Link href="/overview">
-        <BackButton>
-          <StyledImage src={back} alt="back" />
-        </BackButton>
+        <StyledImage src={back} alt="back" />
       </Link>
-      <Link href="/myplants">
-        <StyledButton>Go to My Plants Page</StyledButton>
-      </Link>
+      <Link href="/myplants">Go to My Plants Page</Link>
     </StyledCard>
   );
 }

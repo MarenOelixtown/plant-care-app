@@ -33,27 +33,35 @@ const BackButton = styled.button`
   background: none;
   cursor: pointer;
 `;
-
+const StyledLink = styled(Link)`
+  top: 50px;
+  right: 50px;
+  border: 3px solid green;
+  background-color: lightcyan;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  color: green;
+  text-decoration: none;
+  font-weight: bold;
+`;
 export default function MyPlants({
   plants,
   isMyPlantFunction,
   handleToggleMyPlants,
 }) {
   const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
+  const handleButtonClick = () => {
+    window.location.assign("/createplant");
+  };
 
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      <Link href="/overview">
-        <BackButton>
-          <StyledImage src={back} alt="back" />
-        </BackButton>
-      </Link>
+      <StyledLink href="/overview">
+        <StyledImage src={back} alt="back" />
+      </StyledLink>
       <br />
-      <Link href="/createplant">
-        <StyledButton>Add a new plant</StyledButton>
-      </Link>
-
+      <StyledButton onClick={handleButtonClick}>Add a new plant</StyledButton>
       {myPlants.length === 0 ? (
         <p>
           No Plants to show at the moment. Feel free to add your plants here!

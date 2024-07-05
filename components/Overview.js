@@ -16,7 +16,17 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-
+const StyledLink = styled(Link)`
+  top: 50px;
+  right: 50px;
+  border: 3px solid green;
+  background-color: lightcyan;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  color: green;
+  text-decoration: none;
+  font-weight: bold;
+`;
 const StyledButton = styled.button`
   background: none;
   cursor: pointer;
@@ -42,14 +52,10 @@ export default function Overview({
     <StyledDiv>
       <h1>Discover Plants</h1>
       <Link href="/">
-        <BackButton>
-          <StyledImage src={back} alt="back" />
-        </BackButton>
+        <StyledImage src={back} alt="back" />
       </Link>
       <br />
-      <Link href="/myplants">
-        <StyledButton>Go to My Plants Page</StyledButton>
-      </Link>
+      <StyledLink href="/myplants">Go to My Plants Page</StyledLink>
       {plants.length === 0 ? (
         <p>No plants available at the moment. Please come back later!</p>
       ) : (

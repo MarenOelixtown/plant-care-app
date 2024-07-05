@@ -12,13 +12,22 @@ const StyledButton = styled.button`
   margin-top: 10px;
 `;
 
+const StyledLink = styled(Link)`
+  top: 50px;
+  right: 50px;
+  border: 3px solid green;
+  background-color: lightcyan;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  color: green;
+  text-decoration: none;
+  font-weight: bold;
+`;
 export default function HomePage() {
   return (
     <StyledDiv>
       <h1>Welcome to the Plant Care Companion</h1>
-      <Link href="/overview">
-        <StyledButton>Go to Plants Overview</StyledButton>
-      </Link>
+      <StyledLink href="/overview">Go to Plants Overview</StyledLink>
     </StyledDiv>
   );
 }

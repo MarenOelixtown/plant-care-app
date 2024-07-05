@@ -91,9 +91,7 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
   return (
     <FormPageContainer>
       <Link href="/overview">
-        <BackButton>
-          <StyledImage src={back} alt="back" />
-        </BackButton>
+        <StyledImage src={back} alt="back" />
       </Link>
       <Heading id="create-plant">Add a new plant</Heading>
       <CreatPlantForm
@@ -102,9 +100,7 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
         seasons={seasons}
         onCheckboxChange={handleCheckboxChange}
       />
-      <StyledLink href="/myplants">
-        <StyledButton>Go to My Plants</StyledButton>
-      </StyledLink>
+      <StyledLink href="/myplants">Go to My Plants</StyledLink>
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
   );
