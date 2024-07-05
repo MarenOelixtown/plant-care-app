@@ -5,13 +5,6 @@ const StyledDiv = styled.div`
   padding: 20px;
 `;
 
-const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`;
-
 const StyledLink = styled(Link)`
   top: 50px;
   right: 50px;

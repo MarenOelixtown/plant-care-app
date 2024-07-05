@@ -29,13 +29,6 @@ const StyledButton = styled.button`
   margin-top: 10px;
 `;
 
-const BackButton = styled.button`
-  background: none;
-  cursor: pointer;
-`;
-const StyledLink = styled(Link)`
-  margin: 20px;
-`;
 export default function MyPlants({
   plants,
   isMyPlantFunction,
@@ -49,9 +42,9 @@ export default function MyPlants({
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      <StyledLink href="/overview">
+      <Link href="/overview">
         <StyledImage src={back} alt="back" />
-      </StyledLink>
+      </Link>
       <br />
       <StyledButton onClick={handleButtonClick}>Add a new plant</StyledButton>
       {myPlants.length === 0 ? (

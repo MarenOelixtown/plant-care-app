@@ -40,26 +40,18 @@ const StyledImage = styled(Image)`
   height: 20px;
 `;
 
-const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`;
 const StyledLink = styled(Link)`
-  top: 50px;
-  right: 50px;
-  border: 3px solid green;
-  background-color: lightcyan;
-  padding: 0.8rem 1.5rem;
-  border-radius: 1rem;
-  color: green;
   text-decoration: none;
-  font-weight: bold;
-`;
-const BackButton = styled.button`
-  background: none;
-  cursor: pointer;
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px 24px;
+  text-align: center;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 0.1rem;
+  background-color: #f9f9f9;
+  color: black;
+  font-size: 0.8rem;
 `;
 
 export default function PlantDetails({
@@ -98,7 +90,7 @@ export default function PlantDetails({
       <Link href="/overview">
         <StyledImage src={back} alt="back" />
       </Link>
-      <Link href="/myplants">Go to My Plants Page</Link>
+      <StyledLink href="/myplants">Go to My Plants</StyledLink>
     </StyledCard>
   );
 }

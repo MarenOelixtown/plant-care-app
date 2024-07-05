@@ -25,19 +25,9 @@ const StyledLink = styled(Link)`
   display: block;
   border: 1px solid grey;
   border-radius: 0.1rem;
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   color: black;
   font-size: 0.8rem;
-`;
-const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`;
-const BackButton = styled.button`
-  background: none;
-  cursor: pointer;
 `;
 
 const StyledImage = styled(Image)`
@@ -57,7 +47,7 @@ export default function Overview({
         <StyledImage src={back} alt="back" />
       </Link>
       <br />
-      <StyledLink href="/myplants">Go to My Plants Page</StyledLink>
+      <StyledLink href="/myplants">Go to My Plants</StyledLink>
       {plants.length === 0 ? (
         <p>No plants available at the moment. Please come back later!</p>
       ) : (
