@@ -17,15 +17,17 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 const StyledLink = styled(Link)`
-  top: 50px;
-  right: 50px;
-  border: 3px solid green;
-  background-color: lightcyan;
-  padding: 0.8rem 1.5rem;
-  border-radius: 1rem;
-  color: green;
   text-decoration: none;
-  font-weight: bold;
+  width: 20%;
+  margin: 10px auto;
+  padding: 10px 24px;
+  text-align: center;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 0.1rem;
+  background-color: #f0f0f0;
+  color: black;
+  font-size: 0.8rem;
 `;
 const StyledButton = styled.button`
   background: none;
@@ -39,8 +41,8 @@ const BackButton = styled.button`
 `;
 
 const StyledImage = styled(Image)`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 export default function Overview({

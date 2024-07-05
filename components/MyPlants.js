@@ -18,8 +18,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledImage = styled(Image)`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 const StyledButton = styled.button`
@@ -34,15 +34,7 @@ const BackButton = styled.button`
   cursor: pointer;
 `;
 const StyledLink = styled(Link)`
-  top: 50px;
-  right: 50px;
-  border: 3px solid green;
-  background-color: lightcyan;
-  padding: 0.8rem 1.5rem;
-  border-radius: 1rem;
-  color: green;
-  text-decoration: none;
-  font-weight: bold;
+  margin: 20px;
 `;
 export default function MyPlants({
   plants,

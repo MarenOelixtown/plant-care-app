@@ -17,13 +17,18 @@ const Heading = styled.h2`
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
-`;
-const StyledButton = styled.button`
-  display: block;
   width: 50%;
   margin: 10px auto;
   padding: 10px 24px;
+  text-align: center;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 0.1rem;
+  background-color: #f0f0f0;
+  color: black;
+  font-size: 0.8rem;
 `;
+
 const SuccessMessage = styled.p`
   font-family: inherit;
   color: green;
@@ -33,14 +38,9 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
-const BackButton = styled.button`
-  background: none;
-  cursor: pointer;
-`;
-
 const StyledImage = styled(Image)`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 export default function CreatPlantFormPage({ handleAddPlant }) {
