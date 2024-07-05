@@ -90,7 +90,7 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
 
   return (
     <FormPageContainer>
-      <Link href="/overview">
+      <Link href="/myplants">
         <BackButton>
           <StyledImage src={back} alt="back" />
         </BackButton>
