@@ -18,12 +18,12 @@ const StyledImage = styled(Image)`
   height: 25px;
 `;
 
-export default function ButtonAddPlant({ OnToggleMyPlants, isMyPlant, id }) {
+export default function ButtonAddPlant({ onToggleMyPlants, isMyPlant, id }) {
   return (
     <>
       <StyledButton
         title="Add to My Plants"
-        onClick={() => OnToggleMyPlants(id)}
+        onClick={() => onToggleMyPlants(id)}
       >
         <StyledImage
           src={isMyPlant ? myPlantColored : myPlantBlank}

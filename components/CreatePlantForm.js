@@ -69,18 +69,14 @@ export default function CreatPlantForm({
       />
       <Label htmlFor="water_need">*Water Needs:</Label>
       <Select id="water_need" name="water_need" required>
-        <option value="" disabled selected>
-          Select water needs
-        </option>
+        <option value="">Select water needs</option>
         <option value="Low">Low</option>
         <option value="Moderate">Moderate</option>
         <option value="High">High</option>
-      </Select>{" "}
+      </Select>
       <Label htmlFor="light_need">*Light Needs:</Label>
       <Select id="light_need" name="light_need" required>
-        <option value="" disabled selected>
-          Select light needs
-        </option>
+        <option value="">Select light needs</option>
         <option value="Partial shade">Partial shade</option>
         <option value="Bright">Bright</option>
         <option value="Shady">Shady</option>

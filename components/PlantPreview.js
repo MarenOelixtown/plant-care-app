@@ -69,7 +69,7 @@ export default function PlantPreview({
       </StyledInfo>
       <ButtonContainer>
         <ButtonAddPlant
-          OnToggleMyPlants={handleToggleMyPlants}
+          onToggleMyPlants={handleToggleMyPlants}
           isMyPlant={isMyPlant}
           id={plant.id}
         />

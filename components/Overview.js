@@ -16,21 +16,23 @@ const StyledList = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-
-const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`;
-const BackButton = styled.button`
-  background: none;
-  cursor: pointer;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  width: 20%;
+  margin: 10px auto;
+  padding: 10px 24px;
+  text-align: center;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 0.1rem;
+  background-color: #f9f9f9;
+  color: black;
+  font-size: 0.8rem;
 `;
 
 const StyledImage = styled(Image)`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 export default function Overview({
@@ -42,25 +44,20 @@ export default function Overview({
     <StyledDiv>
       <h1>Discover Plants</h1>
       <Link href="/">
-        <BackButton>
-          <StyledImage src={back} alt="back" />
-        </BackButton>
+        <StyledImage src={back} alt="back" />
       </Link>
       <br />
-      <Link href="/myplants">
-        <StyledButton>Go to My Plants Page</StyledButton>
-      </Link>
+      <StyledLink href="/myplants">Go to My Plants</StyledLink>
       {plants.length === 0 ? (
         <p>No plants available at the moment. Please come back later!</p>
       ) : (
         <ul>
           {plants.map((plant) => {
-            const isMyPlant = isMyPlantFunction(plant.id);
             return (
               <StyledList key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  isMyPlant={isMyPlant}
+                  isMyPlant={isMyPlantFunction(plant.id)}
                   handleToggleMyPlants={handleToggleMyPlants}
                 />
               </StyledList>

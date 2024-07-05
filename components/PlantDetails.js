@@ -44,25 +44,23 @@ const ButtonContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-
 const StyledImage = styled(Image)`
   width: 20px;
   height: 20px;
 `;
 
-const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`;
-
-const BackButton = styled.button`
-  background: none;
-  cursor: pointer;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px 24px;
+  text-align: center;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 0.1rem;
+  background-color: #f9f9f9;
+  color: black;
+  font-size: 0.8rem;
 `;
 
 const StyledDiv = styled.div`
@@ -101,7 +99,7 @@ export default function PlantDetails({
       <h3>{plant.botanical_name}</h3>
       <ButtonContainer>
         <ButtonAddPlant
-          OnToggleMyPlants={handleToggleMyPlants}
+          onToggleMyPlants={handleToggleMyPlants}
           isMyPlant={isMyPlant}
           id={plant.id}
         />
@@ -119,13 +117,9 @@ export default function PlantDetails({
       <p>Care Instructions: </p>
       <p>{plant.care_instructions}</p>
       <Link href="/overview">
-        <BackButton>
-          <StyledImage src={back} alt="back" />
-        </BackButton>
+        <StyledImage src={back} alt="back" />
       </Link>
-      <Link href="/myplants">
-        <StyledButton>Go to My Plants Page</StyledButton>
-      </Link>
+      <StyledLink href="/myplants">Go to My Plants</StyledLink>
     </StyledCard>
   );
 }
