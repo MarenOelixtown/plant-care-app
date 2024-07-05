@@ -9,10 +9,8 @@ const StyledButton = styled.button`
   padding: 6px 12px;
   border-radius: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
   background-color: white;
+  margin-right: 10px;
 `;
 
 const StyledImage = styled(Image)`
@@ -20,7 +18,7 @@ const StyledImage = styled(Image)`
   height: 25px;
 `;
 
-export default function ButtonAddPlant({ OnToggleMyPlants, id, isMyPlant }) {
+export default function ButtonAddPlant({ OnToggleMyPlants, isMyPlant, id }) {
   return (
     <>
       <StyledButton

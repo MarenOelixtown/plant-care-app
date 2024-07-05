@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import ButtonAddPlant from "./ButtonAddPlant";
+import ButtonDeletePlant from "./ButtonDeletePlant";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -41,7 +42,20 @@ const StyledInfo = styled.div`
   margin-right: 5px;
 `;
 
-export default function PlantPreview({ plant, handleToggleMyPlants }) {
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 10px;
+`;
+
+export default function PlantPreview({
+  plant,
+  isMyPlant,
+  isUserPlant,
+  handleToggleMyPlants,
+  handleDeletePlant,
+}) {
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
@@ -53,11 +67,16 @@ export default function PlantPreview({ plant, handleToggleMyPlants }) {
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
-      <ButtonAddPlant
-        OnToggleMyPlants={handleToggleMyPlants}
-        isMyPlant={plant.isMyPlant}
-        id={plant.id}
-      />
+      <ButtonContainer>
+        <ButtonAddPlant
+          OnToggleMyPlants={handleToggleMyPlants}
+          isMyPlant={isMyPlant}
+          id={plant.id}
+        />
+        {isUserPlant && (
+          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+        )}
+      </ButtonContainer>
     </StyledDiv>
   );
 }

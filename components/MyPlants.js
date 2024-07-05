@@ -22,13 +22,26 @@ const StyledImage = styled(Image)`
   height: 20px;
 `;
 
+const StyledButton = styled.button`
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 10px;
+`;
+
 const BackButton = styled.button`
   background: none;
   cursor: pointer;
 `;
 
-export default function MyPlants({ plants, handleToggleMyPlants }) {
-  const myPlants = plants.filter((info) => info.isMyPlant);
+export default function MyPlants({
+  plants,
+  isMyPlantFunction,
+  isUserPlantFunction,
+  handleToggleMyPlants,
+  handleDeletePlant,
+}) {
+  const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
 
   return (
     <StyledDiv>
@@ -38,20 +51,32 @@ export default function MyPlants({ plants, handleToggleMyPlants }) {
           <StyledImage src={back} alt="back" />
         </BackButton>
       </Link>
+      <br />
+      <Link href="/createplant">
+        <StyledButton>Add a new plant</StyledButton>
+      </Link>
+
       {myPlants.length === 0 ? (
         <p>
           No Plants to show at the moment. Feel free to add your plants here!
         </p>
       ) : (
         <ul>
-          {myPlants.map((plant) => (
-            <StyledList key={plant.id}>
-              <PlantPreview
-                plant={plant}
-                handleToggleMyPlants={handleToggleMyPlants}
-              />
-            </StyledList>
-          ))}
+          {myPlants.map((plant) => {
+            const isMyPlant = isMyPlantFunction(plant.id);
+            const isUserPlant = isUserPlantFunction(plant.id);
+            return (
+              <StyledList key={plant.id}>
+                <PlantPreview
+                  plant={plant}
+                  isMyPlant={isMyPlant}
+                  isUserPlant={isUserPlant}
+                  handleToggleMyPlants={handleToggleMyPlants}
+                  handleDeletePlant={handleDeletePlant}
+                />
+              </StyledList>
+            );
+          })}
         </ul>
       )}
     </StyledDiv>
