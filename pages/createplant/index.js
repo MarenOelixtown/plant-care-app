@@ -1,33 +1,16 @@
 import CreatPlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
-import back from "../../public/back.png";
 import { useState } from "react";
 
 const FormPageContainer = styled.div`
   width: 500px;
   margin: 10px auto;
   padding: 10px;
-  /* background-color: #d4e0ee; */
 `;
 
 const Heading = styled.h2`
   text-align: center;
 `;
-/* const StyledLink = styled(Link)`
-  text-decoration: none;
-  width: 50%;
-  margin: 10px auto;
-  padding: 10px 24px;
-  text-align: center;
-  display: block;
-  border: 1px solid grey;
-  border-radius: 0.1rem;
-  background-color: #f0f0f0;
-  color: black;
-  font-size: 0.8rem;
-`; */
 
 const SuccessMessage = styled.p`
   font-family: inherit;
@@ -37,11 +20,6 @@ const SuccessMessage = styled.p`
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
-
-/* const StyledImage = styled(Image)`
-  width: 30px;
-  height: 30px;
-`; */
 
 export default function CreatPlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");

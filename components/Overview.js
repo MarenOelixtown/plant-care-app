@@ -20,24 +20,6 @@ const StyledItem = styled.li`
 const StyledDiv = styled.div`
   text-align: center;
 `;
-/* const StyledLink = styled(Link)`
-  text-decoration: none;
-  width: 20%;
-  margin: 10px auto;
-  padding: 10px 24px;
-  text-align: center;
-  display: block;
-  border: 1px solid grey;
-  border-radius: 0.1rem;
-  background-color: #f9f9f9;
-  color: black;
-  font-size: 0.8rem;
-`; */
-
-/* const StyledImage = styled(Image)`
-  width: 30px;
-  height: 30px;
-`; */
 
 export default function Overview({
   plants,

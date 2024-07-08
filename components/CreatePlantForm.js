@@ -22,15 +22,15 @@ const StyledButton = styled.button`
   width: 50%;
   margin: 10px auto;
   padding: 10px 24px;
-  border: 3px solid orange;
-  background-color: #ffb42b;
+  border: 3px solid var(--secondary-stroke-color);
+  background-color: var(--secondary-bg-color);
   border-radius: 1rem;
   color: white;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
   &:hover {
-    color: orange;
+    color: var(--secondary-stroke-color);
     background-color: white;
   }
 `;

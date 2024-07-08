@@ -21,18 +21,6 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 
-/* const StyledImage = styled(Image)`
-  width: 30px;
-  height: 30px;
-`; */
-
-/* const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`; */
-
 export default function MyPlants({
   plants,
   isMyPlantFunction,
@@ -41,9 +29,6 @@ export default function MyPlants({
   handleDeletePlant,
 }) {
   const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
-  /*   const handleButtonClick = () => {
-    window.location.assign("/createplant");
-  }; */
 
   return (
     <StyledDiv>

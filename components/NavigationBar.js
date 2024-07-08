@@ -8,22 +8,27 @@ const StyledFooter = styled.footer`
   left: 0;
   right: 0;
   bottom: 0;
-  padding-bottom: 50px;
-  height: 70px;
+  height: 60px;
   background-color: white;
 `;
 const NavigationList = styled.ul`
   list-style: none;
   margin: 0;
-  padding: 5px 0 0 0;
+  padding: 0;
   display: flex;
   justify-content: space-around;
+`;
+const IconListItem = styled.li`
+  background-color: ${(props) => props.bgColor || ""};
+  flex: 1;
+  text-align: center;
+  padding: 10px;
 `;
 
 const MyPlantsIcon = ({ getFillColor }) => (
   <svg
-    width="60px"
-    height="60px"
+    width="45px"
+    height="45px"
     strokeWidth="0"
     fill={getFillColor}
     xmlns="http://www.w3.org/2000/svg"
@@ -35,8 +40,8 @@ const MyPlantsIcon = ({ getFillColor }) => (
 );
 const PlantOverviewIcon = ({ getFillColor }) => (
   <svg
-    width="60px"
-    height="60px"
+    width="45px"
+    height="45px"
     viewBox="0 0 64 64"
     xmlns="http://www.w3.org/2000/svg"
     strokeWidth="0.5"
@@ -70,8 +75,8 @@ const PlantOverviewIcon = ({ getFillColor }) => (
 );
 const HomeIcon = ({ getFillColor }) => (
   <svg
-    width="60px"
-    height="60px"
+    width="45px"
+    height="45px"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     strokeWidth="1"
@@ -89,26 +94,30 @@ const HomeIcon = ({ getFillColor }) => (
 export default function NavigationBar() {
   const router = useRouter();
   const getFillColor = (path) =>
-    router.pathname === path ? "orange" : "#124445";
+    router.pathname === path
+      ? "var(--secondary-stroke-color)"
+      : "var(--primary-color)";
+  const getBackgroundColor = (path) =>
+    router.pathname === path ? "var(--secondary-bg-color)" : "";
 
   return (
     <StyledFooter>
       <NavigationList>
-        <li>
+        <IconListItem bgColor={getBackgroundColor("/")}>
           <Link href="/" title="Home">
             <HomeIcon getFillColor={getFillColor("/")} />
           </Link>
-        </li>
-        <li>
+        </IconListItem>
+        <IconListItem bgColor={getBackgroundColor("/overview")}>
           <Link href="/overview" title="Plants Overview">
             <PlantOverviewIcon getFillColor={getFillColor("/overview")} />
           </Link>
-        </li>
-        <li>
+        </IconListItem>
+        <IconListItem bgColor={getBackgroundColor("/myplants")}>
           <Link href="/myplants" title="My Plants">
             <MyPlantsIcon getFillColor={getFillColor("/myplants")} />
           </Link>
-        </li>
+        </IconListItem>
       </NavigationList>
     </StyledFooter>
   );

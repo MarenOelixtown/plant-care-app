@@ -6,8 +6,8 @@ const AddPlant = styled.p`
   position: fixed;
   top: 2.5rem;
   right: 2rem;
-  border: 3px solid orange;
-  background-color: #ffb42b;
+  border: 3px solid var(--secondary-stroke-color);
+  background-color: var(--secondary-bg-color);
   padding: 0.8rem 0.8rem;
   border-radius: 1rem;
   color: white;
@@ -16,7 +16,7 @@ const AddPlant = styled.p`
   z-index: 1000;
   cursor: pointer;
   &:hover {
-    color: orange;
+    color: var(--secondary-stroke-color);
     background-color: white;
   }
 `;
