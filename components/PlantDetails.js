@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import back from "../public/back.png";
 import ButtonAddPlant from "./ButtonAddPlant";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -43,11 +42,6 @@ const ButtonContainer = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-
-/* const StyledImage = styled(Image)`
-  width: 20px;
-  height: 20px;
-`; */
 
 const StyledLink = styled(Link)`
   text-decoration: none;

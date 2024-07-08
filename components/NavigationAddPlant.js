@@ -23,10 +23,14 @@ const AddPlant = styled.p`
 
 export default function NavigationAddPlant() {
   const router = useRouter();
+  const { id } = router.query;
+  const hiddenPaths = [`/createplant`, `/`];
 
   return (
     <Link href="/createplant">
-      <AddPlant hidden={router.pathname === "/createplant"}>+ plant</AddPlant>
+      <AddPlant hidden={hiddenPaths.includes(router.pathname)}>
+        + plant
+      </AddPlant>
     </Link>
   );
 }
