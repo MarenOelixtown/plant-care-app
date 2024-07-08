@@ -9,13 +9,13 @@ const FormPageContainer = styled.div`
   width: 500px;
   margin: 10px auto;
   padding: 10px;
-  background-color: #d4e0ee;
+  /* background-color: #d4e0ee; */
 `;
 
 const Heading = styled.h2`
   text-align: center;
 `;
-const StyledLink = styled(Link)`
+/* const StyledLink = styled(Link)`
   text-decoration: none;
   width: 50%;
   margin: 10px auto;
@@ -27,7 +27,7 @@ const StyledLink = styled(Link)`
   background-color: #f0f0f0;
   color: black;
   font-size: 0.8rem;
-`;
+`; */
 
 const SuccessMessage = styled.p`
   font-family: inherit;
@@ -38,10 +38,10 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
-const StyledImage = styled(Image)`
+/* const StyledImage = styled(Image)`
   width: 30px;
   height: 30px;
-`;
+`; */
 
 export default function CreatPlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
@@ -90,9 +90,6 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
 
   return (
     <FormPageContainer>
-      <Link href="/myplants">
-        <StyledImage src={back} alt="back" />
-      </Link>
       <Heading id="create-plant">Add a new plant</Heading>
       <CreatPlantForm
         formName={"create-plant"}
@@ -100,7 +97,7 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
         seasons={seasons}
         onCheckboxChange={handleCheckboxChange}
       />
-      <StyledLink href="/myplants">Go to My Plants</StyledLink>
+
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
   );

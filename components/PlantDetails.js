@@ -44,10 +44,10 @@ const ButtonContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const StyledImage = styled(Image)`
+/* const StyledImage = styled(Image)`
   width: 20px;
   height: 20px;
-`;
+`; */
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -116,10 +116,6 @@ export default function PlantDetails({
 
       <p>Care Instructions: </p>
       <p>{plant.care_instructions}</p>
-      <Link href="/overview">
-        <StyledImage src={back} alt="back" />
-      </Link>
-      <StyledLink href="/myplants">Go to My Plants</StyledLink>
     </StyledCard>
   );
 }
