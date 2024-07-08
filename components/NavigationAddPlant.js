@@ -23,7 +23,6 @@ const AddPlant = styled.p`
 
 export default function NavigationAddPlant() {
   const router = useRouter();
-  const { id } = router.query;
   const hiddenPaths = [`/createplant`, `/`];
 
   return (
