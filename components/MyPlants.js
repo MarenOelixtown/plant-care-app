@@ -4,7 +4,11 @@ import back from "../public/back.png";
 import Image from "next/image";
 import Link from "next/link";
 
-const StyledList = styled.li`
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+const StyledItem = styled.li`
   display: block;
   align-items: left;
   align-content: space-between;
@@ -17,18 +21,6 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 
-const StyledImage = styled(Image)`
-  width: 30px;
-  height: 30px;
-`;
-
-const StyledButton = styled.button`
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-top: 10px;
-`;
-
 export default function MyPlants({
   plants,
   isMyPlantFunction,
@@ -37,28 +29,21 @@ export default function MyPlants({
   handleDeletePlant,
 }) {
   const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
-  const handleButtonClick = () => {
-    window.location.assign("/createplant");
-  };
 
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      <Link href="/overview">
-        <StyledImage src={back} alt="back" />
-      </Link>
-      <br />
-      <StyledButton onClick={handleButtonClick}>Add a new plant</StyledButton>
+
       {myPlants.length === 0 ? (
         <p>
           No Plants to show at the moment. Feel free to add your plants here!
         </p>
       ) : (
-        <ul>
+        <StyledList>
           {myPlants.map((plant) => {
             const isUserPlant = isUserPlantFunction(plant.id);
             return (
-              <StyledList key={plant.id}>
+              <StyledItem key={plant.id}>
                 <PlantPreview
                   plant={plant}
                   isUserPlant={isUserPlant}
@@ -66,10 +51,10 @@ export default function MyPlants({
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
                 />
-              </StyledList>
+              </StyledItem>
             );
           })}
-        </ul>
+        </StyledList>
       )}
     </StyledDiv>
   );

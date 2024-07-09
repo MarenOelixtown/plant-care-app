@@ -22,6 +22,17 @@ const StyledButton = styled.button`
   width: 50%;
   margin: 10px auto;
   padding: 10px 24px;
+  border: 3px solid var(--secondary-stroke-color);
+  background-color: var(--secondary-bg-color);
+  border-radius: 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary-stroke-color);
+    background-color: white;
+  }
 `;
 
 const Textarea = styled.textarea`
@@ -69,14 +80,18 @@ export default function CreatPlantForm({
       />
       <Label htmlFor="water_need">*Water Needs:</Label>
       <Select id="water_need" name="water_need" required>
-        <option value="">Select water needs</option>
+        <option value="" disabled selected>
+          Select water needs
+        </option>
         <option value="Low">Low</option>
         <option value="Moderate">Moderate</option>
         <option value="High">High</option>
       </Select>
       <Label htmlFor="light_need">*Light Needs:</Label>
       <Select id="light_need" name="light_need" required>
-        <option value="">Select light needs</option>
+        <option value="" disabled selected>
+          Select light needs
+        </option>
         <option value="Partial shade">Partial shade</option>
         <option value="Bright">Bright</option>
         <option value="Shady">Shady</option>
@@ -140,7 +155,7 @@ export default function CreatPlantForm({
       ></Textarea>
       <Label htmlFor="image">*Image Url: </Label>
       <Input id="image" name="image" type="text" required />
-      <StyledButton type="submit">Add Plant</StyledButton>
+      <StyledButton type="submit">+ plant</StyledButton>
     </FormContainer>
   );
 }

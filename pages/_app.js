@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import GlobalStyle from "../styles";
+import Layout from "@/components/Layout";
 import { initialPlants } from "@/assets/plants";
 import { uid } from "uid";
 
@@ -48,16 +49,18 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
-      <Component
-        {...pageProps}
-        plants={plants}
-        isMyPlantFunction={isMyPlantFunction}
-        isUserPlantFunction={isUserPlantFunction}
-        handleToggleMyPlants={handleToggleMyPlants}
-        handleAddPlant={handleAddPlant}
-        handleDeletePlant={handleDeletePlant}
-      />
+      <Layout>
+        <GlobalStyle />
+        <Component
+          {...pageProps}
+          plants={plants}
+          isMyPlantFunction={isMyPlantFunction}
+          isUserPlantFunction={isUserPlantFunction}
+          handleToggleMyPlants={handleToggleMyPlants}
+          handleAddPlant={handleAddPlant}
+          handleDeletePlant={handleDeletePlant}
+        />
+      </Layout>
     </>
   );
 }
