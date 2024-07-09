@@ -51,7 +51,7 @@ export default function MyPlants({
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      <StyledLink href="/" title="My Schedule">
+      <StyledLink href="/schedule" title="My Schedule">
         <CalenderIcon />
       </StyledLink>
       {myPlants.length === 0 ? (

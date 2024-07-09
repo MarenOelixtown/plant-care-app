@@ -14,7 +14,12 @@ export default function App({ Component, pageProps }) {
     setPlants((plants) => {
       const updatedPlants = [newPlantWithId, ...plants];
       setPlantsInfo((plantsInfo) => [
-        { id: newPlantWithId.id, isMyPlant: true, isUserPlant: true },
+        {
+          id: newPlantWithId.id,
+          isMyPlant: true,
+          isUserPlant: true,
+          wateringDate: newPlant.wateringDate || "",
+        },
         ...plantsInfo,
       ]);
       return updatedPlants;
@@ -40,6 +45,13 @@ export default function App({ Component, pageProps }) {
     setPlants(plants.filter((plant) => plant.id !== id));
     setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
   }
+  function handleAddReminder(id, wateringDate) {
+    setPlantsInfo(
+      plantsInfo.map((plant) =>
+        plant.id === id ? { ...plant, wateringDate } : plant
+      )
+    );
+  }
 
   const isUserPlantFunction = (id) =>
     plantsInfo.find((info) => info.id === id)?.isUserPlant;
@@ -54,11 +66,13 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           plants={plants}
+          plantsInfo={plantsInfo}
           isMyPlantFunction={isMyPlantFunction}
           isUserPlantFunction={isUserPlantFunction}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
           handleDeletePlant={handleDeletePlant}
+          handleAddReminder={handleAddReminder}
         />
       </Layout>
     </>
