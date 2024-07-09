@@ -7,6 +7,12 @@ import { uid } from "uid";
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
   const [plantsInfo, setPlantsInfo] = useState([]);
+  const [seasons, setSeasons] = useState({
+    Spring: false,
+    Summer: false,
+    Fall: false,
+    Winter: false,
+  });
 
   function handleAddPlant(newPlant) {
     // We are using functional updates to ensure the latest state is used.
@@ -35,7 +41,21 @@ export default function App({ Component, pageProps }) {
       setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
     }
   }
-
+  const handleEditPlant = (plantToEdit) => {
+    setPlants(
+      plants.map((plant) => {
+        if (plant.id == plantToEdit.id) return plantToEdit;
+        return plant;
+      })
+    );
+  };
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target;
+    setSeasons((prevSeasons) => ({
+      ...prevSeasons,
+      [id]: checked,
+    }));
+  };
   function handleDeletePlant(id) {
     setPlants(plants.filter((plant) => plant.id !== id));
     setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
@@ -58,7 +78,11 @@ export default function App({ Component, pageProps }) {
           isUserPlantFunction={isUserPlantFunction}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
+          handleEditPlant={handleEditPlant}
           handleDeletePlant={handleDeletePlant}
+          seasons={seasons}
+          setSeasons={setSeasons}
+          handleCheckboxChange={handleCheckboxChange}
         />
       </Layout>
     </>

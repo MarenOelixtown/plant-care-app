@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const FormContainer = styled.form`
   display: grid;
@@ -61,15 +62,24 @@ const Legend = styled.legend`
 `;
 
 export default function CreatPlantForm({
+  defaultData,
   seasons,
   formName,
   onSubmit,
   onCheckboxChange,
 }) {
+  const router = useRouter();
   return (
     <FormContainer aria-labelledby={formName} onSubmit={onSubmit}>
       <Label htmlFor="name">*Plant Name: </Label>
-      <Input id="name" name="name" type="text" required maxLength={150} />
+      <Input
+        id="name"
+        name="name"
+        type="text"
+        required
+        maxLength={150}
+        defaultValue={defaultData?.name}
+      />
       <Label htmlFor="botanical_name">*Botanical Name</Label>
       <Input
         id="botanical_name"
@@ -77,10 +87,16 @@ export default function CreatPlantForm({
         type="text"
         required
         maxLength={150}
+        defaultValue={defaultData?.botanical_name}
       />
       <Label htmlFor="water_need">*Water Needs:</Label>
-      <Select id="water_need" name="water_need" required>
-        <option value="" disabled selected>
+      <Select
+        id="water_need"
+        name="water_need"
+        required
+        defaultValue={defaultData?.water_need}
+      >
+        <option value="" disabled>
           Select water needs
         </option>
         <option value="Low">Low</option>
@@ -88,8 +104,13 @@ export default function CreatPlantForm({
         <option value="High">High</option>
       </Select>
       <Label htmlFor="light_need">*Light Needs:</Label>
-      <Select id="light_need" name="light_need" required>
-        <option value="" disabled selected>
+      <Select
+        id="light_need"
+        name="light_need"
+        required
+        defaultValue={defaultData?.light_need}
+      >
+        <option value="" disabled>
           Select light needs
         </option>
         <option value="Partial shade">Partial shade</option>
@@ -106,7 +127,7 @@ export default function CreatPlantForm({
               id="Spring"
               name="fertiliser_season"
               value="Spring"
-              checked={seasons.Spring}
+              defaultChecked={seasons.Spring}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -117,7 +138,7 @@ export default function CreatPlantForm({
               id="Summer"
               name="fertiliser_season"
               value="Summer"
-              checked={seasons.Summer}
+              defaultChecked={seasons.Summer}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -128,7 +149,7 @@ export default function CreatPlantForm({
               id="Fall"
               name="fertiliser_season"
               value="Fall"
-              checked={seasons.Fall}
+              defaultChecked={seasons.Fall}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -139,7 +160,7 @@ export default function CreatPlantForm({
               id="Winter"
               name="fertiliser_season"
               value="Winter"
-              checked={seasons.Winter}
+              defaultChecked={seasons.Winter}
               onChange={onCheckboxChange}
             />
           </LabelCheckbox>
@@ -152,10 +173,22 @@ export default function CreatPlantForm({
         cols="30"
         rows="10"
         maxLength={150}
+        defaultValue={defaultData?.care_instructions}
       ></Textarea>
       <Label htmlFor="image">*Image Url: </Label>
-      <Input id="image" name="image" type="text" required />
-      <StyledButton type="submit">+ plant</StyledButton>
+      <Input
+        id="image"
+        name="image"
+        type="text"
+        required
+        defaultValue={defaultData?.image}
+      />
+      <StyledButton type="submit">
+        {defaultData ? "Update Plant" : "+ Plant"}
+      </StyledButton>
+      <StyledButton type="button" onClick={() => router.back()}>
+        Cancel
+      </StyledButton>
     </FormContainer>
   );
 }

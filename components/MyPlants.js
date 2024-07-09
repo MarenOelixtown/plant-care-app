@@ -27,6 +27,10 @@ export default function MyPlants({
   isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  handleEditPlant,
+  seasons,
+  setSeasons,
+  handleCheckboxChange,
 }) {
   const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
 
@@ -41,15 +45,18 @@ export default function MyPlants({
       ) : (
         <StyledList>
           {myPlants.map((plant) => {
-            const isUserPlant = isUserPlantFunction(plant.id);
             return (
               <StyledItem key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  isUserPlant={isUserPlant}
+                  isUserPlant={isUserPlantFunction(plant.id)}
                   isMyPlant={isMyPlantFunction(plant.id)}
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
+                  handleEditPlant={handleEditPlant}
+                  seasons={seasons}
+                  setSeasons={setSeasons}
+                  handleCheckboxChange={handleCheckboxChange}
                 />
               </StyledItem>
             );

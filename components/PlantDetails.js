@@ -4,6 +4,7 @@ import ButtonAddPlant from "./ButtonAddPlant";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ButtonDeletePlant from "./ButtonDeletePlant";
+import ButtonEditPlant from "./ButtonEditPlant";
 
 const StyledCard = styled.div`
   display: flex;
@@ -68,6 +69,10 @@ export default function PlantDetails({
   isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  handleEditPlant,
+  seasons,
+  setSeasons,
+  handleCheckboxChange,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -85,7 +90,6 @@ export default function PlantDetails({
       </StyledDiv>
     );
   }
-  const isMyPlant = isMyPlantFunction(plant.id);
   const isUserPlant = isUserPlantFunction(plant.id);
   return (
     <StyledCard>
@@ -94,11 +98,17 @@ export default function PlantDetails({
       <ButtonContainer>
         <ButtonAddPlant
           onToggleMyPlants={handleToggleMyPlants}
-          isMyPlant={isMyPlant}
+          isMyPlant={isMyPlantFunction(plant.id)}
           id={plant.id}
         />
         {isUserPlant && (
-          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+          <>
+            <ButtonDeletePlant
+              OnDeletePlant={handleDeletePlant}
+              id={plant.id}
+            />
+            <ButtonEditPlant id={plant.id} />
+          </>
         )}
       </ButtonContainer>
       <Image src={plant.image} width={300} height={300} alt={plant.name} />

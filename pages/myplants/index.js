@@ -6,6 +6,10 @@ export default function MyPlantsPage({
   isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  handleEditPlant,
+  seasons,
+  setSeasons,
+  handleCheckboxChange,
 }) {
   return (
     <MyPlants
@@ -14,6 +18,10 @@ export default function MyPlantsPage({
       isUserPlantFunction={isUserPlantFunction}
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
+      handleEditPlant={handleEditPlant}
+      seasons={seasons}
+      setSeasons={setSeasons}
+      handleCheckboxChange={handleCheckboxChange}
     />
   );
 }
