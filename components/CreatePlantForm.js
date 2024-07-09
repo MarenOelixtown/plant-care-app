@@ -11,6 +11,7 @@ const Input = styled.input`
   border: 3px solid black;
   border-radius: 0.5rem;
 `;
+
 const Select = styled.select`
   border: 3px solid black;
   border-radius: 0.5rem;
@@ -35,19 +36,33 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledFileInput = styled(Input).attrs({
+  type: "file",
+})`
+  padding: 8px;
+  border: none;
+  &:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+`;
+
 const Textarea = styled.textarea`
   font-family: inherit;
   border: 3px solid black;
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
+
 const Fieldset = styled.fieldset`
   border: 3px solid black;
   border-radius: 0.5rem;
 `;
+
 const CheckboxContainer = styled.div`
   text-align: center;
 `;
+
 const LabelCheckbox = styled.label`
   margin: 1rem;
   font-weight: bold;
@@ -56,18 +71,23 @@ const LabelCheckbox = styled.label`
 const Label = styled.label`
   font-weight: bold;
 `;
+
 const Legend = styled.legend`
   font-weight: bold;
 `;
 
-export default function CreatPlantForm({
+export default function CreatePlantForm({
   seasons,
   formName,
   onSubmit,
   onCheckboxChange,
 }) {
   return (
-    <FormContainer aria-labelledby={formName} onSubmit={onSubmit}>
+    <FormContainer
+      aria-labelledby={formName}
+      onSubmit={onSubmit}
+      encType="multipart/form-data"
+    >
       <Label htmlFor="name">*Plant Name: </Label>
       <Input id="name" name="name" type="text" required maxLength={150} />
       <Label htmlFor="botanical_name">*Botanical Name</Label>
@@ -153,8 +173,8 @@ export default function CreatPlantForm({
         rows="10"
         maxLength={150}
       ></Textarea>
-      <Label htmlFor="image">*Image Url: </Label>
-      <Input id="image" name="image" type="text" required />
+      <Label htmlFor="photo">Add Photo:</Label>
+      <StyledFileInput name="photo" id="photo" accept="image/*" required />
       <StyledButton type="submit">+ plant</StyledButton>
     </FormContainer>
   );

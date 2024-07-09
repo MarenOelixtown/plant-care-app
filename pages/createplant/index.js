@@ -1,4 +1,4 @@
-import CreatPlantForm from "@/components/CreatePlantForm";
+import CreatePlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -21,7 +21,7 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
-export default function CreatPlantFormPage({ handleAddPlant }) {
+export default function CreatePlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
   const [seasons, setSeasons] = useState({
     Spring: false,
@@ -37,19 +37,32 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
       [id]: checked,
     }));
   };
-  function addPlant(event) {
+
+  async function addPlant(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.error("Failed to upload image");
+      return;
+    }
+
+    const { url } = await response.json();
     const plantData = Object.fromEntries(formData);
-    const newPlant = plantData;
+    plantData.image = url;
 
     const selectedSeasons = Object.keys(seasons).filter(
       (season) => seasons[season]
     );
 
     plantData.fertiliser_season = selectedSeasons;
-    handleAddPlant(newPlant);
+    handleAddPlant(plantData);
 
     event.target.reset();
     event.target.name.focus();
@@ -59,23 +72,23 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
       Fall: false,
       Winter: false,
     });
-    setSuccessMessage("Success! Your plant has been added.");
+
+    setSuccessMessage("Plant was created!");
 
     setTimeout(() => {
       setSuccessMessage("");
-    }, 3000);
+    }, 2000);
   }
 
   return (
     <FormPageContainer>
-      <Heading id="create-plant">Add a new plant</Heading>
-      <CreatPlantForm
-        formName={"create-plant"}
+      <Heading>Add Plant Form</Heading>
+      <CreatePlantForm
+        formName="Add Plant Form"
         onSubmit={addPlant}
         seasons={seasons}
         onCheckboxChange={handleCheckboxChange}
       />
-
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
   );

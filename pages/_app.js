@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { initialPlants } from "@/assets/plants";
@@ -59,6 +59,7 @@ export default function App({ Component, pageProps }) {
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
           handleDeletePlant={handleDeletePlant}
+          onAddPhoto={handleAddPlant}
         />
       </Layout>
     </>
