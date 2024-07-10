@@ -19,7 +19,7 @@ const NavigationList = styled.ul`
   justify-content: space-around;
 `;
 const IconListItem = styled.li`
-  background-color: ${(props) => props.bgColor || ""};
+  background-color: ${(props) => props.$bgColor || ""};
   flex: 1;
   text-align: center;
   padding: 10px;
@@ -103,17 +103,17 @@ export default function NavigationBar() {
   return (
     <StyledFooter>
       <NavigationList>
-        <IconListItem bgColor={getBackgroundColor("/")}>
+        <IconListItem $bgColor={getBackgroundColor("/")}>
           <Link href="/" title="Home">
             <HomeIcon getFillColor={getFillColor("/")} />
           </Link>
         </IconListItem>
-        <IconListItem bgColor={getBackgroundColor("/overview")}>
+        <IconListItem $bgColor={getBackgroundColor("/overview")}>
           <Link href="/overview" title="Plants Overview">
             <PlantOverviewIcon getFillColor={getFillColor("/overview")} />
           </Link>
         </IconListItem>
-        <IconListItem bgColor={getBackgroundColor("/myplants")}>
+        <IconListItem $bgColor={getBackgroundColor("/myplants")}>
           <Link href="/myplants" title="My Plants">
             <MyPlantsIcon getFillColor={getFillColor("/myplants")} />
           </Link>
