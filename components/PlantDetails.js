@@ -69,10 +69,6 @@ export default function PlantDetails({
   isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
-  handleEditPlant,
-  seasons,
-  setSeasons,
-  handleCheckboxChange,
 }) {
   const router = useRouter();
   const { id } = router.query;

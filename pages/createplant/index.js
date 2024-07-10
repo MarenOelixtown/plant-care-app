@@ -23,58 +23,21 @@ const SuccessMessage = styled.p`
 
 export default function CreatPlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
-  const [seasons, setSeasons] = useState({
-    Spring: false,
-    Summer: false,
-    Fall: false,
-    Winter: false,
-  });
 
-  const handleCheckboxChange = (event) => {
-    const { id, checked } = event.target;
-    setSeasons((prevSeasons) => ({
-      ...prevSeasons,
-      [id]: checked,
-    }));
-  };
-  function addPlant(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const plantData = Object.fromEntries(formData);
-    const newPlant = plantData;
-
-    const selectedSeasons = Object.keys(seasons).filter(
-      (season) => seasons[season]
-    );
-
-    plantData.fertiliser_season = selectedSeasons;
+  function addPlant(newPlant) {
     handleAddPlant(newPlant);
 
-    event.target.reset();
-    event.target.name.focus();
-    setSeasons({
-      Spring: false,
-      Summer: false,
-      Fall: false,
-      Winter: false,
-    });
     setSuccessMessage("Success! Your plant has been added.");
 
     setTimeout(() => {
       setSuccessMessage("");
-    }, 3000);
+    }, 2000);
   }
 
   return (
     <FormPageContainer>
       <Heading id="create-plant">Add a new plant</Heading>
-      <CreatPlantForm
-        formName={"create-plant"}
-        onSubmit={addPlant}
-        seasons={seasons}
-        onCheckboxChange={handleCheckboxChange}
-      />
+      <CreatPlantForm formName={"create-plant"} onSubmit={addPlant} />
 
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>

@@ -6,9 +6,6 @@ export default function PlantDetailsPage({
   isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
-  seasons,
-  setSeasons,
-  handleCheckboxChange,
 }) {
   return (
     <PlantDetails
@@ -17,9 +14,6 @@ export default function PlantDetailsPage({
       isUserPlantFunction={isUserPlantFunction}
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
-      seasons={seasons}
-      setSeasons={setSeasons}
-      handleCheckboxChange={handleCheckboxChange}
     />
   );
 }

@@ -1,8 +1,5 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
-import back from "../public/back.png";
-import Image from "next/image";
-import Link from "next/link";
 
 const StyledList = styled.ul`
   list-style: none;
@@ -28,9 +25,6 @@ export default function MyPlants({
   handleToggleMyPlants,
   handleDeletePlant,
   handleEditPlant,
-  seasons,
-  setSeasons,
-  handleCheckboxChange,
 }) {
   const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
 
@@ -54,9 +48,6 @@ export default function MyPlants({
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
                   handleEditPlant={handleEditPlant}
-                  seasons={seasons}
-                  setSeasons={setSeasons}
-                  handleCheckboxChange={handleCheckboxChange}
                 />
               </StyledItem>
             );

@@ -56,10 +56,6 @@ export default function PlantPreview({
   isUserPlant,
   handleToggleMyPlants,
   handleDeletePlant,
-  handleEditPlant,
-  seasons,
-  setSeasons,
-  handleCheckboxChange,
 }) {
   return (
     <StyledDiv>
