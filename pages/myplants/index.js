@@ -6,6 +6,7 @@ export default function MyPlantsPage({
   isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  handleEditPlant,
 }) {
   return (
     <MyPlants
@@ -14,6 +15,7 @@ export default function MyPlantsPage({
       isUserPlantFunction={isUserPlantFunction}
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
+      handleEditPlant={handleEditPlant}
     />
   );
 }

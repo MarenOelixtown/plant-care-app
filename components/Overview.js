@@ -1,8 +1,5 @@
-import Link from "next/link";
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
-import back from "../public/back.png";
-import Image from "next/image";
 
 const StyledList = styled.ul`
   list-style: none;

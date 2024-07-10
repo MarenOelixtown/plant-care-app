@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const FormContainer = styled.form`
   display: grid;
@@ -60,16 +62,57 @@ const Legend = styled.legend`
   font-weight: bold;
 `;
 
-export default function CreatPlantForm({
-  seasons,
-  formName,
-  onSubmit,
-  onCheckboxChange,
-}) {
+export default function CreatPlantForm({ defaultData, formName, onSubmit }) {
+  const router = useRouter();
+  const [waterNeed, setWaterNeed] = useState(defaultData?.water_need);
+  const [lightNeed, setLightNeed] = useState(defaultData?.light_need);
+  const [seasons, setSeasons] = useState(
+    {
+      Spring: defaultData?.fertiliser_season.includes("Spring"),
+      Summer: defaultData?.fertiliser_season.includes("Summer"),
+      Fall: defaultData?.fertiliser_season.includes("Fall"),
+      Winter: defaultData?.fertiliser_season.includes("Winter"),
+    } || {}
+  );
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target;
+    setSeasons((prevSeasons) => ({
+      ...prevSeasons,
+      [id]: checked,
+    }));
+  };
+  function clearSeasons() {
+    setSeasons({ Spring: false, Summer: false, Fall: false, Winter: false });
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const plantData = Object.fromEntries(formData);
+    const selectedSeasons = Object.keys(seasons).filter(
+      (season) => seasons[season]
+    );
+    plantData.fertiliser_season = selectedSeasons;
+    onSubmit(plantData);
+
+    event.target.reset();
+    if (formName === "create-plant") {
+      clearSeasons();
+      setLightNeed("");
+      setWaterNeed("");
+    }
+    event.target.name.focus();
+  }
   return (
-    <FormContainer aria-labelledby={formName} onSubmit={onSubmit}>
+    <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
       <Label htmlFor="name">*Plant Name: </Label>
-      <Input id="name" name="name" type="text" required maxLength={150} />
+      <Input
+        id="name"
+        name="name"
+        type="text"
+        required
+        maxLength={150}
+        defaultValue={defaultData?.name}
+      />
       <Label htmlFor="botanical_name">*Botanical Name</Label>
       <Input
         id="botanical_name"
@@ -77,24 +120,33 @@ export default function CreatPlantForm({
         type="text"
         required
         maxLength={150}
+        defaultValue={defaultData?.botanical_name}
       />
       <Label htmlFor="water_need">*Water Needs:</Label>
-      <Select id="water_need" name="water_need" required>
-        <option value="" disabled selected>
-          Select water needs
-        </option>
+      <Select
+        id="water_need"
+        name="water_need"
+        required
+        value={waterNeed}
+        onChange={(event) => setWaterNeed(event.target.value)}
+      >
+        <option value="">Select water needs</option>
         <option value="Low">Low</option>
         <option value="Moderate">Moderate</option>
         <option value="High">High</option>
       </Select>
       <Label htmlFor="light_need">*Light Needs:</Label>
-      <Select id="light_need" name="light_need" required>
-        <option value="" disabled selected>
-          Select light needs
-        </option>
+      <Select
+        id="light_need"
+        name="light_need"
+        required
+        value={lightNeed}
+        onChange={(event) => setLightNeed(event.target.value)}
+      >
+        <option value="">Select light needs</option>
+        <option value="Shady">Shady</option>
         <option value="Partial shade">Partial shade</option>
         <option value="Bright">Bright</option>
-        <option value="Shady">Shady</option>
       </Select>
       <Fieldset>
         <Legend>Please choose your fertiliser seasons</Legend>
@@ -106,8 +158,8 @@ export default function CreatPlantForm({
               id="Spring"
               name="fertiliser_season"
               value="Spring"
-              checked={seasons.Spring}
-              onChange={onCheckboxChange}
+              defaultChecked={seasons.Spring}
+              onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
           <LabelCheckbox htmlFor="summer">
@@ -117,8 +169,8 @@ export default function CreatPlantForm({
               id="Summer"
               name="fertiliser_season"
               value="Summer"
-              checked={seasons.Summer}
-              onChange={onCheckboxChange}
+              defaultChecked={seasons.Summer}
+              onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
           <LabelCheckbox htmlFor="fall">
@@ -128,8 +180,8 @@ export default function CreatPlantForm({
               id="Fall"
               name="fertiliser_season"
               value="Fall"
-              checked={seasons.Fall}
-              onChange={onCheckboxChange}
+              defaultChecked={seasons.Fall}
+              onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
           <LabelCheckbox htmlFor="winter">
@@ -139,8 +191,8 @@ export default function CreatPlantForm({
               id="Winter"
               name="fertiliser_season"
               value="Winter"
-              checked={seasons.Winter}
-              onChange={onCheckboxChange}
+              defaultChecked={seasons.Winter}
+              onChange={handleCheckboxChange}
             />
           </LabelCheckbox>
         </CheckboxContainer>
@@ -152,10 +204,22 @@ export default function CreatPlantForm({
         cols="30"
         rows="10"
         maxLength={150}
+        defaultValue={defaultData?.care_instructions}
       ></Textarea>
       <Label htmlFor="image">*Image Url: </Label>
-      <Input id="image" name="image" type="text" required />
-      <StyledButton type="submit">+ plant</StyledButton>
+      <Input
+        id="image"
+        name="image"
+        type="text"
+        required
+        defaultValue={defaultData?.image}
+      />
+      <StyledButton type="submit">
+        {defaultData ? "Update Plant" : "+ Plant"}
+      </StyledButton>
+      <StyledButton type="button" onClick={() => router.back()}>
+        Cancel
+      </StyledButton>
     </FormContainer>
   );
 }

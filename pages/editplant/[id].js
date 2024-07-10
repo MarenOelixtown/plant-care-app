@@ -1,6 +1,7 @@
 import CreatPlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const FormPageContainer = styled.div`
   width: 500px;
@@ -21,14 +22,18 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
-export default function CreatPlantFormPage({ handleAddPlant }) {
+export default function EditPlantFormPage({ plants, handleEditPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
+  const router = useRouter();
+  const { id } = router.query;
+  if (!id) return;
 
-  function addPlant(newPlant) {
-    handleAddPlant(newPlant);
+  const plant = plants.find((plant) => plant.id === id);
 
-    setSuccessMessage("Success! Your plant has been added.");
+  function editPlant(updatedPlant) {
+    handleEditPlant({ id, ...updatedPlant });
 
+    setSuccessMessage("Success! Your plant has been updated.");
     setTimeout(() => {
       setSuccessMessage("");
     }, 2000);
@@ -36,8 +41,12 @@ export default function CreatPlantFormPage({ handleAddPlant }) {
 
   return (
     <FormPageContainer>
-      <Heading id="create-plant">Add a new plant</Heading>
-      <CreatPlantForm formName={"create-plant"} onSubmit={addPlant} />
+      <Heading id="edit-plant">Edit plant</Heading>
+      <CreatPlantForm
+        defaultData={plant}
+        formName={"edit-plant"}
+        onSubmit={editPlant}
+      />
 
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
