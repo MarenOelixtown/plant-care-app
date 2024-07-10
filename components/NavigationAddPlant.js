@@ -28,7 +28,7 @@ export default function NavigationAddPlant() {
   return (
     <Link href="/createplant">
       <AddPlant hidden={hiddenPaths.includes(router.pathname)}>
-        + plant
+        + Plant
       </AddPlant>
     </Link>
   );

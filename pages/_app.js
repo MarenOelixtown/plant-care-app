@@ -59,7 +59,6 @@ export default function App({ Component, pageProps }) {
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
           handleDeletePlant={handleDeletePlant}
-          onAddPhoto={handleAddPlant}
         />
       </Layout>
     </>

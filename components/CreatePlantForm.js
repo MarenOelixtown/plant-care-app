@@ -81,6 +81,7 @@ export default function CreatePlantForm({
   formName,
   onSubmit,
   onCheckboxChange,
+  isSubmitting,
 }) {
   return (
     <FormContainer
@@ -175,7 +176,9 @@ export default function CreatePlantForm({
       ></Textarea>
       <Label htmlFor="photo">Add Photo:</Label>
       <StyledFileInput name="photo" id="photo" accept="image/*" required />
-      <StyledButton type="submit">+ plant</StyledButton>
+      <StyledButton type="submit" disabled={isSubmitting}>
+        + Plant
+      </StyledButton>
     </FormContainer>
   );
 }

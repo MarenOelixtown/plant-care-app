@@ -21,14 +21,26 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
+const ErrorMessage = styled.p`
+  font-family: inherit;
+  color: red;
+  background-color: pink;
+  border: 3px red;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
+
 export default function CreatePlantFormPage({ handleAddPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [seasons, setSeasons] = useState({
     Spring: false,
     Summer: false,
     Fall: false,
     Winter: false,
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -43,53 +55,67 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
 
     const formData = new FormData(event.target);
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-    if (!response.ok) {
-      console.error("Failed to upload image");
-      return;
-    }
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
 
-    const { url } = await response.json();
-    const plantData = Object.fromEntries(formData);
-    plantData.image = url;
+      const { url } = await response.json();
+      const plantData = Object.fromEntries(formData);
+      plantData.image = url;
 
-    const selectedSeasons = Object.keys(seasons).filter(
-      (season) => seasons[season]
-    );
+      const selectedSeasons = Object.keys(seasons).filter(
+        (season) => seasons[season]
+      );
 
-    plantData.fertiliser_season = selectedSeasons;
-    handleAddPlant(plantData);
+      plantData.fertiliser_season = selectedSeasons;
+      handleAddPlant(plantData);
 
-    event.target.reset();
-    event.target.name.focus();
-    setSeasons({
-      Spring: false,
-      Summer: false,
-      Fall: false,
-      Winter: false,
-    });
+      event.target.reset();
+      event.target.name.focus();
+      setSeasons({
+        Spring: false,
+        Summer: false,
+        Fall: false,
+        Winter: false,
+      });
 
-    setSuccessMessage("Plant was created!");
+      setSuccessMessage("Your Plant is added successfully!");
+      setErrorMessage("");
 
-    setTimeout(() => {
+      setTimeout(() => {
+        setSuccessMessage("");
+        setIsSubmitting(false);
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Failed to upload image. Please try again.");
       setSuccessMessage("");
-    }, 2000);
-  }
 
+      setTimeout(() => {
+        setErrorMessage("");
+        setIsSubmitting(false);
+      }, 3000);
+    }
+    window.scrollTo(0, 0);
+  }
   return (
     <FormPageContainer>
       <Heading>Add Plant Form</Heading>
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <CreatePlantForm
         formName="Add Plant Form"
         onSubmit={addPlant}
         seasons={seasons}
         onCheckboxChange={handleCheckboxChange}
+        isSubmitting={isSubmitting}
       />
-      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
   );
 }
