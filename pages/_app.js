@@ -18,7 +18,6 @@ export default function App({ Component, pageProps }) {
           id: newPlantWithId.id,
           isMyPlant: true,
           isUserPlant: true,
-          wateringDate: newPlant.wateringDate || "",
         },
         ...plantsInfo,
       ]);
@@ -45,6 +44,7 @@ export default function App({ Component, pageProps }) {
     setPlants(plants.filter((plant) => plant.id !== id));
     setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
   }
+
   function handleAddReminder(id, wateringDate) {
     setPlantsInfo(
       plantsInfo.map((plant) =>
@@ -58,6 +58,10 @@ export default function App({ Component, pageProps }) {
 
   const isMyPlantFunction = (id) =>
     plantsInfo.find((info) => info.id === id)?.isMyPlant;
+
+  const isMyPlantWithReminder = (id) =>
+    plantsInfo.find((info) => info.id === id)?.isMyPlant &&
+    !!plantsInfo.find((info) => info.id === id)?.wateringDate;
 
   return (
     <>
@@ -73,6 +77,7 @@ export default function App({ Component, pageProps }) {
           handleAddPlant={handleAddPlant}
           handleDeletePlant={handleDeletePlant}
           handleAddReminder={handleAddReminder}
+          isMyPlantWithReminder={isMyPlantWithReminder}
         />
       </Layout>
     </>

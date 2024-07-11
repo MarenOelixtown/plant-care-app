@@ -1,11 +1,119 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
+
+const StyledDiv = styled.div`
+  text-align: center;
+`;
+const StyledImg = styled.img`
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+`;
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+const StyledItem = styled.li`
+  display: block;
+  align-items: left;
+  align-content: space-between;
+  margin-bottom: 5px;
+  list-style: none;
+  border-spacing: 10px;
+`;
+const StyledInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-right: 5px;
+`;
+const StyledPlant = styled.div`
+  display: flex;
+  position: relative;
+  margin-bottom: 5px;
+  color: grey;
+  border-style: solid;
+  padding: 10px;
+  margin: 10px;
+`;
+const StyledName = styled.p`
+  margin-right: 5px;
+  font-weight: bold;
+  color: black;
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+const AddSchedule = styled.p`
+  display: inline-block;
+  border: 3px solid var(--secondary-stroke-color);
+  background-color: var(--secondary-bg-color);
+  margin-top: 2rem;
+  padding: 0.8rem 0.8rem;
+  border-radius: 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary-stroke-color);
+    background-color: white;
+  }
+`;
+export default function MySchedule({
+  plants,
+  isMyPlantWithReminder,
+  plantsInfo,
+}) {
+  const plantsWithReminder = plants
+    .filter((plant) => isMyPlantWithReminder(plant.id))
+    .map((plant) => {
+      const plantInfo = plantsInfo?.find((info) => info.id === plant.id);
+      return {
+        ...plant,
+        wateringDate: plantInfo?.wateringDate || null,
+      };
+    })
+    .sort((a, b) => new Date(a.wateringDate) - new Date(b.wateringDate));
+
+  return (
+    <StyledDiv>
+      <h1>My Schedule</h1>
+      <StyledLink href="/scheduleform">
+        <AddSchedule>+ Watering-Schedule</AddSchedule>
+      </StyledLink>
+      {plantsWithReminder.length === 0 ? (
+        <p>No schedule is set. Want to create one?</p>
+      ) : (
+        <StyledList>
+          {plantsWithReminder.map((plant) => {
+            return (
+              <StyledItem key={plant.id}>
+                <StyledPlant>
+                  <StyledImg src={plant.image} alt={plant.name} />
+                  <StyledInfo>
+                    <StyledName>{plant.name}</StyledName>
+                    <WateringIcon />
+                    <p>{plant.wateringDate}</p>
+                  </StyledInfo>
+                </StyledPlant>
+              </StyledItem>
+            );
+          })}
+        </StyledList>
+      )}
+    </StyledDiv>
+  );
+}
 
 const WateringIcon = () => (
   <svg
     version="1.1"
-    width="10px"
-    height="10px"
+    width="30px"
+    height="30px"
+    fill="grey"
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
@@ -31,51 +139,3 @@ const WateringIcon = () => (
     />
   </svg>
 );
-const StyledDiv = styled.div`
-  text-align: center;
-`;
-const StyledImg = styled(Image)`
-  border-radius: 5px;
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-`;
-const StyledList = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-const StyledItem = styled.li`
-  display: block;
-  align-items: left;
-  align-content: space-between;
-  margin-bottom: 5px;
-  list-style: none;
-  border-spacing: 10px;
-`;
-const StyledName = styled.p`
-  margin-right: 5px;
-  font-weight: bold;
-`;
-export default function MySchedule({ plantsInfo }) {
-  return (
-    <StyledDiv>
-      <h1>My Schedule</h1>
-      {plantsInfo.length === 0 ? (
-        <p>No schedule is set. Want to create one?</p>
-      ) : (
-        <StyledList>
-          {plantsInfo.map((plant) => {
-            return (
-              <StyledItem key={plant.id}>
-                <StyledImg src={plant.image} alt={plant.name} />
-                <StyledName>{plant.name}</StyledName>
-                <WateringIcon />
-                <p>Date: {plant.wateringDate}</p>
-              </StyledItem>
-            );
-          })}
-        </StyledList>
-      )}
-    </StyledDiv>
-  );
-}

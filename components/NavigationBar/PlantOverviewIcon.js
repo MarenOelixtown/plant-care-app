@@ -8,7 +8,7 @@ export const PlantOverviewIcon = ({ getFillColor }) => (
     stroke={getFillColor}
     fill={getFillColor}
   >
-    <title>Plant Overview Icon</title>
+    <title>Plant Overview</title>
     <g data-name="Layer 24" id="Layer_24">
       <path
         className="cls-1"

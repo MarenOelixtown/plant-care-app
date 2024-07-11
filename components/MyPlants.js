@@ -7,8 +7,8 @@ import Link from "next/link";
 const CalenderIcon = () => (
   <svg
     fill="#000000"
-    width="70px"
-    height="70px"
+    width="50px"
+    height="50px"
     viewBox="-3 0 19 19"
     xmlns="http://www.w3.org/2000/svg"
     className="cf-icon-svg"
@@ -18,10 +18,11 @@ const CalenderIcon = () => (
   </svg>
 );
 const StyledLink = styled(Link)`
-  position: fixed;
-  top: 2.5rem;
+  position: absolute;
+  top: 2.8rem;
   left: 2rem;
 `;
+
 const StyledList = styled.ul`
   list-style: none;
   padding: 0;
@@ -51,9 +52,10 @@ export default function MyPlants({
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      <StyledLink href="/schedule" title="My Schedule">
+      <StyledLink href="/myschedule" title="My Schedule">
         <CalenderIcon />
       </StyledLink>
+
       {myPlants.length === 0 ? (
         <p>
           No Plants to show at the moment. Feel free to add your plants here!
