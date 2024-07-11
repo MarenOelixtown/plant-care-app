@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import SearchBar from "@/components/SearchBar";
 
 const StyledDiv = styled.div`
   padding: 20px;
@@ -8,19 +9,17 @@ const StyledDiv = styled.div`
 const StyledLink = styled(Link)`
   top: 50px;
   right: 50px;
-  border: 3px solid green;
-  background-color: lightcyan;
   padding: 0.8rem 1.5rem;
-  border-radius: 1rem;
   color: green;
   text-decoration: none;
   font-weight: bold;
 `;
-export default function HomePage() {
+export default function HomePage({ plants }) {
   return (
     <StyledDiv>
-      <h1>Welcome to the Plant Care Companion</h1>
-      <StyledLink href="/overview">Go to Plants Overview</StyledLink>
+      <h1>Plant Prosper</h1>
+      <SearchBar plants={plants} />
+      <StyledLink href="/overview">Welcome to explore...</StyledLink>
     </StyledDiv>
   );
 }
