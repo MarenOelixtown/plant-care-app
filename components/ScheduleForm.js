@@ -47,7 +47,7 @@ export default function ScheduleForm({
   isMyPlantFunction,
 }) {
   const [selectedPlant, setSelectedPlant] = useState("");
-  const [wateringDate, setWateringDate] = useState("");
+  const [wateringStartDate, setWateringStartDate] = useState("");
   const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
   const router = useRouter();
 
@@ -57,9 +57,29 @@ export default function ScheduleForm({
     const formData = new FormData(event.target);
     const scheduleData = Object.fromEntries(formData);
 
-    handleAddReminder(scheduleData.name, scheduleData.wateringDate);
-    window.alert("New Watering-Schedule added successfully!");
-    router.push("/myschedule");
+    const selectedPlantDetails = plants.find(
+      (plant) => plant.id === scheduleData.name
+    );
+    if (selectedPlantDetails) {
+      let wateringDate = new Date(scheduleData.wateringStartDate);
+      if (selectedPlantDetails.water_need === "Low") {
+        wateringDate.setDate(wateringDate.getDate() + 6); // 6 weeks
+      } else if (selectedPlantDetails.water_need === "Moderate") {
+        wateringDate.setDate(wateringDate.getDate() + 2); // 3 days
+      } else if (selectedPlantDetails.water_need === "High") {
+        wateringDate.setDate(wateringDate.getDate() + 1); // 1 day
+      }
+
+      handleAddReminder(
+        scheduleData.name,
+        wateringDate.toISOString().split("T")[0]
+      );
+
+      router.push({
+        pathname: "/myschedule",
+        query: { success: "true" },
+      });
+    }
   }
   return (
     <FormContainer onSubmit={addSchedule}>
@@ -80,11 +100,11 @@ export default function ScheduleForm({
       </Select>
       <Label htmlFor="wateringDate">Start Watering:</Label>
       <Input
-        id="wateringDate"
+        id="wateringStartDate"
         type="date"
-        name="wateringDate"
-        value={wateringDate}
-        onChange={(e) => setWateringDate(e.target.value)}
+        name="wateringStartDate"
+        value={wateringStartDate}
+        onChange={(e) => setWateringStartDate(e.target.value)}
       />
       <StyledButton type="submit">+ Schedule</StyledButton>
     </FormContainer>
