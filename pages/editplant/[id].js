@@ -1,4 +1,4 @@
-import CreatPlantForm from "@/components/CreatePlantForm";
+import CreatePlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -24,31 +24,62 @@ const SuccessMessage = styled.p`
 
 export default function EditPlantFormPage({ plants, handleEditPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   if (!id) return;
 
   const plant = plants.find((plant) => plant.id === id);
 
-  function editPlant(updatedPlant) {
-    handleEditPlant({ id, ...updatedPlant });
+  async function editPlant(updatedPlant) {
+    setIsSubmitting(true);
 
-    setSuccessMessage("Success! Your plant has been updated.");
-    setTimeout(() => {
-      setSuccessMessage("");
-    }, 2000);
+    try {
+      const formData = new FormData();
+      Object.keys(updatedPlant).forEach((key) => {
+        formData.append(key, updatedPlant[key]);
+      });
+
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
+
+      const { url } = await response.json();
+      updatedPlant.image = url;
+
+      handleEditPlant({ id, ...updatedPlant });
+
+      setSuccessMessage("Your Plant has been updated successfully!");
+      setTimeout(() => {
+        setSuccessMessage("");
+        setIsSubmitting(false);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+      setSuccessMessage("Failed to upload image. Please try again.");
+      setTimeout(() => {
+        setSuccessMessage("");
+        setIsSubmitting(false);
+      }, 3000);
+    }
+    window.scrollTo(0, 0);
   }
 
   return (
     <FormPageContainer>
-      <Heading id="edit-plant">Edit plant</Heading>
-      <CreatPlantForm
+      <Heading id="edit-plant">Edit your plant</Heading>
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      <CreatePlantForm
         defaultData={plant}
         formName={"edit-plant"}
         onSubmit={editPlant}
+        isSubmitting={isSubmitting}
       />
-
-      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </FormPageContainer>
   );
 }

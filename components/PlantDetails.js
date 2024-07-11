@@ -15,6 +15,7 @@ const StyledCard = styled.div`
   margin: 10px auto;
   padding: 10px;
 `;
+
 const StyledCare = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -86,7 +87,9 @@ export default function PlantDetails({
       </StyledDiv>
     );
   }
+
   const isUserPlant = isUserPlantFunction(plant.id);
+
   return (
     <StyledCard>
       <h2>{plant.name}</h2>
@@ -113,7 +116,6 @@ export default function PlantDetails({
         <p>Fertiliser Cycle: {plant.fertiliser_season.join(", ")}</p>
         <p>Light: {plant.light_need}</p>
       </StyledCare>
-
       <p>Care Instructions: </p>
       <p>{plant.care_instructions}</p>
     </StyledCard>

@@ -13,6 +13,7 @@ const Input = styled.input`
   border: 3px solid black;
   border-radius: 0.5rem;
 `;
+
 const Select = styled.select`
   border: 3px solid black;
   border-radius: 0.5rem;
@@ -37,19 +38,33 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledFileInput = styled(Input).attrs({
+  type: "file",
+})`
+  padding: 8px;
+  border: none;
+  &:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+`;
+
 const Textarea = styled.textarea`
   font-family: inherit;
   border: 3px solid black;
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
+
 const Fieldset = styled.fieldset`
   border: 3px solid black;
   border-radius: 0.5rem;
 `;
+
 const CheckboxContainer = styled.div`
   text-align: center;
 `;
+
 const LabelCheckbox = styled.label`
   margin: 1rem;
   font-weight: bold;
@@ -58,11 +73,17 @@ const LabelCheckbox = styled.label`
 const Label = styled.label`
   font-weight: bold;
 `;
+
 const Legend = styled.legend`
   font-weight: bold;
 `;
 
-export default function CreatPlantForm({ defaultData, formName, onSubmit }) {
+export default function CreatePlantForm({
+  defaultData,
+  formName,
+  onSubmit,
+  isSubmitting,
+}) {
   const router = useRouter();
   const [waterNeed, setWaterNeed] = useState(defaultData?.water_need);
   const [lightNeed, setLightNeed] = useState(defaultData?.light_need);
@@ -74,6 +95,7 @@ export default function CreatPlantForm({ defaultData, formName, onSubmit }) {
       Winter: defaultData?.fertiliser_season.includes("Winter"),
     } || {}
   );
+
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
     setSeasons((prevSeasons) => ({
@@ -81,10 +103,8 @@ export default function CreatPlantForm({ defaultData, formName, onSubmit }) {
       [id]: checked,
     }));
   };
-  function clearSeasons() {
-    setSeasons({ Spring: false, Summer: false, Fall: false, Winter: false });
-  }
-  function handleSubmit(event) {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const plantData = Object.fromEntries(formData);
@@ -93,17 +113,14 @@ export default function CreatPlantForm({ defaultData, formName, onSubmit }) {
     );
     plantData.fertiliser_season = selectedSeasons;
     onSubmit(plantData);
+  };
 
-    event.target.reset();
-    if (formName === "create-plant") {
-      clearSeasons();
-      setLightNeed("");
-      setWaterNeed("");
-    }
-    event.target.name.focus();
-  }
   return (
-    <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
+    <FormContainer
+      aria-labelledby={formName}
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+    >
       <Label htmlFor="name">*Plant Name: </Label>
       <Input
         id="name"
@@ -206,15 +223,9 @@ export default function CreatPlantForm({ defaultData, formName, onSubmit }) {
         maxLength={150}
         defaultValue={defaultData?.care_instructions}
       ></Textarea>
-      <Label htmlFor="image">*Image Url: </Label>
-      <Input
-        id="image"
-        name="image"
-        type="text"
-        required
-        defaultValue={defaultData?.image}
-      />
-      <StyledButton type="submit">
+      <Label htmlFor="photo">Add Photo:</Label>
+      <StyledFileInput name="photo" id="photo" accept="image/*" required />
+      <StyledButton type="submit" disabled={isSubmitting}>
         {defaultData ? "Update Plant" : "+ Plant"}
       </StyledButton>
       <StyledButton type="button" onClick={() => router.back()}>
