@@ -11,8 +11,9 @@ const StyledFooter = styled.footer`
   left: 0;
   right: 0;
   bottom: 0;
-  height: 60px;
-  background-color: white;
+  height: 70px;
+  background-color: var(--light-green);
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
 `;
 const NavigationList = styled.ul`
   list-style: none;
@@ -23,19 +24,20 @@ const NavigationList = styled.ul`
 `;
 const IconListItem = styled.li`
   background-color: ${(props) => props.$bgColor || ""};
-  flex: 1;
   text-align: center;
-  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: ${(props) => (props.$bgColor ? "15px" : "0")};
 `;
-
 export default function NavigationBar() {
   const router = useRouter();
-  const getFillColor = (path) =>
-    router.pathname === path
-      ? "var(--secondary-stroke-color)"
-      : "var(--primary-color)";
+  // const getFillColor = (path) =>
+  //   router.pathname === path
+  //     ? "var(--secondary-stroke-color)"
+  //     : "var(--primary-color)";
   const getBackgroundColor = (path) =>
-    router.pathname === path ? "var(--secondary-bg-color)" : "";
+    router.pathname === path ? "var(--lightest-green)" : "";
 
   return (
     <StyledFooter>
@@ -43,17 +45,17 @@ export default function NavigationBar() {
         <NavigationList>
           <IconListItem $bgColor={getBackgroundColor("/")}>
             <Link href="/" title="Home">
-              <HomeIcon getFillColor={getFillColor("/")} />
+              <HomeIcon />
             </Link>
           </IconListItem>
           <IconListItem $bgColor={getBackgroundColor("/overview")}>
             <Link href="/overview" title="Plants Overview">
-              <PlantOverviewIcon getFillColor={getFillColor("/overview")} />
+              <PlantOverviewIcon />
             </Link>
           </IconListItem>
           <IconListItem $bgColor={getBackgroundColor("/myplants")}>
             <Link href="/myplants" title="My Plants">
-              <MyPlantsIcon getFillColor={getFillColor("/myplants")} />
+              <MyPlantsIcon />
             </Link>
           </IconListItem>
         </NavigationList>

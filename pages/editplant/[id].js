@@ -1,6 +1,7 @@
 import CreatePlantForm from "@/components/CreatePlantForm";
 import styled from "styled-components";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const FormPageContainer = styled.div`
   width: 500px;
@@ -21,63 +22,54 @@ const SuccessMessage = styled.p`
   padding: 0.5rem;
 `;
 
-const ErrorMessage = styled.p`
-  font-family: inherit;
-  color: red;
-  background-color: pink;
-  border: 3px red;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-`;
-
-export default function CreatePlantFormPage({ handleAddPlant }) {
+export default function EditPlantFormPage({ plants, handleEditPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
+  if (!id) return;
 
-  async function addPlant(plantData) {
+  const plant = plants.find((plant) => plant.id === id);
+
+  async function editPlant(updatedPlant) {
     setIsSubmitting(true);
 
     try {
       const formData = new FormData();
-      Object.keys(plantData).forEach((key) => {
+      Object.keys(updatedPlant).forEach((key) => {
         if (key === "images") {
-          plantData[key].forEach((file, index) => {
-            formData.append(`images_${index}`, file);
+          updatedPlant[key].forEach((image) => {
+            formData.append("images", image);
           });
         } else {
-          formData.append(key, plantData[key]);
+          formData.append(key, updatedPlant[key]);
         }
       });
 
-      const response = await fetch("/api/upload", {
-        method: "POST",
+      const response = await fetch(`/api/plants/${id}`, {
+        method: "PUT",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to upload images");
+        throw new Error("Failed to update plant");
       }
 
       const { urls } = await response.json();
-      plantData.images = urls;
+      updatedPlant.images = urls;
 
-      handleAddPlant(plantData);
+      handleEditPlant({ id, ...updatedPlant });
 
-      setSuccessMessage("Your Plant has been added successfully!");
-      setErrorMessage("");
-
+      setSuccessMessage("Your Plant has been updated successfully!");
       setTimeout(() => {
         setSuccessMessage("");
         setIsSubmitting(false);
-      }, 3000);
+      }, 2000);
     } catch (error) {
       console.error(error);
-      setErrorMessage("Failed to upload images. Please try again.");
-      setSuccessMessage("");
-
+      setSuccessMessage("Failed to update plant. Please try again.");
       setTimeout(() => {
-        setErrorMessage("");
+        setSuccessMessage("");
         setIsSubmitting(false);
       }, 3000);
     }
@@ -86,12 +78,12 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
 
   return (
     <FormPageContainer>
-      <Heading id="create-plant">Add a new plant</Heading>
+      <Heading id="edit-plant">Edit your plant</Heading>
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <CreatePlantForm
-        formName="Add Plant Form"
-        onSubmit={addPlant}
+        defaultData={plant}
+        formName={"edit-plant"}
+        onSubmit={editPlant}
         isSubmitting={isSubmitting}
       />
     </FormPageContainer>

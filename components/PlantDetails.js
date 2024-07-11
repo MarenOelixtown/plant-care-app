@@ -4,6 +4,7 @@ import ButtonAddPlant from "./ButtonAddPlant";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ButtonDeletePlant from "./ButtonDeletePlant";
+import ButtonEditPlant from "./ButtonEditPlant";
 
 const StyledCard = styled.div`
   display: flex;
@@ -63,6 +64,13 @@ const StyledDiv = styled.div`
   margin-top: 20px;
 `;
 
+const ImagesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+`;
+
 export default function PlantDetails({
   plants,
   isMyPlantFunction,
@@ -74,8 +82,8 @@ export default function PlantDetails({
   const { id } = router.query;
 
   const plantsIndex = plants.findIndex((plant) => plant.id === id);
-
   const plant = plants[plantsIndex];
+
   if (!plant) {
     return (
       <StyledDiv>
@@ -87,7 +95,6 @@ export default function PlantDetails({
     );
   }
 
-  const isMyPlant = isMyPlantFunction(plant.id);
   const isUserPlant = isUserPlantFunction(plant.id);
 
   return (
@@ -97,14 +104,30 @@ export default function PlantDetails({
       <ButtonContainer>
         <ButtonAddPlant
           onToggleMyPlants={handleToggleMyPlants}
-          isMyPlant={isMyPlant}
+          isMyPlant={isMyPlantFunction(plant.id)}
           id={plant.id}
         />
         {isUserPlant && (
-          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+          <>
+            <ButtonDeletePlant
+              OnDeletePlant={handleDeletePlant}
+              id={plant.id}
+            />
+            <ButtonEditPlant id={plant.id} />
+          </>
         )}
       </ButtonContainer>
-      <Image src={plant.image} width={300} height={300} alt={plant.name} />
+      <ImagesContainer>
+        {plant.images.map((image, index) => (
+          <Image
+            key={index}
+            src={image}
+            width={150}
+            height={150}
+            alt={`${plant.name} image ${index + 1}`}
+          />
+        ))}
+      </ImagesContainer>
       <StyledCare>
         <p>Water Need: {plant.water_need}</p>
         <p>Fertiliser Cycle: {plant.fertiliser_season.join(", ")}</p>

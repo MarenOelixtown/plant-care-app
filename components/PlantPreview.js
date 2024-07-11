@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import ButtonAddPlant from "./ButtonAddPlant";
 import ButtonDeletePlant from "./ButtonDeletePlant";
+import ButtonEditPlant from "./ButtonEditPlant";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -59,7 +60,7 @@ export default function PlantPreview({
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
-        <StyledImg src={plant.image} alt={plant.name} />
+        <StyledImg src={plant.images[0]} alt={plant.name} />
       </Link>
       <StyledInfo>
         <StyledLink href={`/overview/${plant.id}`}>
@@ -74,7 +75,13 @@ export default function PlantPreview({
           id={plant.id}
         />
         {isUserPlant && (
-          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+          <>
+            <ButtonDeletePlant
+              OnDeletePlant={handleDeletePlant}
+              id={plant.id}
+            />
+            <ButtonEditPlant id={plant.id} />
+          </>
         )}
       </ButtonContainer>
     </StyledDiv>

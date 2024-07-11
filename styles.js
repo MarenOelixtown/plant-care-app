@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+ /* Import Google Font (example using Poppins) */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+
   /* Box sizing rules */
   *,
   *::before,
@@ -24,7 +28,7 @@ export default createGlobalStyle`
   /* Global styles */
   body {
     margin: 0;
-    font-family: sans-serif;
+   font-family: 'Poppins';
     background:  var(--lightest-green);
     min-height: 100vh;
     color: var(--primary-color);

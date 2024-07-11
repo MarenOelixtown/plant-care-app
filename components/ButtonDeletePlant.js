@@ -11,6 +11,7 @@ const StyledButton = styled.button`
   border-radius: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   background-color: white;
+  margin-right: 10px;
 `;
 
 const StyledImage = styled(Image)`
