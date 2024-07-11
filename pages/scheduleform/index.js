@@ -38,16 +38,16 @@ const CancelSchedule = styled.p`
 
 export default function ScheduleFormPage({
   plants,
-  isMyPlantFunction,
   handleAddReminder,
+  getPlantInfoById,
 }) {
   return (
     <FormPageContainer>
       <Heading>Watering-Schedule</Heading>
       <ScheduleForm
         plants={plants}
-        isMyPlantFunction={isMyPlantFunction}
         handleAddReminder={handleAddReminder}
+        getPlantInfoById={getPlantInfoById}
       />
       <StyledLink href="/myschedule">
         <CancelSchedule>Cancel</CancelSchedule>

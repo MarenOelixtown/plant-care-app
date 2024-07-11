@@ -23,8 +23,8 @@ const StyledDiv = styled.div`
 
 export default function Overview({
   plants,
-  isMyPlantFunction,
   handleToggleMyPlants,
+  getPlantInfoById,
 }) {
   return (
     <StyledDiv>
@@ -35,11 +35,12 @@ export default function Overview({
       ) : (
         <StyledList>
           {plants.map((plant) => {
+            const isMyPlant = getPlantInfoById(plant.id)?.isMyPlant;
             return (
               <StyledItem key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  isMyPlant={isMyPlantFunction(plant.id)}
+                  isMyPlant={isMyPlant}
                   handleToggleMyPlants={handleToggleMyPlants}
                 />
               </StyledItem>

@@ -44,11 +44,13 @@ const Input = styled.input`
 export default function ScheduleForm({
   plants,
   handleAddReminder,
-  isMyPlantFunction,
+  getPlantInfoById,
 }) {
   const [selectedPlant, setSelectedPlant] = useState("");
   const [wateringStartDate, setWateringStartDate] = useState("");
-  const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
+  const myPlants = plants.filter(
+    (plant) => getPlantInfoById(plant.id)?.isMyPlant
+  );
   const router = useRouter();
 
   function addSchedule(event) {
@@ -88,7 +90,7 @@ export default function ScheduleForm({
         id="name"
         name="name"
         value={selectedPlant}
-        onChange={(e) => setSelectedPlant(e.target.value)}
+        onChange={(event) => setSelectedPlant(event.target.value)}
         required
       >
         <option value="">Select your plant</option>
@@ -104,7 +106,7 @@ export default function ScheduleForm({
         type="date"
         name="wateringStartDate"
         value={wateringStartDate}
-        onChange={(e) => setWateringStartDate(e.target.value)}
+        onChange={(event) => setWateringStartDate(event.target.value)}
       />
       <StyledButton type="submit">+ Schedule</StyledButton>
     </FormContainer>

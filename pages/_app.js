@@ -53,15 +53,10 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  const isUserPlantFunction = (id) =>
-    plantsInfo.find((info) => info.id === id)?.isUserPlant;
-
-  const isMyPlantFunction = (id) =>
-    plantsInfo.find((info) => info.id === id)?.isMyPlant;
-
-  const isMyPlantWithReminder = (id) =>
-    plantsInfo.find((info) => info.id === id)?.isMyPlant &&
-    !!plantsInfo.find((info) => info.id === id)?.wateringDate;
+  const getPlantInfoById = (id) => {
+    const plantInfo = plantsInfo.find((info) => info.id === id);
+    return plantInfo;
+  };
 
   return (
     <>
@@ -70,14 +65,11 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           plants={plants}
-          plantsInfo={plantsInfo}
-          isMyPlantFunction={isMyPlantFunction}
-          isUserPlantFunction={isUserPlantFunction}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
           handleDeletePlant={handleDeletePlant}
           handleAddReminder={handleAddReminder}
-          isMyPlantWithReminder={isMyPlantWithReminder}
+          getPlantInfoById={getPlantInfoById}
         />
       </Layout>
     </>
