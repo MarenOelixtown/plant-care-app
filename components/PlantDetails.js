@@ -87,7 +87,7 @@ export default function PlantDetails({
     );
   }
   const plantInfo = getPlantInfoById(plant.id);
-  const { isUserPlant, isMyPlant } = plantInfo;
+  const { isUserPlant, isMyPlant } = plantInfo || {};
 
   return (
     <StyledCard>
