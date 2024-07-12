@@ -66,10 +66,9 @@ const StyledDiv = styled.div`
 
 export default function PlantDetails({
   plants,
-  isMyPlantFunction,
-  isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  getPlantInfoById,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -87,8 +86,8 @@ export default function PlantDetails({
       </StyledDiv>
     );
   }
-
-  const isUserPlant = isUserPlantFunction(plant.id);
+  const plantInfo = getPlantInfoById(plant.id);
+  const { isUserPlant, isMyPlant } = plantInfo || {};
 
   return (
     <StyledCard>
@@ -97,7 +96,7 @@ export default function PlantDetails({
       <ButtonContainer>
         <ButtonAddPlant
           onToggleMyPlants={handleToggleMyPlants}
-          isMyPlant={isMyPlantFunction(plant.id)}
+          isMyPlant={isMyPlant}
           id={plant.id}
         />
         {isUserPlant && (

@@ -23,7 +23,7 @@ const AddPlant = styled.p`
 
 export default function NavigationAddPlant() {
   const router = useRouter();
-  const hiddenPaths = [`/createplant`, `/`];
+  const hiddenPaths = [`/createplant`, `/`, `/myschedule`, `/scheduleform`];
 
   return (
     <Link href="/createplant">
