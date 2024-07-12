@@ -86,8 +86,8 @@ export default function PlantDetails({
       </StyledDiv>
     );
   }
-  const isMyPlant = getPlantInfoById(plant.id)?.isMyPlant;
-  const isUserPlant = getPlantInfoById(plant.id)?.isUserPlant;
+  const plantInfo = getPlantInfoById(plant.id);
+  const { isUserPlant, isMyPlant } = plantInfo;
 
   return (
     <StyledCard>

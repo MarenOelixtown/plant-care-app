@@ -1,12 +1,10 @@
-export const PlantOverviewIcon = ({ getFillColor }) => (
   <svg
     width="45px"
     height="45px"
     viewBox="0 0 64 64"
     xmlns="http://www.w3.org/2000/svg"
     strokeWidth="0.5"
-    stroke={getFillColor}
-    fill={getFillColor}
+    
   >
     <title>Plant Overview</title>
     <g data-name="Layer 24" id="Layer_24">
@@ -32,4 +30,4 @@ export const PlantOverviewIcon = ({ getFillColor }) => (
       />
     </g>
   </svg>
-);
+

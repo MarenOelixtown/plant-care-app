@@ -51,8 +51,8 @@ export default function MyPlants({
       ) : (
         <StyledList>
           {myPlants.map((plant) => {
-            const isUserPlant = getPlantInfoById(plant.id)?.isUserPlant;
-            const isMyPlant = getPlantInfoById(plant.id)?.isMyPlant;
+            const plantInfo = getPlantInfoById(plant.id);
+            const { isUserPlant, isMyPlant } = plantInfo;
             return (
               <StyledItem key={plant.id}>
                 <PlantPreview
