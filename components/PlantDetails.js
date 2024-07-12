@@ -4,6 +4,7 @@ import ButtonAddPlant from "./ButtonAddPlant";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ButtonDeletePlant from "./ButtonDeletePlant";
+import ButtonEditPlant from "./ButtonEditPlant";
 
 const StyledCard = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const StyledCard = styled.div`
   margin: 10px auto;
   padding: 10px;
 `;
+
 const StyledCare = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -86,6 +88,7 @@ export default function PlantDetails({
   }
   const isMyPlant = getPlantInfoById(plant.id)?.isMyPlant;
   const isUserPlant = getPlantInfoById(plant.id)?.isUserPlant;
+
   return (
     <StyledCard>
       <h2>{plant.name}</h2>
@@ -97,7 +100,13 @@ export default function PlantDetails({
           id={plant.id}
         />
         {isUserPlant && (
-          <ButtonDeletePlant OnDeletePlant={handleDeletePlant} id={plant.id} />
+          <>
+            <ButtonDeletePlant
+              OnDeletePlant={handleDeletePlant}
+              id={plant.id}
+            />
+            <ButtonEditPlant id={plant.id} />
+          </>
         )}
       </ButtonContainer>
       <Image src={plant.image} width={300} height={300} alt={plant.name} />
@@ -106,7 +115,6 @@ export default function PlantDetails({
         <p>Fertiliser Cycle: {plant.fertiliser_season.join(", ")}</p>
         <p>Light: {plant.light_need}</p>
       </StyledCare>
-
       <p>Care Instructions: </p>
       <p>{plant.care_instructions}</p>
     </StyledCard>

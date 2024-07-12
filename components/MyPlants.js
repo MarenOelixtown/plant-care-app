@@ -31,6 +31,7 @@ export default function MyPlants({
   handleToggleMyPlants,
   handleDeletePlant,
   getPlantInfoById,
+  handleEditPlant,
 }) {
   const myPlants = plants.filter(
     (plant) => getPlantInfoById(plant.id)?.isMyPlant
@@ -60,6 +61,7 @@ export default function MyPlants({
                   isMyPlant={isMyPlant}
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
+                  handleEditPlant={handleEditPlant}
                 />
               </StyledItem>
             );

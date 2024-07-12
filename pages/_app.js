@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { initialPlants } from "@/assets/plants";
@@ -39,7 +39,14 @@ export default function App({ Component, pageProps }) {
       setPlantsInfo([...plantsInfo, { id, isMyPlant: true }]);
     }
   }
-
+  const handleEditPlant = (plantToEdit) => {
+    setPlants(
+      plants.map((plant) => {
+        if (plant.id == plantToEdit.id) return plantToEdit;
+        return plant;
+      })
+    );
+  };
   function handleDeletePlant(id) {
     setPlants(plants.filter((plant) => plant.id !== id));
     setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
@@ -67,6 +74,7 @@ export default function App({ Component, pageProps }) {
           plants={plants}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
+          handleEditPlant={handleEditPlant}
           handleDeletePlant={handleDeletePlant}
           handleAddReminder={handleAddReminder}
           getPlantInfoById={getPlantInfoById}

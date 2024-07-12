@@ -5,6 +5,7 @@ export default function MyPlantsPage({
   handleToggleMyPlants,
   handleDeletePlant,
   getPlantInfoById,
+  handleEditPlant,
 }) {
   return (
     <MyPlants
@@ -12,6 +13,7 @@ export default function MyPlantsPage({
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
       getPlantInfoById={getPlantInfoById}
+      handleEditPlant={handleEditPlant}
     />
   );
 }
