@@ -28,7 +28,7 @@ export default createGlobalStyle`
   /* Global styles */
   body {
     margin: 0;
-   font-family: 'Poppins';
+   font-family: 'Poppins, sans-serif';
     background:  var(--lightest-green);
     min-height: 100vh;
     color: var(--primary-color);

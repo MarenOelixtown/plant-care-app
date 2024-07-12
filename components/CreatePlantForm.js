@@ -5,6 +5,9 @@ import { useState } from "react";
 const FormContainer = styled.form`
   display: grid;
   gap: 0.5rem;
+  background-color: var(--light-green);
+  padding: 20px;
+  border-radius: 2rem;
 `;
 
 const Input = styled.input`
@@ -21,20 +24,20 @@ const Select = styled.select`
 `;
 
 const StyledButton = styled.button`
-  display: block;
-  width: 50%;
-  margin: 10px auto;
-  padding: 10px 24px;
-  border: 3px solid var(--secondary-stroke-color);
-  background-color: var(--secondary-bg-color);
-  border-radius: 1rem;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--light-yellow);
+  border: 2px solid #30482a;
+  border-radius: 2rem;
+  padding: 10px;
+  font-family: inherit;
   font-weight: bold;
-  font-size: 1rem;
   cursor: pointer;
+  margin: auto;
+  max-width: 100px;
+  width: 100%;
   &:hover {
-    color: var(--secondary-stroke-color);
-    background-color: white;
+    background-color: var(--light-green);
+    color: var(--primary-color);
   }
 `;
 
@@ -247,8 +250,8 @@ export default function CreatePlantForm({
         maxLength={150}
         defaultValue={defaultData?.care_instructions}
       ></Textarea>
-
-      <Label htmlFor="photo">Upload Images</Label>
+      <br />
+      <Label htmlFor="photo">Add Photos:</Label>
       <StyledFileInput
         id="photo"
         name="photo"
@@ -256,7 +259,7 @@ export default function CreatePlantForm({
         onChange={handleFileChange}
       />
       <StyledButton type="submit" disabled={isSubmitting}>
-        {defaultData ? "Update Plant" : "+ Plant"}
+        {defaultData ? "Update Plant" : "Add Plant"}
       </StyledButton>
       <StyledButton type="button" onClick={() => router.back()}>
         Cancel

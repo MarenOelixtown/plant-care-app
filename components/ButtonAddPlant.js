@@ -7,15 +7,19 @@ const StyledButton = styled.button`
   border: 2px solid black;
   font-size: 1em;
   padding: 6px 12px;
-  border-radius: 10%;
+  border: 2px solid var(--primary-color);
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   background-color: white;
-  margin-right: 10px;
+  margin-right: 30px;
+  border-radius: 1rem;
+  &:hover {
+    border-color: var(--light-green);
+  }
 `;
 
 const StyledImage = styled(Image)`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
 `;
 
 export default function ButtonAddPlant({ onToggleMyPlants, isMyPlant, id }) {

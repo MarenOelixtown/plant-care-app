@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
   left: 0;
   right: 0;
   bottom: 0;
-  height: 70px;
+  height: 60px;
   background-color: var(--light-green);
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
 `;
@@ -25,17 +25,14 @@ const NavigationList = styled.ul`
 const IconListItem = styled.li`
   background-color: ${(props) => props.$bgColor || ""};
   text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
   padding: 5px;
   border-radius: ${(props) => (props.$bgColor ? "15px" : "0")};
 `;
 export default function NavigationBar() {
   const router = useRouter();
-  // const getFillColor = (path) =>
-  //   router.pathname === path
-  //     ? "var(--secondary-stroke-color)"
-  //     : "var(--primary-color)";
+  const getFillColor = (path) =>
+    router.pathname === path ? "var(--primary-color)" : "var(--primary-color)";
   const getBackgroundColor = (path) =>
     router.pathname === path ? "var(--lightest-green)" : "";
 
@@ -45,17 +42,17 @@ export default function NavigationBar() {
         <NavigationList>
           <IconListItem $bgColor={getBackgroundColor("/")}>
             <Link href="/" title="Home">
-              <HomeIcon />
+              <HomeIcon getFillColor={getFillColor("/")} />
             </Link>
           </IconListItem>
           <IconListItem $bgColor={getBackgroundColor("/overview")}>
             <Link href="/overview" title="Plants Overview">
-              <PlantOverviewIcon />
+              <PlantOverviewIcon getFillColor={getFillColor("/overview")} />
             </Link>
           </IconListItem>
           <IconListItem $bgColor={getBackgroundColor("/myplants")}>
             <Link href="/myplants" title="My Plants">
-              <MyPlantsIcon />
+              <MyPlantsIcon getFillColor={getFillColor("/myplants")} />
             </Link>
           </IconListItem>
         </NavigationList>

@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
 const StyledPDiv = styled.div`
   padding: 10px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 1rem;
   margin-bottom: 40px;
   margin-top: 20px;
 `;
@@ -19,7 +19,7 @@ const StyledLink = styled(Link)`
   background-color: var(--primary-color);
   color: var(--light-yellow);
   border: 2px solid #30482a;
-  border-radius: 20px;
+  border-radius: 2rem;
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
@@ -33,7 +33,6 @@ const StyledLink = styled(Link)`
 
 const StyledParagraph = styled.p`
   margin-top: 1rem;
-
   color: var(--dark-yellowish);
 `;
 

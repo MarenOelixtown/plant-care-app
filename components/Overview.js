@@ -14,6 +14,19 @@ const StyledItem = styled.li`
   border-spacing: 10px;
 `;
 
+const StyledParagraph = styled.p`
+  margin-top: 1rem;
+  color: var(--dark-yellowish);
+`;
+
+const StyledPDiv = styled.div`
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+`;
+
 const StyledDiv = styled.div`
   text-align: center;
 `;
@@ -28,7 +41,11 @@ export default function Overview({
       <h1>Discover Plants</h1>
 
       {plants.length === 0 ? (
-        <p>No plants available at the moment. Please come back later!</p>
+        <StyledPDiv>
+          <StyledParagraph>
+            No plants available at the moment. Please come back later!
+          </StyledParagraph>
+        </StyledPDiv>
       ) : (
         <StyledList>
           {plants.map((plant) => {

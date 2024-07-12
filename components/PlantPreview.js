@@ -6,33 +6,39 @@ import ButtonEditPlant from "./ButtonEditPlant";
 
 const StyledName = styled.p`
   margin-right: 5px;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: large;
 `;
+
 const StyledBotanicalName = styled.p`
-  margin-top: 0;
+  margin-top: -5px;
+  font-weight: bold;
 `;
 
 const StyledDiv = styled.div`
   display: flex;
   position: relative;
   margin-bottom: 5px;
-  color: grey;
-  border-style: solid;
+  border-radius: 0.5rem;
+  color: var(--dark-grey);
   padding: 10px;
   margin: 10px;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 `;
 const StyledImg = styled.img`
-  border-radius: 5px;
+  border-radius: 0.5rem;
   width: 100px;
   height: 100px;
-  margin-right: 10px;
+  margin-right: 50px;
+  margin-left: 20px;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: var(--primary-color);
   &:hover {
-    color: green;
+    color: var(--dark-yellowish);
   }
 `;
 

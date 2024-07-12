@@ -18,6 +18,20 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 
+const StyledParagraph = styled.p`
+  margin-top: 1rem;
+  color: var(--dark-yellowish);
+`;
+
+const StyledPDiv = styled.div`
+  padding: 10px;
+  background-color: white;
+  border-radius: 1rem;
+  margin: 20px auto 40px auto;
+  max-width: 550px;
+  width: 100%;
+`;
+
 export default function MyPlants({
   plants,
   isMyPlantFunction,
@@ -33,9 +47,11 @@ export default function MyPlants({
       <h1>My Plants</h1>
 
       {myPlants.length === 0 ? (
-        <p>
-          No Plants to show at the moment. Feel free to add your plants here!
-        </p>
+        <StyledPDiv>
+          <StyledParagraph>
+            No plants to show at the moment. Feel free to add your plants here!
+          </StyledParagraph>
+        </StyledPDiv>
       ) : (
         <StyledList>
           {myPlants.map((plant) => {
