@@ -36,12 +36,13 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function addPlant(plantData) {
+    console.log("addPlant 1 called with data:", plantData);
     setIsSubmitting(true);
 
     try {
       const formData = new FormData();
       Object.keys(plantData).forEach((key) => {
-        if (key === "images") {
+        if (key === "images" && Array.isArray(plantData[key])) {
           plantData[key].forEach((file, index) => {
             formData.append(`images_${index}`, file);
           });
@@ -58,7 +59,7 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
       if (!response.ok) {
         throw new Error("Failed to upload images");
       }
-
+      console.log("Form Data before uploading:", plantData);
       const { urls } = await response.json();
       plantData.images = urls;
 

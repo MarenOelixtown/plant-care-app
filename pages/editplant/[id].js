@@ -47,6 +47,7 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
       });
 
       const response = await fetch(`/api/plants/${id}`, {
+        //needs verification
         method: "PUT",
         body: formData,
       });
