@@ -53,8 +53,8 @@ const ImagesContainer = styled.div`
 `;
 
 const StyledImageWrapper = styled.div`
-  width: 300px; /* Fixed width for image container */
-  height: 300px; /* Fixed height for image container */
+  width: 300px;
+  height: 300px;
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -63,7 +63,7 @@ const StyledImageWrapper = styled.div`
 const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure images are cropped to fit container */
+  object-fit: cover;
 `;
 
 const NeedsContainer = styled.div`
@@ -76,12 +76,12 @@ const NeedsContainer = styled.div`
 `;
 
 const NeedItem = styled.div`
-  width: 200px; /* Fixed width for each NeedItem */
-  height: 150px; /* Fixed height for each NeedItem */
+  width: 200px;
+  height: 150px;
   padding: 10px;
   background-color: #f0f0f0;
   border-radius: 1rem;
-  margin-right: 30px; /* Space between NeedItems */
+  margin-right: 30px;
   text-align: center;
 `;
 
@@ -116,10 +116,9 @@ const StyledPDiv = styled.div`
 
 export default function PlantDetails({
   plants,
-  isMyPlantFunction,
-  isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  getPlantInfoById,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -142,8 +141,8 @@ export default function PlantDetails({
       </>
     );
   }
-
-  const isUserPlant = isUserPlantFunction(plant.id);
+  const plantInfo = getPlantInfoById(plant.id);
+  const { isUserPlant, isMyPlant } = plantInfo || {};
 
   return (
     <StyledCard>
@@ -189,7 +188,7 @@ export default function PlantDetails({
       <ButtonContainer>
         <ButtonAddPlant
           onToggleMyPlants={handleToggleMyPlants}
-          isMyPlant={isMyPlantFunction(plant.id)}
+          isMyPlant={isMyPlant}
           id={plant.id}
         />
         {isUserPlant && (

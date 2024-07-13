@@ -1,5 +1,30 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
+import Link from "next/link";
+import CalendarIcon from "../components/Icons/CalendarIcon.svg";
+
+const StyledLink = styled(Link)`
+  position: fixed;
+  top: 2rem;
+  right: 7.8rem;
+  color: var(--light-yellow);
+  background-color: var(--primary-color);
+  padding: 0.8rem 0.8rem;
+  border-radius: 2rem;
+  border: 2px solid var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 1000;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--light-green);
+    border-color: var(--primary-color);
+  }
+`;
 
 const StyledList = styled.ul`
   list-style: none;
@@ -34,17 +59,23 @@ const StyledPDiv = styled.div`
 
 export default function MyPlants({
   plants,
-  isMyPlantFunction,
-  isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  getPlantInfoById,
   handleEditPlant,
 }) {
-  const myPlants = plants.filter((plant) => isMyPlantFunction(plant.id));
+  const myPlants = plants.filter(
+    (plant) => getPlantInfoById(plant.id)?.isMyPlant
+  );
 
   return (
     <StyledDiv>
       <h1>My Plants</h1>
+      {myPlants.length > 0 && (
+        <StyledLink href="/myschedule" title="My Schedule">
+          {/* <CalendarIcon /> */} Watering Schedules
+        </StyledLink>
+      )}
 
       {myPlants.length === 0 ? (
         <StyledPDiv>
@@ -55,12 +86,14 @@ export default function MyPlants({
       ) : (
         <StyledList>
           {myPlants.map((plant) => {
+            const plantInfo = getPlantInfoById(plant.id);
+            const { isUserPlant, isMyPlant } = plantInfo || {};
             return (
               <StyledItem key={plant.id}>
                 <PlantPreview
                   plant={plant}
-                  isUserPlant={isUserPlantFunction(plant.id)}
-                  isMyPlant={isMyPlantFunction(plant.id)}
+                  isUserPlant={isUserPlant}
+                  isMyPlant={isMyPlant}
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
                   handleEditPlant={handleEditPlant}

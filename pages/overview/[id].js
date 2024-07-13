@@ -2,18 +2,16 @@ import PlantDetails from "@/components/PlantDetails";
 
 export default function PlantDetailsPage({
   plants,
-  isMyPlantFunction,
-  isUserPlantFunction,
   handleToggleMyPlants,
   handleDeletePlant,
+  getPlantInfoById,
 }) {
   return (
     <PlantDetails
       plants={plants}
-      isMyPlantFunction={isMyPlantFunction}
-      isUserPlantFunction={isUserPlantFunction}
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
+      getPlantInfoById={getPlantInfoById}
     />
   );
 }

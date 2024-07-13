@@ -14,7 +14,11 @@ export default function App({ Component, pageProps }) {
     setPlants((plants) => {
       const updatedPlants = [newPlantWithId, ...plants];
       setPlantsInfo((plantsInfo) => [
-        { id: newPlantWithId.id, isMyPlant: true, isUserPlant: true },
+        {
+          id: newPlantWithId.id,
+          isMyPlant: true,
+          isUserPlant: true,
+        },
         ...plantsInfo,
       ]);
       return updatedPlants;
@@ -48,11 +52,18 @@ export default function App({ Component, pageProps }) {
     setPlantsInfo(plantsInfo.filter((plant) => plant.id !== id));
   }
 
-  const isUserPlantFunction = (id) =>
-    plantsInfo.find((info) => info.id === id)?.isUserPlant;
+  function handleAddReminder(id, wateringDate) {
+    setPlantsInfo(
+      plantsInfo.map((plant) =>
+        plant.id === id ? { ...plant, wateringDate } : plant
+      )
+    );
+  }
 
-  const isMyPlantFunction = (id) =>
-    plantsInfo.find((info) => info.id === id)?.isMyPlant;
+  const getPlantInfoById = (id) => {
+    const plantInfo = plantsInfo.find((info) => info.id === id);
+    return plantInfo;
+  };
 
   return (
     <>
@@ -61,12 +72,12 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           plants={plants}
-          isMyPlantFunction={isMyPlantFunction}
-          isUserPlantFunction={isUserPlantFunction}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
           handleEditPlant={handleEditPlant}
           handleDeletePlant={handleDeletePlant}
+          handleAddReminder={handleAddReminder}
+          getPlantInfoById={getPlantInfoById}
         />
       </Layout>
     </>

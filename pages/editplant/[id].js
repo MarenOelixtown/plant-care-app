@@ -79,34 +79,6 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
     window.scrollTo(0, 0);
   }
 
-  ///////////////////////////////////////
-
-  //     if (!response.ok) {
-  //       throw new Error("Failed to update plant");
-  //     }
-
-  //     const imageUrls = await response.json();
-  //     updatedPlant.images = imageUrls;
-
-  //     handleEditPlant({ id, ...updatedPlant });
-
-  //     setSuccessMessage("Your Plant has been updated successfully!");
-  //     setTimeout(() => {
-  //       setSuccessMessage("");
-  //       setIsSubmitting(false);
-  //     }, 2000);
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrorMessage("Failed to upload images. Please try again.");
-  //     setSuccessMessage("");
-  //     setTimeout(() => {
-  //       setErrorMessage("");
-  //       setIsSubmitting(false);
-  //     }, 3000);
-  //   }
-  //   window.scrollTo(0, 0);
-  // }
-
   return (
     <FormPageContainer>
       <Heading id="edit-plant">Edit your plant</Heading>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
 const StyledLink = styled(Link)`
@@ -28,8 +28,8 @@ const StyledLink = styled(Link)`
 
 export default function NavigationAddPlant() {
   const router = useRouter();
-  const hiddenPaths = [`/createplant`, `/`];
   const buttonRef = useRef(null);
+  const hiddenPaths = [`/createplant`, `/`, `/myschedule`, `/scheduleform`];
 
   return (
     <StyledLink
