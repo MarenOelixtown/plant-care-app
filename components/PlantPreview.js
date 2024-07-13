@@ -82,11 +82,11 @@ export default function PlantPreview({
         />
         {isUserPlant && (
           <>
+            <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
               OnDeletePlant={handleDeletePlant}
               id={plant.id}
             />
-            <ButtonEditPlant id={plant.id} />
           </>
         )}
       </ButtonContainer>

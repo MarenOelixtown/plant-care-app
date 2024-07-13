@@ -2,9 +2,9 @@ import Link from "next/link";
 import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
-import { HomeIcon } from "./HomeIcon";
-import { PlantOverviewIcon } from "./PlantOverviewIcon";
-import { MyPlantsIcon } from "./MyPlantsIcon";
+import { HomeIcon } from "./Icons/HomeIcon";
+import { PlantOverviewIcon } from "./Icons/PlantOverviewIcon";
+import { MyPlantsIcon } from "./Icons/MyPlantsIcon";
 
 const StyledFooter = styled.footer`
   position: fixed;

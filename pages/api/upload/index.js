@@ -21,27 +21,21 @@ export default async function handler(request, response) {
 
   const form = formidable({ multiples: true });
 
-  form.parse(request, async (err, fields, files) => {
-    if (err) {
-      response.status(500).json({ error: "Error parsing form" });
-      return;
-    }
+  const [fields, files] = await form.parse(request);
 
-    const imageUploadPromises = Object.values(files.images).map(
-      async (file) => {
-        const result = await cloudinary.v2.uploader.upload(file.filepath, {
-          public_id: file.newFilename,
-          folder: "nf",
-        });
-        return result.secure_url;
-      }
-    );
+  const fileUploadPromises = Object.values(files)
+    .flat()
+    .map((file) => {
+      const { filepath, newFilename } = file;
+      return cloudinary.v2.uploader.upload(filepath, {
+        public_id: newFilename,
+        folder: "nf",
+      });
+    });
 
-    try {
-      const images = await Promise.all(imageUploadPromises);
-      response.status(201).json({ images });
-    } catch (uploadError) {
-      response.status(500).json({ error: "Error uploading images" });
-    }
-  });
+  const results = await Promise.all(fileUploadPromises);
+
+  const modifiedResults = results.map((image) => image.secure_url);
+
+  response.status(200).json(modifiedResults);
 }

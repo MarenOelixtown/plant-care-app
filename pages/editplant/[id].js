@@ -15,15 +15,25 @@ const Heading = styled.h2`
 
 const SuccessMessage = styled.p`
   font-family: inherit;
-  color: green;
-  background-color: lightgreen;
-  border: 3px solid green;
+  color: var(--light-green);
+  background-color: var(--primary-color);
+  border: 3px solid var(--light-green);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
+
+const ErrorMessage = styled.p`
+  font-family: inherit;
+  color: var(--secondary-stroke-color);
+  background-color: var(--light-pink);
+  border: 3px solid var(--secondary-stroke-color);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
 
 export default function EditPlantFormPage({ plants, handleEditPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { id } = router.query;
@@ -33,31 +43,23 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
 
   async function editPlant(updatedPlant) {
     setIsSubmitting(true);
-
     try {
       const formData = new FormData();
       Object.keys(updatedPlant).forEach((key) => {
-        if (key === "images") {
-          updatedPlant[key].forEach((image) => {
-            formData.append("images", image);
-          });
-        } else {
-          formData.append(key, updatedPlant[key]);
-        }
+        formData.append(key, updatedPlant[key]);
       });
 
-      const response = await fetch(`/api/plants/${id}`, {
-        //needs verification
-        method: "PUT",
+      const response = await fetch("/api/upload", {
+        method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to update plant");
+        throw new Error("Failed to upload image");
       }
 
-      const { urls } = await response.json();
-      updatedPlant.images = urls;
+      const { url } = await response.json();
+      updatedPlant.image = url;
 
       handleEditPlant({ id, ...updatedPlant });
 
@@ -68,19 +70,48 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
       }, 2000);
     } catch (error) {
       console.error(error);
-      setSuccessMessage("Failed to update plant. Please try again.");
+      setErrorMessage("Failed to upload image. Please try again.");
       setTimeout(() => {
-        setSuccessMessage("");
+        setErrorMessage("");
         setIsSubmitting(false);
       }, 3000);
     }
     window.scrollTo(0, 0);
   }
 
+  ///////////////////////////////////////
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to update plant");
+  //     }
+
+  //     const imageUrls = await response.json();
+  //     updatedPlant.images = imageUrls;
+
+  //     handleEditPlant({ id, ...updatedPlant });
+
+  //     setSuccessMessage("Your Plant has been updated successfully!");
+  //     setTimeout(() => {
+  //       setSuccessMessage("");
+  //       setIsSubmitting(false);
+  //     }, 2000);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrorMessage("Failed to upload images. Please try again.");
+  //     setSuccessMessage("");
+  //     setTimeout(() => {
+  //       setErrorMessage("");
+  //       setIsSubmitting(false);
+  //     }, 3000);
+  //   }
+  //   window.scrollTo(0, 0);
+  // }
+
   return (
     <FormPageContainer>
       <Heading id="edit-plant">Edit your plant</Heading>
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <CreatePlantForm
         defaultData={plant}
         formName={"edit-plant"}

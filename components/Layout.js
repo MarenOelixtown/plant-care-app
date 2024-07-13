@@ -1,4 +1,4 @@
-import NavigationBar from "./NavigationBar/NavigationBar";
+import NavigationBar from "./NavigationBar";
 import NavigationAddPlant from "./NavigationAddPlant";
 
 export default function Layout({ children }) {

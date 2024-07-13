@@ -14,18 +14,18 @@ const Heading = styled.h2`
 
 const SuccessMessage = styled.p`
   font-family: inherit;
-  color: green;
-  background-color: lightgreen;
-  border: 3px solid green;
+  color: var(--light-green);
+  background-color: var(--primary-color);
+  border: 3px solid var(--light-green);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
 
 const ErrorMessage = styled.p`
   font-family: inherit;
-  color: red;
-  background-color: pink;
-  border: 3px red;
+  color: var(--secondary-stroke-color);
+  background-color: var(--light-pink);
+  border: 3px solid var(--secondary-stroke-color);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
@@ -36,33 +36,9 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function addPlant(plantData) {
-    console.log("addPlant 1 called with data:", plantData);
     setIsSubmitting(true);
 
     try {
-      const formData = new FormData();
-      Object.keys(plantData).forEach((key) => {
-        if (key === "images" && Array.isArray(plantData[key])) {
-          plantData[key].forEach((file, index) => {
-            formData.append(`images_${index}`, file);
-          });
-        } else {
-          formData.append(key, plantData[key]);
-        }
-      });
-
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to upload images");
-      }
-      console.log("Form Data before uploading:", plantData);
-      const { urls } = await response.json();
-      plantData.images = urls;
-
       handleAddPlant(plantData);
 
       setSuccessMessage("Your Plant has been added successfully!");

@@ -24,43 +24,12 @@ const StyledLink = styled(Link)`
     background-color: var(--light-green);
     border-color: var(--primary-color);
   }
-
-  &.translucent {
-    opacity: 0.5;
-  }
 `;
 
 export default function NavigationAddPlant() {
   const router = useRouter();
   const hiddenPaths = [`/createplant`, `/`];
   const buttonRef = useRef(null);
-
-  useEffect(() => {
-    const button = buttonRef.current;
-
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          button.classList.add("translucent");
-        } else {
-          button.classList.remove("translucent");
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      threshold: 0,
-    });
-
-    document.querySelectorAll("div, footer,  button").forEach((element) => {
-      observer.observe(element);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   return (
     <StyledLink

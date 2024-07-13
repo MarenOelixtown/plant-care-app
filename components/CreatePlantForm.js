@@ -43,7 +43,7 @@ const StyledButton = styled.button`
 
 const StyledFileInput = styled(Input).attrs({
   type: "file",
-  multiple: true, // Allow multiple files to be selected
+  multiple: true,
 })`
   padding: 8px;
   border: none;
@@ -116,40 +116,28 @@ export default function CreatePlantForm({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form submitted");
     const formData = new FormData(event.target);
 
-    // Upload images first
     const imageUrls = await uploadImages(images);
-
-    if (imageUrls.length === 0) {
-      console.error("No images uploaded");
-      return;
-    }
-
-    imageUrls.forEach((url) => {
-      formData.append("images", url);
-    });
 
     const plantData = Object.fromEntries(formData);
     const selectedSeasons = Object.keys(seasons).filter(
       (season) => seasons[season]
     );
     plantData.fertiliser_season = selectedSeasons;
-    plantData.images = images;
+    plantData.images = imageUrls;
 
     onSubmit(plantData);
 
-    event.target.reset(); // Reset form
-    setImages([]); // Clear image state
-    setWaterNeed(""); // Reset water needs
-    setLightNeed(""); // Reset light needs
+    event.target.reset();
+    setWaterNeed("");
+    setLightNeed("");
     setSeasons({
       Spring: false,
       Summer: false,
       Fall: false,
       Winter: false,
-    }); // Reset seasons
+    });
 
     console.log(plantData);
   };
@@ -170,7 +158,7 @@ export default function CreatePlantForm({
         throw new Error("Error uploading images");
       }
 
-      const { images: imageUrls } = await response.json();
+      const imageUrls = await response.json();
       return imageUrls;
     } catch (error) {
       console.error("Error uploading images:", error);
@@ -287,11 +275,12 @@ export default function CreatePlantForm({
         defaultValue={defaultData?.care_instructions}
       ></Textarea>
       <br />
-      <Label htmlFor="images">Add Photos:</Label>
+      <Label htmlFor="images">*Add Photos:</Label>
       <StyledFileInput
         id="images"
         name="images"
         multiple
+        required
         onChange={handleFileChange}
       />
       <StyledButton type="submit" disabled={isSubmitting}>
