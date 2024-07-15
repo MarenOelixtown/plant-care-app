@@ -11,10 +11,13 @@ const StyledList = styled.ul`
   padding: 0;
 `;
 const StyledItem = styled.li`
-  display: block;
-  align-items: left;
-  align-content: space-between;
-  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  border-bottom: 1px solid #eee;
+  &:hover {
+    background-color: #def4d4;
+  }
 `;
 const SearchContainer = styled.div`
   width: 100%;
@@ -30,7 +33,6 @@ const SearchInput = styled.input`
   border: 1px solid #ccc;
   font-size: 16px;
 `;
-
 const Icon = styled(FontAwesomeIcon)`
   position: absolute;
   top: 0.4cm;

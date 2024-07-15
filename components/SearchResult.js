@@ -10,12 +10,11 @@ const StyledDiv = styled.div`
   align-items: center;
   justify-content: flex-start;
   color: grey;
-  background-color: #f9f9f9;
 `;
 const StyledImg = styled.img`
   border-radius: 5px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
 `;
 
