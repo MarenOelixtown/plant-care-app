@@ -6,7 +6,7 @@ const AddPlant = styled.p`
   position: fixed;
   top: 2.5rem;
   right: 2rem;
-  border: 3px solid var(--secondary-stroke-color);
+  border: 1px solid var(--secondary-stroke-color);
   background-color: var(--secondary-bg-color);
   padding: 0.8rem 0.8rem;
   border-radius: 1rem;
@@ -14,6 +14,7 @@ const AddPlant = styled.p`
   text-decoration: none;
   font-weight: bold;
   z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 5px 8px;
   cursor: pointer;
   &:hover {
     color: var(--secondary-stroke-color);

@@ -63,7 +63,21 @@ const StyledDiv = styled.div`
   padding: 10px;
   margin-top: 20px;
 `;
-
+const StyledBackButton = styled.button`
+  border: 1px solid #81a081;
+  font-size: 1em;
+  padding: 6px 12px;
+  border-radius: 10%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  background-color: white;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    background-color: #81a081;
+    color: white;
+  }
+`;
 export default function PlantDetails({
   plants,
   isMyPlantFunction,
@@ -92,6 +106,9 @@ export default function PlantDetails({
 
   return (
     <StyledCard>
+      <StyledBackButton type="button" onClick={() => router.back()}>
+        Back
+      </StyledBackButton>
       <h2>{plant.name}</h2>
       <h3>{plant.botanical_name}</h3>
       <ButtonContainer>
