@@ -1,5 +1,20 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
+import Searchbar from "./Searchbar";
+import { useState, useEffect } from "react";
+import Fuse from "fuse.js";
+
+const fuseOptions = {
+  isCaseSensitive: false,
+  threshold: 0.3,
+  keys: [
+    "name",
+    "botanical_name",
+    "water_need",
+    "light_need",
+    "care_instructions",
+  ],
+};
 
 const StyledList = styled.ul`
   list-style: none;
@@ -23,27 +38,53 @@ export default function Overview({
   handleToggleMyPlants,
   getPlantInfoById,
 }) {
+  const [results, setResults] = useState([]);
+  const [fuse, setFuse] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    setFuse(new Fuse(plants, fuseOptions));
+  }, [plants]);
+
+  function handleSearch(event) {
+    const searchPattern = event.target.value;
+    setSearchTerm(searchPattern);
+    if (!fuse || searchPattern === "") {
+      setResults([]);
+      return;
+    }
+    const searchResult = fuse.search(searchPattern);
+    const matchedPlants = searchResult.map((result) => result.item);
+    setResults(matchedPlants);
+  }
+
+  console.log(results);
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
-
+      <Searchbar onChange={handleSearch} />
       {plants.length === 0 ? (
         <p>No plants available at the moment. Please come back later!</p>
       ) : (
-        <StyledList>
-          {plants.map((plant) => {
-            const isMyPlant = getPlantInfoById(plant.id)?.isMyPlant;
-            return (
-              <StyledItem key={plant.id}>
-                <PlantPreview
-                  plant={plant}
-                  isMyPlant={isMyPlant}
-                  handleToggleMyPlants={handleToggleMyPlants}
-                />
-              </StyledItem>
-            );
-          })}
-        </StyledList>
+        <>
+          {searchTerm !== "" && results.length === 0 && (
+            <p>Sorry... No plants match your search.</p>
+          )}
+          <StyledList>
+            {(searchTerm === "" ? plants : results).map((plant) => {
+              const isMyPlant = getPlantInfoById(plant.id)?.isMyPlant;
+              return (
+                <StyledItem key={plant.id}>
+                  <PlantPreview
+                    plant={plant}
+                    isMyPlant={isMyPlant}
+                    handleToggleMyPlants={handleToggleMyPlants}
+                  />
+                </StyledItem>
+              );
+            })}
+          </StyledList>
+        </>
       )}
     </StyledDiv>
   );
