@@ -4,17 +4,13 @@ import Link from "next/link";
 const StyledName = styled.p`
   margin-right: 3px;
 `;
-const StyledBotanicalName = styled.p`
-  margin-top: 0;
-`;
 
 const StyledDiv = styled.div`
   display: flex;
-  position: relative;
-  margin-bottom: 2px;
+  align-items: center;
+  justify-content: flex-start;
   color: grey;
-  border-style: solid;
-  padding: 5px;
+  background-color: #f9f9f9;
 `;
 const StyledImg = styled.img`
   border-radius: 5px;
@@ -29,13 +25,6 @@ const StyledLink = styled(Link)`
   &:hover {
     color: green;
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  gap: 10px;
 `;
 
 export default function SearchResult({ plant }) {

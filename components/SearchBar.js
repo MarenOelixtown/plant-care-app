@@ -10,20 +10,11 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  &:hover {
-    color: green;
-  }
-`;
 const StyledItem = styled.li`
   display: block;
   align-items: left;
   align-content: space-between;
-  //margin-bottom: 5px;
   list-style: none;
-  // border-spacing: 10px;
 `;
 const SearchContainer = styled.div`
   width: 100%;
@@ -44,7 +35,6 @@ const Icon = styled(FontAwesomeIcon)`
   position: absolute;
   top: 0.4cm;
   right: 10px;
-  //transform: translateY(-50%);
   color: #888;
 `;
 
@@ -57,7 +47,9 @@ export default function SearchBar({ plants }) {
   const [fuse, setFuse] = useState(null);
 
   useEffect(() => {
-    setFuse(new Fuse(plants, fuseOptions));
+    if (plants) {
+      setFuse(new Fuse(plants, fuseOptions));
+    }
   }, [plants]);
 
   function handleSearch(event) {
@@ -65,12 +57,7 @@ export default function SearchBar({ plants }) {
       return;
     }
     const searchPattern = event.target.value;
-    /*     if (searchPattern.length === 0) {
-      setResults(plantsNameList);
-      return;
-    } */
     const searchResult = fuse.search(searchPattern).slice(0, 10);
-    // .slice(0, 10) will ensure there will never be more than 10 results
 
     if (searchResult.length === 0) {
       setResults(["No matches found"]);
@@ -78,6 +65,7 @@ export default function SearchBar({ plants }) {
       setResults(searchResult.map((result) => result.item.name));
     }
   }
+
   const filteredPlants =
     results.length && results[0] !== "No matches found"
       ? plants.filter((plant) => results.includes(plant.name))
@@ -86,30 +74,33 @@ export default function SearchBar({ plants }) {
   function handleEnter(event) {
     if (event.key === "Enter") {
       event.preventDefault();
-      performSearch();
+      const searchPattern = event.target.value;
+      handleSearch({ target: { value: searchPattern } });
     }
   }
+
   return (
     <div>
       <SearchContainer>
         <Icon icon={faSearch} />
-        <>
-          <SearchInput
-            type="text"
-            id="search"
-            placeholder="Search for plants..."
-            onChange={handleSearch}
-          />
-        </>
+        <SearchInput
+          type="text"
+          id="search"
+          placeholder="Search for plants..."
+          onChange={handleSearch}
+          onKeyDown={handleEnter}
+        />
         {results.length > 0 && (
           <StyledList>
-            {filteredPlants.map((plant) => {
-              return (
+            {filteredPlants.length > 0 ? (
+              filteredPlants.map((plant) => (
                 <StyledItem key={plant.id}>
                   <SearchResult plant={plant} />
                 </StyledItem>
-              );
-            })}
+              ))
+            ) : (
+              <StyledItem>No matches found</StyledItem>
+            )}
           </StyledList>
         )}
       </SearchContainer>
