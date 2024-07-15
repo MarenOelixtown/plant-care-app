@@ -1,5 +1,6 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
+import SearchBar from "./SearchBar";
 
 const StyledList = styled.ul`
   list-style: none;
@@ -26,7 +27,7 @@ export default function Overview({
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
-
+      <SearchBar plants={plants} />
       {plants.length === 0 ? (
         <p>No plants available at the moment. Please come back later!</p>
       ) : (

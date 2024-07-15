@@ -10,19 +10,26 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: green;
+  }
+`;
 const StyledItem = styled.li`
   display: block;
   align-items: left;
   align-content: space-between;
-  margin-bottom: 5px;
+  //margin-bottom: 5px;
   list-style: none;
-  border-spacing: 10px;
+  // border-spacing: 10px;
 `;
 const SearchContainer = styled.div`
-  position: relative;
   width: 100%;
   max-width: 250px;
   margin: 0 auto;
+  position: relative;
 `;
 
 const SearchInput = styled.input`
@@ -35,14 +42,14 @@ const SearchInput = styled.input`
 
 const Icon = styled(FontAwesomeIcon)`
   position: absolute;
-  top: 50%;
+  top: 0.4cm;
   right: 10px;
-  transform: translateY(-50%);
+  //transform: translateY(-50%);
   color: #888;
 `;
 
 const fuseOptions = {
-  threshold: 0.3,
+  threshold: 0.2,
   keys: ["name"],
 };
 export default function SearchBar({ plants }) {
@@ -58,6 +65,10 @@ export default function SearchBar({ plants }) {
       return;
     }
     const searchPattern = event.target.value;
+    /*     if (searchPattern.length === 0) {
+      setResults(plantsNameList);
+      return;
+    } */
     const searchResult = fuse.search(searchPattern).slice(0, 10);
     // .slice(0, 10) will ensure there will never be more than 10 results
 
@@ -81,17 +92,16 @@ export default function SearchBar({ plants }) {
   return (
     <div>
       <SearchContainer>
-        <SearchInput
-          type="text"
-          //value={searchPattern}
-          id="search"
-          placeholder="Search for plants..."
-          onChange={handleSearch}
-        />
         <Icon icon={faSearch} />
-      </SearchContainer>
-      <ul>
-        {filteredPlants.length > 0 ? (
+        <>
+          <SearchInput
+            type="text"
+            id="search"
+            placeholder="Search for plants..."
+            onChange={handleSearch}
+          />
+        </>
+        {results.length > 0 && (
           <StyledList>
             {filteredPlants.map((plant) => {
               return (
@@ -101,10 +111,8 @@ export default function SearchBar({ plants }) {
               );
             })}
           </StyledList>
-        ) : (
-          <p>No matches found</p>
         )}
-      </ul>
+      </SearchContainer>
     </div>
   );
 }

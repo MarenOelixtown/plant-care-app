@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import SearchBar from "@/components/SearchBar";
+//import SearchBar from "@/components/SearchBar";
 
 const StyledDiv = styled.div`
   padding: 20px;
@@ -18,7 +18,7 @@ export default function HomePage({ plants }) {
   return (
     <StyledDiv>
       <h1>Plant Prosper</h1>
-      <SearchBar plants={plants} />
+      {/*    <SearchBar plants={plants} /> */}
       <StyledLink href="/overview">Welcome to explore...</StyledLink>
     </StyledDiv>
   );

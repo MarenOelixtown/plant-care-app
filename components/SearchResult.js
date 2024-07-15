@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 const StyledName = styled.p`
-  margin-right: 5px;
-  font-weight: bold;
+  margin-right: 3px;
 `;
 const StyledBotanicalName = styled.p`
   margin-top: 0;
@@ -12,16 +11,15 @@ const StyledBotanicalName = styled.p`
 const StyledDiv = styled.div`
   display: flex;
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   color: grey;
   border-style: solid;
-  padding: 10px;
-  margin: 10px;
+  padding: 5px;
 `;
 const StyledImg = styled.img`
   border-radius: 5px;
-  width: 100px;
-  height: 100px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 `;
 
@@ -31,13 +29,6 @@ const StyledLink = styled(Link)`
   &:hover {
     color: green;
   }
-`;
-
-const StyledInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-right: 5px;
 `;
 
 const ButtonContainer = styled.div`
@@ -53,12 +44,9 @@ export default function SearchResult({ plant }) {
       <Link href={`/overview/${plant.id}`}>
         <StyledImg src={plant.image} alt={plant.name} />
       </Link>
-      <StyledInfo>
-        <StyledLink href={`/overview/${plant.id}`}>
-          <StyledName>{plant.name}</StyledName>
-        </StyledLink>
-        <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
-      </StyledInfo>
+      <StyledLink href={`/overview/${plant.id}`}>
+        <StyledName>{plant.name}</StyledName>
+      </StyledLink>
     </StyledDiv>
   );
 }
