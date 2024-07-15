@@ -5,6 +5,9 @@ import { useState } from "react";
 const FormContainer = styled.form`
   display: grid;
   gap: 0.5rem;
+  background-color: var(--light-green);
+  padding: 20px;
+  border-radius: 2rem;
 `;
 
 const Input = styled.input`
@@ -21,25 +24,26 @@ const Select = styled.select`
 `;
 
 const StyledButton = styled.button`
-  display: block;
-  width: 50%;
-  margin: 10px auto;
-  padding: 10px 24px;
-  border: 3px solid var(--secondary-stroke-color);
-  background-color: var(--secondary-bg-color);
-  border-radius: 1rem;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--light-yellow);
+  border: 2px solid #30482a;
+  border-radius: 2rem;
+  padding: 10px;
+  font-family: inherit;
   font-weight: bold;
-  font-size: 1rem;
   cursor: pointer;
+  margin: auto;
+  max-width: 100px;
+  width: 100%;
   &:hover {
-    color: var(--secondary-stroke-color);
-    background-color: white;
+    background-color: var(--light-green);
+    color: var(--primary-color);
   }
 `;
 
 const StyledFileInput = styled(Input).attrs({
   type: "file",
+  multiple: true,
 })`
   padding: 8px;
   border: none;
@@ -85,8 +89,10 @@ export default function CreatePlantForm({
   isSubmitting,
 }) {
   const router = useRouter();
+  const [images, setImages] = useState([]);
   const [waterNeed, setWaterNeed] = useState(defaultData?.water_need);
   const [lightNeed, setLightNeed] = useState(defaultData?.light_need);
+
   const [seasons, setSeasons] = useState(
     {
       Spring: defaultData?.fertiliser_season.includes("Spring"),
@@ -104,15 +110,60 @@ export default function CreatePlantForm({
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleFileChange = (event) => {
+    setImages(Array.from(event.target.files));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+
+    const imageUrls = await uploadImages(images);
+
     const plantData = Object.fromEntries(formData);
     const selectedSeasons = Object.keys(seasons).filter(
       (season) => seasons[season]
     );
     plantData.fertiliser_season = selectedSeasons;
+    plantData.images = imageUrls;
+
     onSubmit(plantData);
+
+    event.target.reset();
+    setWaterNeed("");
+    setLightNeed("");
+    setSeasons({
+      Spring: false,
+      Summer: false,
+      Fall: false,
+      Winter: false,
+    });
+
+    console.log(plantData);
+  };
+
+  const uploadImages = async (images) => {
+    const formData = new FormData();
+    images.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Error uploading images");
+      }
+
+      const imageUrls = await response.json();
+      return imageUrls;
+    } catch (error) {
+      console.error("Error uploading images:", error);
+      return [];
+    }
   };
 
   return (
@@ -223,10 +274,17 @@ export default function CreatePlantForm({
         maxLength={150}
         defaultValue={defaultData?.care_instructions}
       ></Textarea>
-      <Label htmlFor="photo">Add Photo:</Label>
-      <StyledFileInput name="photo" id="photo" accept="image/*" required />
+      <br />
+      <Label htmlFor="images">*Add Photos:</Label>
+      <StyledFileInput
+        id="images"
+        name="images"
+        multiple
+        required
+        onChange={handleFileChange}
+      />
       <StyledButton type="submit" disabled={isSubmitting}>
-        {defaultData ? "Update Plant" : "+ Plant"}
+        {defaultData ? "Update Plant" : "Add Plant"}
       </StyledButton>
       <StyledButton type="button" onClick={() => router.back()}>
         Cancel

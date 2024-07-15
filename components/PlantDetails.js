@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 import ButtonAddPlant from "./ButtonAddPlant";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
@@ -10,58 +9,109 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  width: 500px;
-  margin: 10px auto;
-  padding: 10px;
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  background-color: white;
 `;
 
-const StyledCare = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  max-width: 600px;
-  margin: 20px 0;
+const StyledHeader = styled.header`
   text-align: center;
-
-  p {
-    border: 2px solid black;
-    border-radius: 50%;
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
-  }
+  margin-bottom: 20px;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
+const Heading = styled.h2`
+  color: #30482a;
+  font-size: 2rem;
   margin-bottom: 10px;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  width: 50%;
-  margin: 10px auto;
-  padding: 10px 24px;
+const SubHeading = styled.h3`
+  color: #607843;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+`;
+
+const ButtonContainer = styled.div`
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+`;
+
+const ImagesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+`;
+
+const StyledImageWrapper = styled.div`
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const StyledImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const NeedsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+`;
+
+const NeedItem = styled.div`
+  width: 200px;
+  height: 150px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 1rem;
+  margin-right: 30px;
   text-align: center;
-  display: block;
-  border: 1px solid grey;
-  border-radius: 0.1rem;
-  background-color: #f9f9f9;
-  color: black;
-  font-size: 0.8rem;
+`;
+
+const NeedTitle = styled.h4`
+  color: #30482a;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+`;
+
+const NeedValue = styled.p`
+  font-size: 1rem;
+  color: #555;
 `;
 
 const StyledDiv = styled.div`
+  text-align: center;
+`;
+
+const StyledParagraph = styled.p`
+  margin-top: 1rem;
+  color: var(--dark-yellowish);
+`;
+
+const StyledPDiv = styled.div`
   padding: 10px;
-  margin-top: 20px;
+  background-color: white;
+  border-radius: 1rem;
+  margin: 20px auto 40px auto;
+  max-width: 550px;
+  width: 100%;
 `;
 
 export default function PlantDetails({
@@ -74,16 +124,21 @@ export default function PlantDetails({
   const { id } = router.query;
 
   const plantsIndex = plants.findIndex((plant) => plant.id === id);
-
   const plant = plants[plantsIndex];
+
   if (!plant) {
     return (
-      <StyledDiv>
-        <h1>Plant Not Found!</h1>
-        <StyledLink href="/overview">
-          <p>Go to Plants Overview Page and discover new plants.</p>
-        </StyledLink>
-      </StyledDiv>
+      <>
+        <StyledDiv>
+          <h1>No Plants Found!</h1>
+          <StyledPDiv>
+            <StyledParagraph>
+              No plants to show at the moment. Feel free to add your plants
+              here!
+            </StyledParagraph>
+          </StyledPDiv>
+        </StyledDiv>
+      </>
     );
   }
   const plantInfo = getPlantInfoById(plant.id);
@@ -91,8 +146,45 @@ export default function PlantDetails({
 
   return (
     <StyledCard>
-      <h2>{plant.name}</h2>
-      <h3>{plant.botanical_name}</h3>
+      <StyledHeader>
+        <Heading>{plant.name}</Heading>
+        <SubHeading>{plant.botanical_name}</SubHeading>
+      </StyledHeader>
+      <ImagesContainer>
+        {plant.images.map((image, index) => (
+          <StyledImageWrapper key={index}>
+            <StyledImage
+              src={image}
+              width={300}
+              height={300}
+              alt={`${plant.name} image ${index + 1}`}
+            />
+          </StyledImageWrapper>
+        ))}
+      </ImagesContainer>
+
+      {plant.care_instructions && (
+        <StyledDiv>
+          <h3>Care Instructions</h3>
+          <p>{plant.care_instructions}</p>
+        </StyledDiv>
+      )}
+
+      <NeedsContainer>
+        <NeedItem>
+          <NeedTitle>Water Need</NeedTitle>
+          <NeedValue>{plant.water_need}</NeedValue>
+        </NeedItem>
+        <NeedItem>
+          <NeedTitle>Fertiliser Cycle</NeedTitle>
+          <NeedValue>{plant.fertiliser_season.join(", ")}</NeedValue>
+        </NeedItem>
+        <NeedItem>
+          <NeedTitle>Light Needs</NeedTitle>
+          <NeedValue>{plant.light_need}</NeedValue>
+        </NeedItem>
+      </NeedsContainer>
+
       <ButtonContainer>
         <ButtonAddPlant
           onToggleMyPlants={handleToggleMyPlants}
@@ -101,22 +193,14 @@ export default function PlantDetails({
         />
         {isUserPlant && (
           <>
+            <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
               OnDeletePlant={handleDeletePlant}
               id={plant.id}
             />
-            <ButtonEditPlant id={plant.id} />
           </>
         )}
       </ButtonContainer>
-      <Image src={plant.image} width={300} height={300} alt={plant.name} />
-      <StyledCare>
-        <p>Water Need: {plant.water_need}</p>
-        <p>Fertiliser Cycle: {plant.fertiliser_season.join(", ")}</p>
-        <p>Light: {plant.light_need}</p>
-      </StyledCare>
-      <p>Care Instructions: </p>
-      <p>{plant.care_instructions}</p>
     </StyledCard>
   );
 }

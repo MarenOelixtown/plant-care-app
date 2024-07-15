@@ -19,16 +19,23 @@ export default async function handler(request, response) {
     return;
   }
 
-  const form = formidable({});
+  const form = formidable({ multiples: true });
+
   const [fields, files] = await form.parse(request);
 
-  const file = files.photo[0];
-  const { newFilename, filepath } = file;
+  const fileUploadPromises = Object.values(files)
+    .flat()
+    .map((file) => {
+      const { filepath, newFilename } = file;
+      return cloudinary.v2.uploader.upload(filepath, {
+        public_id: newFilename,
+        folder: "nf",
+      });
+    });
 
-  const result = await cloudinary.v2.uploader.upload(filepath, {
-    public_id: newFilename,
-    folder: "nf",
-  });
+  const results = await Promise.all(fileUploadPromises);
 
-  response.status(200).json(result);
+  const modifiedResults = results.map((image) => image.secure_url);
+
+  response.status(200).json(modifiedResults);
 }

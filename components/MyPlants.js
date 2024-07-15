@@ -4,9 +4,26 @@ import Link from "next/link";
 import CalendarIcon from "../components/Icons/CalendarIcon.svg";
 
 const StyledLink = styled(Link)`
-  position: absolute;
-  top: 2.8rem;
-  left: 2rem;
+  position: fixed;
+  top: 2rem;
+  right: 7.8rem;
+  color: var(--light-yellow);
+  background-color: var(--primary-color);
+  padding: 0.8rem 0.8rem;
+  border-radius: 2rem;
+  border: 2px solid var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 1000;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--light-green);
+    border-color: var(--primary-color);
+  }
 `;
 
 const StyledList = styled.ul`
@@ -26,6 +43,20 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 
+const StyledParagraph = styled.p`
+  margin-top: 1rem;
+  color: var(--dark-yellowish);
+`;
+
+const StyledPDiv = styled.div`
+  padding: 10px;
+  background-color: white;
+  border-radius: 1rem;
+  margin: 20px auto 40px auto;
+  max-width: 550px;
+  width: 100%;
+`;
+
 export default function MyPlants({
   plants,
   handleToggleMyPlants,
@@ -40,14 +71,18 @@ export default function MyPlants({
   return (
     <StyledDiv>
       <h1>My Plants</h1>
-      <StyledLink href="/myschedule" title="My Schedule">
-        <CalendarIcon />
-      </StyledLink>
+      {myPlants.length > 0 && (
+        <StyledLink href="/myschedule" title="My Schedule">
+          {/* <CalendarIcon /> */} Watering Schedules
+        </StyledLink>
+      )}
 
       {myPlants.length === 0 ? (
-        <p>
-          No Plants to show at the moment. Feel free to add your plants here!
-        </p>
+        <StyledPDiv>
+          <StyledParagraph>
+            No plants to show at the moment. Feel free to add your plants here!
+          </StyledParagraph>
+        </StyledPDiv>
       ) : (
         <StyledList>
           {myPlants.map((plant) => {

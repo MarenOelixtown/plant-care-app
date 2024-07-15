@@ -14,18 +14,18 @@ const Heading = styled.h2`
 
 const SuccessMessage = styled.p`
   font-family: inherit;
-  color: green;
-  background-color: lightgreen;
-  border: 3px solid green;
+  color: var(--light-green);
+  background-color: var(--primary-color);
+  border: 3px solid var(--light-green);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
 
 const ErrorMessage = styled.p`
   font-family: inherit;
-  color: red;
-  background-color: pink;
-  border: 3px red;
+  color: var(--secondary-stroke-color);
+  background-color: var(--light-pink);
+  border: 3px solid var(--secondary-stroke-color);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
@@ -39,23 +39,6 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
     setIsSubmitting(true);
 
     try {
-      const formData = new FormData();
-      Object.keys(plantData).forEach((key) => {
-        formData.append(key, plantData[key]);
-      });
-
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to upload image");
-      }
-
-      const { url } = await response.json();
-      plantData.image = url;
-
       handleAddPlant(plantData);
 
       setSuccessMessage("Your Plant has been added successfully!");
@@ -67,7 +50,7 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
       }, 3000);
     } catch (error) {
       console.error(error);
-      setErrorMessage("Failed to upload image. Please try again.");
+      setErrorMessage("Failed to upload images. Please try again.");
       setSuccessMessage("");
 
       setTimeout(() => {

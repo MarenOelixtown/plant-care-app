@@ -3,25 +3,29 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 const StyledButton = styled.button`
-  display: block;
-  width: 50%;
-  margin: 10px auto;
-  padding: 10px 24px;
-  border: 3px solid var(--secondary-stroke-color);
-  background-color: var(--secondary-bg-color);
-  border-radius: 1rem;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--light-yellow);
+  border: 2px solid #30482a;
+  border-radius: 2rem;
+  padding: 10px;
+  font-family: inherit;
   font-weight: bold;
-  font-size: 1rem;
   cursor: pointer;
+  margin: auto;
+  max-width: 100px;
+  width: 100%;
   &:hover {
-    color: var(--secondary-stroke-color);
-    background-color: white;
+    background-color: var(--light-green);
+    color: var(--primary-color);
   }
 `;
+
 const FormContainer = styled.form`
   display: grid;
   gap: 0.5rem;
+  background-color: var(--light-green);
+  padding: 20px;
+  border-radius: 2rem;
 `;
 const Label = styled.label`
   font-weight: bold;
@@ -85,7 +89,7 @@ export default function ScheduleForm({
   }
   return (
     <FormContainer onSubmit={addSchedule}>
-      <Label htmlFor="name">Plant:</Label>
+      <Label htmlFor="name">Select Plant:</Label>
       <Select
         id="name"
         name="name"
@@ -100,15 +104,19 @@ export default function ScheduleForm({
           </option>
         ))}
       </Select>
-      <Label htmlFor="wateringDate">Start Watering:</Label>
+      <Label htmlFor="wateringDate">Set Watering Date:</Label>
       <Input
         id="wateringStartDate"
         type="date"
         name="wateringStartDate"
+        required
         value={wateringStartDate}
         onChange={(event) => setWateringStartDate(event.target.value)}
       />
-      <StyledButton type="submit">+ Schedule</StyledButton>
+      <StyledButton type="submit">Add Schedule</StyledButton>
+      <StyledButton type="button" onClick={() => router.push("/myschedule")}>
+        Cancel
+      </StyledButton>
     </FormContainer>
   );
 }

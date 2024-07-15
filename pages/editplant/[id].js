@@ -15,15 +15,25 @@ const Heading = styled.h2`
 
 const SuccessMessage = styled.p`
   font-family: inherit;
-  color: green;
-  background-color: lightgreen;
-  border: 3px solid green;
+  color: var(--light-green);
+  background-color: var(--primary-color);
+  border: 3px solid var(--light-green);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+`;
+
+const ErrorMessage = styled.p`
+  font-family: inherit;
+  color: var(--secondary-stroke-color);
+  background-color: var(--light-pink);
+  border: 3px solid var(--secondary-stroke-color);
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
 
 export default function EditPlantFormPage({ plants, handleEditPlant }) {
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { id } = router.query;
@@ -33,7 +43,6 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
 
   async function editPlant(updatedPlant) {
     setIsSubmitting(true);
-
     try {
       const formData = new FormData();
       Object.keys(updatedPlant).forEach((key) => {
@@ -61,9 +70,9 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
       }, 2000);
     } catch (error) {
       console.error(error);
-      setSuccessMessage("Failed to upload image. Please try again.");
+      setErrorMessage("Failed to upload image. Please try again.");
       setTimeout(() => {
-        setSuccessMessage("");
+        setErrorMessage("");
         setIsSubmitting(false);
       }, 3000);
     }
@@ -74,6 +83,7 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
     <FormPageContainer>
       <Heading id="edit-plant">Edit your plant</Heading>
       {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <CreatePlantForm
         defaultData={plant}
         formName={"edit-plant"}
