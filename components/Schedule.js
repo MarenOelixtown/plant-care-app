@@ -20,7 +20,6 @@ const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding: 0;
   justify-content: center;
   margin: 20px 0;
   padding: 0 5%;
