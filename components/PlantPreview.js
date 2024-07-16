@@ -30,6 +30,7 @@ const StyledImg = styled.img`
   border-radius: 0.5rem;
   width: 100px;
   height: 100px;
+  object-fit: cover;
   margin-right: 50px;
   margin-left: 20px;
 `;

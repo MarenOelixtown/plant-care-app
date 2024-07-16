@@ -9,50 +9,55 @@ const StyledDiv = styled.div`
 `;
 
 const StyledImg = styled.img`
-  border-radius: 5px;
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  margin: 0;
 `;
 
 const StyledList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
   padding: 0;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 0 5%;
 `;
 
 const StyledItem = styled.li`
-  display: block;
-  align-content: space-between;
-  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
   list-style: none;
   border-spacing: 10px;
 `;
 
-const StyledInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-right: 5px;
-`;
-
 const StyledPlant = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  margin-bottom: 5px;
   color: grey;
-  border-style: solid;
   padding: 10px;
-  margin: 10px;
 `;
 
-const StyledName = styled.p`
-  margin-right: 5px;
+const StyledName = styled.h3`
   font-weight: bold;
-  color: black;
+  color: var(--primary-color);
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.4rem;
 `;
-
+const StyledDate = styled.p`
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.4rem;
+`;
 const StyledSpan = styled.span`
-  margin-right: 1rem;
+  margin-right: 0.4rem;
 `;
 
 const StyledLink = styled(Link)`
@@ -130,9 +135,11 @@ export default function MySchedule({ plants, getPlantInfoById }) {
   return (
     <StyledDiv>
       <h1>My Schedule</h1>
+
       {showSuccessMessage && (
         <SuccessMessage>Watering schedule added successfully!</SuccessMessage>
       )}
+      <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
       {plantsWithReminder.length === 0 ? (
         <StyledPDiv>
           <StyledParagraph>
@@ -145,22 +152,19 @@ export default function MySchedule({ plants, getPlantInfoById }) {
           {plantsWithReminder.map((plant) => (
             <StyledItem key={plant.id}>
               <StyledPlant>
+                <StyledName>{plant.name}</StyledName>
                 <StyledImg src={plant.images[0]} alt={plant.name} />
-                <StyledInfo>
-                  <StyledName>{plant.name}</StyledName>
-                  <p>
-                    <StyledSpan>
-                      <WateringIcon />
-                    </StyledSpan>
-                    {plant.wateringDate}
-                  </p>
-                </StyledInfo>
+                <StyledDate>
+                  <StyledSpan>
+                    <WateringIcon />
+                  </StyledSpan>
+                  {plant.wateringDate}
+                </StyledDate>
               </StyledPlant>
             </StyledItem>
           ))}
         </StyledList>
       )}
-      <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
     </StyledDiv>
   );
 }
