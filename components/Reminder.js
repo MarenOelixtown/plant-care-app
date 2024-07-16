@@ -76,7 +76,7 @@ const ReminderButton = styled.button`
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
-  margin-left: 20px;
+  margin: 0 20px;
 
   &:hover {
     background-color: var(--light-green);
@@ -104,7 +104,7 @@ const CloseButton = styled.button`
   }
 
   &:focus {
-    border-color: #666;
+    border-color: var(--primary-color);
   }
 
   & > span {

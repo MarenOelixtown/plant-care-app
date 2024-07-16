@@ -3,9 +3,13 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import WateringIcon from "../components/Icons/WateringIcon.svg";
+import Reminder from "./Reminder";
 
 const StyledDiv = styled.div`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StyledImg = styled.img`
@@ -61,7 +65,7 @@ const StyledSpan = styled.span`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  margin-top: 2rem;
+  margin: 2rem 0;
   background-color: var(--primary-color);
   color: var(--light-yellow);
   border: 2px solid #30482a;
@@ -69,7 +73,6 @@ const StyledLink = styled(Link)`
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 20px;
 
   &:hover {
     background-color: var(--light-green);
@@ -139,6 +142,7 @@ export default function MySchedule({ plants, getPlantInfoById }) {
         <SuccessMessage>Watering schedule added successfully!</SuccessMessage>
       )}
       <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
+      <Reminder plants={plants} getPlantInfoById={getPlantInfoById} />
       {plantsWithReminder.length === 0 ? (
         <StyledPDiv>
           <StyledParagraph>
