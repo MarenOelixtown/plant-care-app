@@ -3,6 +3,7 @@ import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { initialPlants } from "@/assets/plants";
 import { uid } from "uid";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
