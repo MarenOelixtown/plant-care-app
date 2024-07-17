@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import WateringIcon from "../components/Icons/WateringIcon.svg";
 import Reminder from "./Reminder";
+import Image from "next/image";
 
 const StyledDiv = styled.div`
   text-align: center;
@@ -12,10 +13,8 @@ const StyledDiv = styled.div`
   align-items: center;
 `;
 
-const StyledImg = styled.img`
+const StyledImg = styled(Image)`
   border-radius: 50%;
-  width: 130px;
-  height: 130px;
   object-fit: cover;
   margin: 0;
 `;
@@ -170,7 +169,12 @@ export default function MySchedule({
                   href={`/overview/${plant.id}`}
                   title="Go to plant-details"
                 >
-                  <StyledImg src={plant.images[0]} alt={plant.name} />
+                  <StyledImg
+                    src={plant.images[0]}
+                    alt={plant.name}
+                    width={130}
+                    height={130}
+                  />
                 </Link>
                 <StyledDate>
                   <StyledSpan>

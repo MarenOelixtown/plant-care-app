@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import Image from "next/image";
 
 const StyledSection = styled.section`
   position: relative;
@@ -58,10 +59,8 @@ const StyledParagraph = styled.p`
   padding: 0.4rem;
 `;
 
-const StyledImg = styled.img`
+const StyledImg = styled(Image)`
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
   object-fit: cover;
   margin: 0;
   cursor: pointer;
@@ -174,6 +173,8 @@ export default function Reminder({
                   <StyledImg
                     src={plant.images[0]}
                     alt={plant.name}
+                    width={100}
+                    height={100}
                     title="Set new watering-date"
                     onClick={() => newSchedule(plant.id, plant.water_need)}
                   />
