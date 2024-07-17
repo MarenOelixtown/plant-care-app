@@ -17,7 +17,8 @@ const StyledCard = styled.div`
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
 `;
 
 const StyledHeader = styled.header`
@@ -26,13 +27,15 @@ const StyledHeader = styled.header`
 `;
 
 const Heading = styled.h2`
-  color: #30482a;
+  color: ${(props) =>
+    props.darkMode ? "var(--dark-yellowish)" : "var(--primary-color)"};
   font-size: 2rem;
   margin-bottom: 10px;
 `;
 
 const SubHeading = styled.h3`
-  color: #607843;
+  /* color: #607843; */
+  color: ${(props) => (props.darkMode ? "var(--light-yellow)" : "#607843")};
   font-size: 1.3rem;
   margin-bottom: 20px;
 `;
@@ -107,7 +110,8 @@ const StyledParagraph = styled.p`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin: 20px auto 40px auto;
   max-width: 550px;
@@ -119,6 +123,7 @@ export default function PlantDetails({
   handleToggleMyPlants,
   handleDeletePlant,
   getPlantInfoById,
+  darkMode,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -131,7 +136,7 @@ export default function PlantDetails({
       <>
         <StyledDiv>
           <h1>No Plants Found!</h1>
-          <StyledPDiv>
+          <StyledPDiv darkMode={darkMode}>
             <StyledParagraph>
               No plants to show at the moment. Feel free to add your plants
               here!
@@ -145,10 +150,10 @@ export default function PlantDetails({
   const { isUserPlant, isMyPlant } = plantInfo || {};
 
   return (
-    <StyledCard>
+    <StyledCard darkMode={darkMode}>
       <StyledHeader>
-        <Heading>{plant.name}</Heading>
-        <SubHeading>{plant.botanical_name}</SubHeading>
+        <Heading darkMode={darkMode}>{plant.name}</Heading>
+        <SubHeading darkMode={darkMode}>{plant.botanical_name}</SubHeading>
       </StyledHeader>
       <ImagesContainer>
         {plant.images.map((image, index) => (

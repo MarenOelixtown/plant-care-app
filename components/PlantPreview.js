@@ -62,6 +62,7 @@ export default function PlantPreview({
   isUserPlant,
   handleToggleMyPlants,
   handleDeletePlant,
+  darkMode,
 }) {
   return (
     <StyledDiv>

@@ -30,7 +30,7 @@ const ErrorMessage = styled.p`
   padding: 0.5rem;
 `;
 
-export default function CreatePlantFormPage({ handleAddPlant }) {
+export default function CreatePlantFormPage({ handleAddPlant, darkMode }) {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,6 +70,7 @@ export default function CreatePlantFormPage({ handleAddPlant }) {
         formName="Add Plant Form"
         onSubmit={addPlant}
         isSubmitting={isSubmitting}
+        darkMode={darkMode}
       />
     </FormPageContainer>
   );
