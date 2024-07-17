@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
 const StyledPDiv = styled.div`
   padding: 10px;
   background-color: ${(props) =>
-    props.darkMode ? "var(--dark-card-bg)" : "white"};
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin-bottom: 40px;
   margin-top: 20px;
@@ -18,11 +18,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   margin-top: 2rem;
   background-color: ${(props) =>
-    props.darkMode ? "var(--dark-secondary)" : "var(--primary-color)"};
+    props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
   color: ${(props) =>
-    props.darkMode ? "var(--dark-text)" : "var(--light-yellow)"};
+    props.darkMode ? "var(--primary-color)" : "var(--light-yellow)"};
   border: 2px solid
-    ${(props) => (props.darkMode ? "var(--dark-secondary)" : "#30482a")};
+    ${(props) =>
+      props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
   border-radius: 2rem;
   padding: 10px;
   font-weight: bold;
@@ -31,16 +32,16 @@ const StyledLink = styled(Link)`
 
   &:hover {
     background-color: ${(props) =>
-      props.darkMode ? "var(--dark-primary)" : "var(--light-green)"};
+      props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
     color: ${(props) =>
-      props.darkMode ? "var(--dark-bg)" : "var(--primary-color)"};
+      props.darkMode ? "var(--light-yellow)" : "var(--primary-color)"};
   }
 `;
 
 const StyledParagraph = styled.p`
   margin-top: 1rem;
   color: ${(props) =>
-    props.darkMode ? "var(--dark-secondary)" : "var(--dark-yellowish)"};
+    props.darkMode ? "var(--dark-light-grey)" : "var(--dark-yellowish)"};
 `;
 
 export default function HomePage({ darkMode }) {

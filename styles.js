@@ -29,7 +29,9 @@ export default createGlobalStyle`
     --dark-secondary: #03dac6;
     --dark-text: #ffffff;
     --dark-card-bg: #1e1e1e;
-    --dark-light-green: #30322d
+    --dark-light-green: #30322d;
+    --dark-primary-color: #e6ece0;
+    --dark-light-grey: #949790;
   }
 
   /* Global styles */
@@ -39,7 +41,7 @@ export default createGlobalStyle`
     background: ${(props) =>
       props.darkMode ? "var(--dark-bg)" : "var(--lightest-green)"};
     color: ${(props) =>
-      props.darkMode ? "var(--dark-text)" : "var(--primary-color)"};
+      props.darkMode ? "var(--dark-primary-color)" : "var(--primary-color)"};
     min-height: 100vh;
   }
 

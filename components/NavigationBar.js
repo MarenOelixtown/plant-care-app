@@ -19,9 +19,6 @@ const StyledFooter = styled.footer`
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-// background-color: ${(props) =>
-//   props.darkMode ? "var(--dark-card-bg)" : "white"};
-
 const NavigationList = styled.ul`
   list-style: none;
   margin: 0;
@@ -73,9 +70,6 @@ export default function NavigationBar({ darkMode, onToggleDarkMode }) {
             </Link>
           </IconListItem>
           <IconListItem>
-            {/* <ToggleButton onClick={onToggleDarkMode}>
-              {darkMode ? "🌙 Dark" : "☀️ Light"}
-            </ToggleButton> */}
             <ToggleButton onClick={onToggleDarkMode}>
               {darkMode ? <DarkMode /> : <LightMode />}
             </ToggleButton>
