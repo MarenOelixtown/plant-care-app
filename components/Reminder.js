@@ -164,7 +164,7 @@ export default function Reminder({
             <span>X</span>
           </CloseButton>
           {plantsWithReminderToday.length > 0 && (
-            <StyledParagraph>It's watering-time!</StyledParagraph>
+            <StyledParagraph>It &apos;s watering-time!</StyledParagraph>
           )}
           <StyledList>
             {plantsWithReminderToday.map((plant) => (
