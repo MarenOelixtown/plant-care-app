@@ -1,12 +1,12 @@
 import NavigationBar from "./NavigationBar";
 import NavigationAddPlant from "./NavigationAddPlant";
 
-export default function Layout({ children }) {
+export default function Layout({ children, darkMode, onToggleDarkMode }) {
   return (
     <>
       <NavigationAddPlant />
       <main>{children}</main>
-      <NavigationBar />
+      <NavigationBar darkMode={darkMode} onToggleDarkMode={onToggleDarkMode} />
     </>
   );
 }

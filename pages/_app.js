@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { initialPlants } from "@/assets/plants";
@@ -7,6 +7,7 @@ import { uid } from "uid";
 export default function App({ Component, pageProps }) {
   const [plants, setPlants] = useState(initialPlants);
   const [plantsInfo, setPlantsInfo] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
   function handleAddPlant(newPlant) {
     // We are using functional updates to ensure the latest state is used.
@@ -65,12 +66,24 @@ export default function App({ Component, pageProps }) {
     return plantInfo;
   };
 
+  useEffect(() => {
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setDarkMode(systemPrefersDark);
+  }, []);
+
+  function handleToggleDarkMode() {
+    setDarkMode((prevMode) => !prevMode);
+  }
+
   return (
     <>
-      <Layout>
-        <GlobalStyle />
+      <GlobalStyle darkMode={darkMode} />
+      <Layout darkMode={darkMode} onToggleDarkMode={handleToggleDarkMode}>
         <Component
           {...pageProps}
+          darkMode={darkMode}
           plants={plants}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}
