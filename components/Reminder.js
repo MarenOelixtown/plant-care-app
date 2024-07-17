@@ -64,6 +64,7 @@ const StyledImg = styled.img`
   height: 100px;
   object-fit: cover;
   margin: 0;
+  cursor: pointer;
 `;
 const ReminderButton = styled.button`
   margin-top: 2rem;
@@ -173,6 +174,7 @@ export default function Reminder({
                   <StyledImg
                     src={plant.images[0]}
                     alt={plant.name}
+                    title="Set new watering-date"
                     onClick={() => newSchedule(plant.id, plant.water_need)}
                   />
                 </StyledPlant>
