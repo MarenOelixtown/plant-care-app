@@ -16,6 +16,7 @@ export default function ScheduleFormPage({
   plants,
   handleAddReminder,
   getPlantInfoById,
+  calculateNextWateringDate,
 }) {
   return (
     <FormPageContainer>
@@ -24,6 +25,7 @@ export default function ScheduleFormPage({
         plants={plants}
         handleAddReminder={handleAddReminder}
         getPlantInfoById={getPlantInfoById}
+        calculateNextWateringDate={calculateNextWateringDate}
       />
     </FormPageContainer>
   );

@@ -38,7 +38,12 @@ const StyledParagraph = styled.p`
   color: var(--dark-yellowish);
 `;
 
-export default function HomePage({ plants, getPlantInfoById }) {
+export default function HomePage({
+  plants,
+  getPlantInfoById,
+  calculateNextWateringDate,
+  handleAddReminder,
+}) {
   return (
     <StyledDiv>
       <h1>Plant Pro</h1>
@@ -65,7 +70,12 @@ export default function HomePage({ plants, getPlantInfoById }) {
       </StyledPDiv>
       <StyledLink href="/overview">Discover New Plants</StyledLink>
       <StyledLink href="/createplant">Add Plant</StyledLink>
-      <Reminder plants={plants} getPlantInfoById={getPlantInfoById} />
+      <Reminder
+        plants={plants}
+        getPlantInfoById={getPlantInfoById}
+        calculateNextWateringDate={calculateNextWateringDate}
+        handleAddReminder={handleAddReminder}
+      />
     </StyledDiv>
   );
 }

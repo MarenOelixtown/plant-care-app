@@ -105,7 +105,12 @@ const StyledPDiv = styled.div`
   width: 100%;
 `;
 
-export default function MySchedule({ plants, getPlantInfoById }) {
+export default function MySchedule({
+  plants,
+  getPlantInfoById,
+  calculateNextWateringDate,
+  handleAddReminder,
+}) {
   const router = useRouter();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -142,7 +147,12 @@ export default function MySchedule({ plants, getPlantInfoById }) {
         <SuccessMessage>Watering schedule added successfully!</SuccessMessage>
       )}
       <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
-      <Reminder plants={plants} getPlantInfoById={getPlantInfoById} />
+      <Reminder
+        plants={plants}
+        getPlantInfoById={getPlantInfoById}
+        calculateNextWateringDate={calculateNextWateringDate}
+        handleAddReminder={handleAddReminder}
+      />
       {plantsWithReminder.length === 0 ? (
         <StyledPDiv>
           <StyledParagraph>
@@ -156,7 +166,10 @@ export default function MySchedule({ plants, getPlantInfoById }) {
             <StyledItem key={plant.id}>
               <StyledPlant>
                 <StyledName>{plant.name}</StyledName>
-                <Link href={`/overview/${plant.id}`}>
+                <Link
+                  href={`/overview/${plant.id}`}
+                  title="Go to plant-details"
+                >
                   <StyledImg src={plant.images[0]} alt={plant.name} />
                 </Link>
                 <StyledDate>

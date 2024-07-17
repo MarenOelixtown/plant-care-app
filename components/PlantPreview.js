@@ -66,11 +66,11 @@ export default function PlantPreview({
 }) {
   return (
     <StyledDiv>
-      <Link href={`/overview/${plant.id}`}>
+      <Link href={`/overview/${plant.id}`} title="Go to plant-details">
         <StyledImg src={plant.images[0]} alt={plant.name} />
       </Link>
       <StyledInfo>
-        <StyledLink href={`/overview/${plant.id}`}>
+        <StyledLink href={`/overview/${plant.id}`} title="Go to plant-details">
           <StyledName>{plant.name}</StyledName>
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>

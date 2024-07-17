@@ -32,7 +32,7 @@ export default function ButtonEditPlant({ id }) {
   };
 
   return (
-    <StyledButton title="Delete from My Plants" onClick={handleEditClick}>
+    <StyledButton title="Edit My Plant" onClick={handleEditClick}>
       <StyledImage src={edit} alt="Edit My Plant" />
     </StyledButton>
   );

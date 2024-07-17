@@ -114,7 +114,12 @@ const CloseButton = styled.button`
   }
 `;
 
-export default function Reminder({ plants, getPlantInfoById }) {
+export default function Reminder({
+  plants,
+  getPlantInfoById,
+  calculateNextWateringDate,
+  handleAddReminder,
+}) {
   const [showReminder, setShowReminder] = useState(false);
 
   const toggleReminder = () => {
@@ -144,6 +149,11 @@ export default function Reminder({ plants, getPlantInfoById }) {
       };
     });
 
+  function newSchedule(plantId, waterNeed) {
+    const today = new Date();
+    const nextWateringDate = calculateNextWateringDate(today, waterNeed);
+    handleAddReminder(plantId, nextWateringDate.toISOString().split("T")[0]);
+  }
   return (
     <>
       <ReminderButton onClick={toggleReminder}>To-Do-Today</ReminderButton>
@@ -160,7 +170,11 @@ export default function Reminder({ plants, getPlantInfoById }) {
               <StyledItem key={plant.id}>
                 <StyledPlant>
                   <StyledName>{plant.name}</StyledName>
-                  <StyledImg src={plant.images[0]} alt={plant.name} />
+                  <StyledImg
+                    src={plant.images[0]}
+                    alt={plant.name}
+                    onClick={() => newSchedule(plant.id, plant.water_need)}
+                  />
                 </StyledPlant>
               </StyledItem>
             ))}
