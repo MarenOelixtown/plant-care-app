@@ -129,9 +129,9 @@ export default function Reminder({ plants, getPlantInfoById }) {
         const wateringDate = new Date(plantInfo.wateringDate);
 
         return (
-          wateringDate.getFullYear() === today.getFullYear() &&
-          wateringDate.getMonth() === today.getMonth() &&
-          wateringDate.getDate() === today.getDate()
+          wateringDate.getFullYear() <= today.getFullYear() &&
+          wateringDate.getMonth() <= today.getMonth() &&
+          wateringDate.getDate() <= today.getDate()
         );
       }
       return false;

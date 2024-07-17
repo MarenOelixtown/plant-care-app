@@ -156,7 +156,9 @@ export default function MySchedule({ plants, getPlantInfoById }) {
             <StyledItem key={plant.id}>
               <StyledPlant>
                 <StyledName>{plant.name}</StyledName>
-                <StyledImg src={plant.images[0]} alt={plant.name} />
+                <Link href={`/overview/${plant.id}`}>
+                  <StyledImg src={plant.images[0]} alt={plant.name} />
+                </Link>
                 <StyledDate>
                   <StyledSpan>
                     <WateringIcon />
