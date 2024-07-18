@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import Link from "next/link";
 import ButtonAddPlant from "./ButtonAddPlant";
 import ButtonDeletePlant from "./ButtonDeletePlant";
@@ -27,7 +28,7 @@ const StyledDiv = styled.div`
   background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 `;
-const StyledImg = styled.img`
+const StyledImg = styled(Image)`
   border-radius: 0.5rem;
   width: 100px;
   height: 100px;
@@ -71,7 +72,11 @@ export default function PlantPreview({
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
-        <StyledImg src={previewImage} alt={plant.name} />
+        {plant.images.length === 0 ? (
+          <StyledImg src={placeholderimage} alt={`${plant.name}`} />
+        ) : (
+          <StyledImg src={plant.images[0]} alt={`${plant.name}`} />
+        )}
       </Link>
       <StyledInfo>
         <StyledLink href={`/overview/${plant.id}`}>

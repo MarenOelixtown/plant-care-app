@@ -50,7 +50,7 @@ const Overlay = styled.div`
   z-index: 9;
 `;
 
-export default function ButtonDeletePlant({ OnDeletePlant, id }) {
+export default function ButtonDeletePlant({ onDeletePlant, id }) {
   const [isConfirming, setIsConfirming] = useState(false);
   const router = useRouter();
 
@@ -59,7 +59,7 @@ export default function ButtonDeletePlant({ OnDeletePlant, id }) {
   };
 
   const handleConfirmDelete = () => {
-    OnDeletePlant(id);
+    onDeletePlant(id);
     setIsConfirming(false);
     router.push("/myplants");
   };

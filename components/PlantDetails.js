@@ -24,15 +24,6 @@ const StyledCard = styled.div`
   background-color: white;
 `;
 
-const StyledButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 20px;
-`;
-
 const StyledHeader = styled.header`
   text-align: center;
   margin-bottom: 20px;
