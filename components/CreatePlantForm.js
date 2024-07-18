@@ -121,6 +121,15 @@ const Thumbnail = styled.img`
   border-radius: 0.5rem;
 `;
 
+const UploadMessage = styled.p`
+  color: red;
+  font-size: 0.8rem;
+`;
+const UploadInfo = styled.p`
+  color: grey;
+  font-size: 0.8rem;
+`;
+
 export default function CreatePlantForm({
   defaultData,
   formName,
@@ -139,6 +148,7 @@ export default function CreatePlantForm({
     Fall: false,
     Winter: false,
   });
+  const [maxUploadsReached, setMaxUploadsReached] = useState(false);
 
   useEffect(() => {
     if (defaultData) {
@@ -163,7 +173,14 @@ export default function CreatePlantForm({
   };
 
   const handleFileChange = (event) => {
-    setImages(Array.from(event.target.files));
+    const files = Array.from(event.target.files);
+    if (files.length + uploadedFileNames.length > 3) {
+      setMaxUploadsReached(true);
+      setImages([]);
+    } else {
+      setMaxUploadsReached(false);
+      setImages(files);
+    }
   };
 
   const handleDeleteImage = (imageName) => {
@@ -204,6 +221,7 @@ export default function CreatePlantForm({
     setImages([]);
     setUploadedFileNames([]);
     setDeletedImages([]);
+    setMaxUploadsReached(false);
   };
 
   const uploadImages = async (images) => {
@@ -226,7 +244,6 @@ export default function CreatePlantForm({
 
       const imageUrls = await response.json();
       return imageUrls;
-      // setUploadedFileNames((oldFileNames) => [...oldFileNames, ...imageUrls]);
     } catch (error) {
       console.error("Error uploading images:", error);
       return [];
@@ -348,7 +365,13 @@ export default function CreatePlantForm({
         name="images"
         multiple
         onChange={handleFileChange}
+        disabled={uploadedFileNames.length >= 3}
       />
+      <UploadInfo>Maximum 3 images</UploadInfo>
+      {maxUploadsReached && (
+        <UploadMessage>Maximum number of uploads exceeded.</UploadMessage>
+      )}
+
       <FileList>
         {uploadedFileNames.map(
           (fileName) =>
