@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const FormContainer = styled.form`
   display: grid;
@@ -86,26 +88,37 @@ const FileList = styled.ul`
   list-style: none;
   padding: 0;
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 `;
 
 const FileListItem = styled.li`
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 0.5rem;
 `;
 
 const DeleteButton = styled.button`
-  background: #ff4d4d;
-  color: white;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.5rem;
   cursor: pointer;
+  color: red;
+  font-size: 1.5rem;
+`;
+
+const Thumbnail = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
 `;
 
 export default function CreatePlantForm({
@@ -332,12 +345,12 @@ export default function CreatePlantForm({
       <FileList>
         {uploadedFileNames.map((fileName) => (
           <FileListItem key={fileName}>
-            {fileName}
+            <Thumbnail src={fileName} alt="Uploaded Image" />
             <DeleteButton
               type="button"
               onClick={() => handleDeleteImage(fileName)}
             >
-              Delete
+              <FontAwesomeIcon icon={faTimesCircle} />
             </DeleteButton>
           </FileListItem>
         ))}
