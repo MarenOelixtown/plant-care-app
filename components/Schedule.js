@@ -98,7 +98,7 @@ const StyledPDiv = styled.div`
   width: 100%;
 `;
 
-export default function MySchedule({ plants, getPlantInfoById }) {
+export default function MySchedule({ plants, getPlantInfoById, darkMode }) {
   const router = useRouter();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 

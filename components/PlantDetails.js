@@ -34,7 +34,6 @@ const Heading = styled.h2`
 `;
 
 const SubHeading = styled.h3`
-  /* color: #607843; */
   color: ${(props) => (props.darkMode ? "var(--light-yellow)" : "#607843")};
   font-size: 1.3rem;
   margin-bottom: 20px;
@@ -82,7 +81,8 @@ const NeedItem = styled.div`
   width: 200px;
   height: 150px;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-grey)" : "#f0f0f0"};
   border-radius: 1rem;
   margin-right: 30px;
   text-align: center;
@@ -96,7 +96,7 @@ const NeedTitle = styled.h4`
 
 const NeedValue = styled.p`
   font-size: 1rem;
-  color: #555;
+  color: lightgray;
 `;
 
 const StyledDiv = styled.div`
@@ -176,15 +176,15 @@ export default function PlantDetails({
       )}
 
       <NeedsContainer>
-        <NeedItem>
+        <NeedItem darkMode={darkMode}>
           <NeedTitle>Water Need</NeedTitle>
           <NeedValue>{plant.water_need}</NeedValue>
         </NeedItem>
-        <NeedItem>
+        <NeedItem darkMode={darkMode}>
           <NeedTitle>Fertiliser Cycle</NeedTitle>
           <NeedValue>{plant.fertiliser_season.join(", ")}</NeedValue>
         </NeedItem>
-        <NeedItem>
+        <NeedItem darkMode={darkMode}>
           <NeedTitle>Light Needs</NeedTitle>
           <NeedValue>{plant.light_need}</NeedValue>
         </NeedItem>
@@ -200,6 +200,7 @@ export default function PlantDetails({
           <>
             <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
+              darkMode={darkMode}
               OnDeletePlant={handleDeletePlant}
               id={plant.id}
             />

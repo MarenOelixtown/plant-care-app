@@ -10,12 +10,12 @@ export default function MyPlantsPage({
 }) {
   return (
     <MyPlants
-      darkMode={darkMode}
       plants={plants}
       handleToggleMyPlants={handleToggleMyPlants}
       handleDeletePlant={handleDeletePlant}
       getPlantInfoById={getPlantInfoById}
       handleEditPlant={handleEditPlant}
+      darkMode={darkMode}
     />
   );
 }

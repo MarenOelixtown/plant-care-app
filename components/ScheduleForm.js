@@ -49,6 +49,7 @@ export default function ScheduleForm({
   plants,
   handleAddReminder,
   getPlantInfoById,
+  darkMode,
 }) {
   const [selectedPlant, setSelectedPlant] = useState("");
   const [wateringStartDate, setWateringStartDate] = useState("");

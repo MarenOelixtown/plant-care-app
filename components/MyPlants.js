@@ -98,6 +98,7 @@ export default function MyPlants({
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
                   handleEditPlant={handleEditPlant}
+                  darkMode={darkMode}
                 />
               </StyledItem>
             );
