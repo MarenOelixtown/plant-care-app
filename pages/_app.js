@@ -3,11 +3,24 @@ import GlobalStyle from "../styles";
 import Layout from "@/components/Layout";
 import { initialPlants } from "@/assets/plants";
 import { uid } from "uid";
+import useLocalStorageState from "use-local-storage-state";
+import LoadingWrapper from "@/components/LoadingWrapper";
 
 export default function App({ Component, pageProps }) {
-  const [plants, setPlants] = useState(initialPlants);
-  const [plantsInfo, setPlantsInfo] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [plants, setPlants] = useLocalStorageState("plants", {
+    defaultValue: initialPlants,
+  });
+  const [plantsInfo, setPlantsInfo] = useLocalStorageState("plantsInfo", {
+    defaultValue: [],
+  });
+
+  useEffect(() => {
+    if (plants && plantsInfo) {
+      setIsInitialized(true);
+    }
+  }, [plants, plantsInfo]);
 
   function handleAddPlant(newPlant) {
     // We are using functional updates to ensure the latest state is used.
@@ -75,6 +88,10 @@ export default function App({ Component, pageProps }) {
 
   function handleToggleDarkMode() {
     setDarkMode((prevMode) => !prevMode);
+  }
+
+  if (!isInitialized) {
+    return <LoadingWrapper />;
   }
 
   return (

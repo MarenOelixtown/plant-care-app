@@ -157,8 +157,6 @@ export default function CreatePlantForm({
       Fall: false,
       Winter: false,
     });
-
-    console.log(plantData);
   };
 
   const uploadImages = async (images) => {
