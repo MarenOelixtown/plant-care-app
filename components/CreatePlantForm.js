@@ -166,17 +166,11 @@ export default function CreatePlantForm({
     setImages(Array.from(event.target.files));
   };
 
-  /* const handleDeleteImage = (imageName) => {
-    setUploadedFileNames((prevFileNames) =>
-      prevFileNames.filter((name) => name !== imageName)
-    );
-    setDeletedImages((prevDeletedImages) => [...prevDeletedImages, imageName]);
-  }; */
   const handleDeleteImage = (imageName) => {
-    setUploadedFileNames((prevFileNames) =>
-      prevFileNames.filter((name) => name !== imageName)
+    setUploadedFileNames((oldFileNames) =>
+      oldFileNames.filter((name) => name !== imageName)
     );
-    setDeletedImages((prevDeletedImages) => [...prevDeletedImages, imageName]);
+    setDeletedImages((oldDeletedImages) => [...oldDeletedImages, imageName]);
   };
 
   const handleSubmit = async (event) => {
@@ -232,7 +226,7 @@ export default function CreatePlantForm({
 
       const imageUrls = await response.json();
       return imageUrls;
-      setUploadedFileNames((prevFileNames) => [...prevFileNames, ...imageUrls]);
+      // setUploadedFileNames((oldFileNames) => [...oldFileNames, ...imageUrls]);
     } catch (error) {
       console.error("Error uploading images:", error);
       return [];

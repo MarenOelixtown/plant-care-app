@@ -4,6 +4,8 @@ import ButtonAddPlant from "./ButtonAddPlant";
 import { useRouter } from "next/router";
 import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
+import placeholderimage from "../public/placeholderimage.jpg";
+import { useState } from "react";
 
 const StyledCard = styled.div`
   display: flex;
@@ -19,7 +21,11 @@ const StyledCard = styled.div`
   border-radius: 1rem;
   background-color: white;
 `;
-
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+`;
 const StyledHeader = styled.header`
   text-align: center;
   margin-bottom: 20px;
@@ -126,6 +132,19 @@ export default function PlantDetails({
   const plantsIndex = plants.findIndex((plant) => plant.id === id);
   const plant = plants[plantsIndex];
 
+  const [currentImageId, setCurrentImageId] = useState(0);
+
+  function handleNextButtonClick() {
+    const nextImageId = (currentImageId + 1) % plant.images.length;
+    setCurrentImageId(nextImageId);
+  }
+
+  function handlePreviousButtonClick() {
+    const previousImageId =
+      currentImageId > 0 ? currentImageId - 1 : plant.images.length - 1;
+    setCurrentImageId(previousImageId);
+  }
+
   if (!plant) {
     return (
       <>
@@ -151,17 +170,34 @@ export default function PlantDetails({
         <SubHeading>{plant.botanical_name}</SubHeading>
       </StyledHeader>
       <ImagesContainer>
-        {plant.images.map((image, index) => (
-          <StyledImageWrapper key={index}>
+        {plant.images.length === 0 ? (
+          <StyledImageWrapper>
             <StyledImage
-              src={image}
+              src={placeholderimage}
               width={300}
               height={300}
-              alt={`${plant.name} image ${index + 1}`}
+              alt={`${plant.name}`}
             />
           </StyledImageWrapper>
-        ))}
+        ) : (
+          <StyledImageWrapper>
+            <StyledImage
+              src={plant.images[currentImageId]}
+              width={300}
+              height={300}
+              alt={`${plant.name}`}
+            />
+          </StyledImageWrapper>
+        )}
       </ImagesContainer>
+      <StyledButtonContainer>
+        <button type="button" onClick={handlePreviousButtonClick}>
+          &larr;
+        </button>
+        <button type="button" onClick={handleNextButtonClick}>
+          &rarr;
+        </button>
+      </StyledButtonContainer>
 
       {plant.care_instructions && (
         <StyledDiv>

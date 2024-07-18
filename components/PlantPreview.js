@@ -3,6 +3,7 @@ import Link from "next/link";
 import ButtonAddPlant from "./ButtonAddPlant";
 import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
+import placeholderimage from "../public/placeholderimage.jpg";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -63,10 +64,14 @@ export default function PlantPreview({
   handleToggleMyPlants,
   handleDeletePlant,
 }) {
+  const previewImage =
+    plant.images && plant.images.length > 0
+      ? plant.images[0]
+      : placeholderimage;
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
-        <StyledImg src={plant.images[0]} alt={plant.name} />
+        <StyledImg src={previewImage} alt={plant.name} />
       </Link>
       <StyledInfo>
         <StyledLink href={`/overview/${plant.id}`}>
