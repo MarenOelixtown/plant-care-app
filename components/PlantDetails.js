@@ -6,6 +6,8 @@ import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
 import placeholderimage from "../public/placeholderimage.jpg";
 import { useState } from "react";
+import Leftarrow from "../components/Icons/Leftarrow.svg";
+import Rightarrow from "../components/Icons/Rightarrow.svg";
 
 const StyledCard = styled.div`
   display: flex;
@@ -21,11 +23,16 @@ const StyledCard = styled.div`
   border-radius: 1rem;
   background-color: white;
 `;
+
 const StyledButtonContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
 `;
+
 const StyledHeader = styled.header`
   text-align: center;
   margin-bottom: 20px;
@@ -50,17 +57,15 @@ const ButtonContainer = styled.div`
 `;
 
 const ImagesContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  position: relative;
   width: 100%;
+  max-width: 300px; /* Adjust as needed */
   margin-bottom: 20px;
 `;
 
 const StyledImageWrapper = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 300px; /* Adjust as needed */
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -70,6 +75,23 @@ const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const NavigationButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+const LeftButton = styled(NavigationButton)`
+  left: 0;
+`;
+
+const RightButton = styled(NavigationButton)`
+  right: 0;
 `;
 
 const NeedsContainer = styled.div`
@@ -160,6 +182,7 @@ export default function PlantDetails({
       </>
     );
   }
+
   const plantInfo = getPlantInfoById(plant.id);
   const { isUserPlant, isMyPlant } = plantInfo || {};
 
@@ -169,6 +192,7 @@ export default function PlantDetails({
         <Heading>{plant.name}</Heading>
         <SubHeading>{plant.botanical_name}</SubHeading>
       </StyledHeader>
+
       <ImagesContainer>
         {plant.images.length === 0 ? (
           <StyledImageWrapper>
@@ -189,15 +213,13 @@ export default function PlantDetails({
             />
           </StyledImageWrapper>
         )}
+        <LeftButton type="button" onClick={handlePreviousButtonClick}>
+          <Leftarrow />
+        </LeftButton>
+        <RightButton type="button" onClick={handleNextButtonClick}>
+          <Rightarrow />
+        </RightButton>
       </ImagesContainer>
-      <StyledButtonContainer>
-        <button type="button" onClick={handlePreviousButtonClick}>
-          &larr;
-        </button>
-        <button type="button" onClick={handleNextButtonClick}>
-          &rarr;
-        </button>
-      </StyledButtonContainer>
 
       {plant.care_instructions && (
         <StyledDiv>
@@ -231,7 +253,7 @@ export default function PlantDetails({
           <>
             <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
-              OnDeletePlant={handleDeletePlant}
+              onDeletePlant={handleDeletePlant}
               id={plant.id}
             />
           </>
