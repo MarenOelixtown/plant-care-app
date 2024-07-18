@@ -1,8 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Reminder from "@/components/Reminder";
 
 const StyledDiv = styled.div`
   padding: 20px;
+  position: relative;
 `;
 
 const StyledPDiv = styled.div`
@@ -36,7 +38,12 @@ const StyledParagraph = styled.p`
   color: var(--dark-yellowish);
 `;
 
-export default function HomePage() {
+export default function HomePage({
+  plants,
+  getPlantInfoById,
+  calculateNextWateringDate,
+  handleAddReminder,
+}) {
   return (
     <StyledDiv>
       <h1>Plant Pro</h1>
@@ -63,6 +70,12 @@ export default function HomePage() {
       </StyledPDiv>
       <StyledLink href="/overview">Discover New Plants</StyledLink>
       <StyledLink href="/createplant">Add Plant</StyledLink>
+      <Reminder
+        plants={plants}
+        getPlantInfoById={getPlantInfoById}
+        calculateNextWateringDate={calculateNextWateringDate}
+        handleAddReminder={handleAddReminder}
+      />
     </StyledDiv>
   );
 }

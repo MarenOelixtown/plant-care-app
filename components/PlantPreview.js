@@ -30,8 +30,7 @@ const StyledDiv = styled.div`
 `;
 const StyledImg = styled(Image)`
   border-radius: 0.5rem;
-  width: 100px;
-  height: 100px;
+  object-fit: cover;
   margin-right: 50px;
   margin-left: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -76,7 +75,7 @@ export default function PlantPreview({
       : placeholderimage;
   return (
     <StyledDiv>
-      <Link href={`/overview/${plant.id}`}>
+      <Link href={`/overview/${plant.id}`} title="Go to plant-details">
         {plant.images.length === 0 ? (
           <StyledImg
             src={placeholderimage}
@@ -94,7 +93,7 @@ export default function PlantPreview({
         )}
       </Link>
       <StyledInfo>
-        <StyledLink href={`/overview/${plant.id}`}>
+        <StyledLink href={`/overview/${plant.id}`} title="Go to plant-details">
           <StyledName>{plant.name}</StyledName>
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>

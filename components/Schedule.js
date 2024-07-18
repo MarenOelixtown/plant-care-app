@@ -3,61 +3,68 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import WateringIcon from "../components/Icons/WateringIcon.svg";
+import Reminder from "./Reminder";
+import Image from "next/image";
 
 const StyledDiv = styled.div`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const StyledImg = styled.img`
-  border-radius: 5px;
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
+const StyledImg = styled(Image)`
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
 `;
 
 const StyledList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  padding: 0;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 0 5%;
 `;
 
 const StyledItem = styled.li`
-  display: block;
-  align-content: space-between;
-  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
   list-style: none;
   border-spacing: 10px;
 `;
 
-const StyledInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-right: 5px;
-`;
-
 const StyledPlant = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  margin-bottom: 5px;
   color: grey;
-  border-style: solid;
   padding: 10px;
-  margin: 10px;
 `;
 
-const StyledName = styled.p`
-  margin-right: 5px;
+const StyledName = styled.h3`
   font-weight: bold;
-  color: black;
+  color: var(--primary-color);
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.4rem;
 `;
-
+const StyledDate = styled.p`
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.4rem;
+`;
 const StyledSpan = styled.span`
-  margin-right: 1rem;
+  margin-right: 0.4rem;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  margin-top: 2rem;
+  margin: 2rem 0;
   background-color: var(--primary-color);
   color: var(--light-yellow);
   border: 2px solid #30482a;
@@ -65,7 +72,6 @@ const StyledLink = styled(Link)`
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 20px;
 
   &:hover {
     background-color: var(--light-green);
@@ -98,7 +104,12 @@ const StyledPDiv = styled.div`
   width: 100%;
 `;
 
-export default function MySchedule({ plants, getPlantInfoById }) {
+export default function MySchedule({
+  plants,
+  getPlantInfoById,
+  calculateNextWateringDate,
+  handleAddReminder,
+}) {
   const router = useRouter();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -130,9 +141,17 @@ export default function MySchedule({ plants, getPlantInfoById }) {
   return (
     <StyledDiv>
       <h1>My Schedule</h1>
+
       {showSuccessMessage && (
         <SuccessMessage>Watering schedule added successfully!</SuccessMessage>
       )}
+      <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
+      <Reminder
+        plants={plants}
+        getPlantInfoById={getPlantInfoById}
+        calculateNextWateringDate={calculateNextWateringDate}
+        handleAddReminder={handleAddReminder}
+      />
       {plantsWithReminder.length === 0 ? (
         <StyledPDiv>
           <StyledParagraph>
@@ -145,22 +164,29 @@ export default function MySchedule({ plants, getPlantInfoById }) {
           {plantsWithReminder.map((plant) => (
             <StyledItem key={plant.id}>
               <StyledPlant>
-                <StyledImg src={plant.images[0]} alt={plant.name} />
-                <StyledInfo>
-                  <StyledName>{plant.name}</StyledName>
-                  <p>
-                    <StyledSpan>
-                      <WateringIcon />
-                    </StyledSpan>
-                    {plant.wateringDate}
-                  </p>
-                </StyledInfo>
+                <StyledName>{plant.name}</StyledName>
+                <Link
+                  href={`/overview/${plant.id}`}
+                  title="Go to plant-details"
+                >
+                  <StyledImg
+                    src={plant.images[0]}
+                    alt={plant.name}
+                    width={130}
+                    height={130}
+                  />
+                </Link>
+                <StyledDate>
+                  <StyledSpan>
+                    <WateringIcon />
+                  </StyledSpan>
+                  {plant.wateringDate}
+                </StyledDate>
               </StyledPlant>
             </StyledItem>
           ))}
         </StyledList>
       )}
-      <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
     </StyledDiv>
   );
 }

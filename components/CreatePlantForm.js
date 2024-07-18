@@ -359,7 +359,7 @@ export default function CreatePlantForm({
         defaultValue={defaultData?.care_instructions}
       ></Textarea>
       <br />
-      <Label htmlFor="images">*Add Photos:</Label>
+      <Label htmlFor="images">Add Photos:</Label>
       <StyledFileInput
         id="images"
         name="images"
