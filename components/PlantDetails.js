@@ -96,7 +96,8 @@ const NeedTitle = styled.h4`
 
 const NeedValue = styled.p`
   font-size: 1rem;
-  color: lightgray;
+  color: ${(props) =>
+    props.darkMode ? "lightgrey" : "var(--dark-light-grey)"};
 `;
 
 const StyledDiv = styled.div`
@@ -178,15 +179,17 @@ export default function PlantDetails({
       <NeedsContainer>
         <NeedItem darkMode={darkMode}>
           <NeedTitle>Water Need</NeedTitle>
-          <NeedValue>{plant.water_need}</NeedValue>
+          <NeedValue darkMode={darkMode}>{plant.water_need}</NeedValue>
         </NeedItem>
         <NeedItem darkMode={darkMode}>
           <NeedTitle>Fertiliser Cycle</NeedTitle>
-          <NeedValue>{plant.fertiliser_season.join(", ")}</NeedValue>
+          <NeedValue darkMode={darkMode}>
+            {plant.fertiliser_season.join(", ")}
+          </NeedValue>
         </NeedItem>
         <NeedItem darkMode={darkMode}>
           <NeedTitle>Light Needs</NeedTitle>
-          <NeedValue>{plant.light_need}</NeedValue>
+          <NeedValue darkMode={darkMode}>{plant.light_need}</NeedValue>
         </NeedItem>
       </NeedsContainer>
 

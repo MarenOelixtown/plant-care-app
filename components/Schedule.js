@@ -48,7 +48,7 @@ const StyledPlant = styled.div`
 const StyledName = styled.p`
   margin-right: 5px;
   font-weight: bold;
-  color: black;
+  color: ${(props) => (props.darkMode ? "white" : "black")};
 `;
 
 const StyledSpan = styled.span`
@@ -91,7 +91,8 @@ const StyledParagraph = styled.p`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin: 20px auto 40px auto;
   max-width: 550px;
@@ -134,7 +135,7 @@ export default function MySchedule({ plants, getPlantInfoById, darkMode }) {
         <SuccessMessage>Watering schedule added successfully!</SuccessMessage>
       )}
       {plantsWithReminder.length === 0 ? (
-        <StyledPDiv>
+        <StyledPDiv darkMode={darkMode}>
           <StyledParagraph>
             You currently do not have a schedule set. Would you like to create
             one now?
@@ -147,7 +148,7 @@ export default function MySchedule({ plants, getPlantInfoById, darkMode }) {
               <StyledPlant>
                 <StyledImg src={plant.images[0]} alt={plant.name} />
                 <StyledInfo>
-                  <StyledName>{plant.name}</StyledName>
+                  <StyledName darkMode={darkMode}>{plant.name}</StyledName>
                   <p>
                     <StyledSpan>
                       <WateringIcon />

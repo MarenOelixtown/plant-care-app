@@ -2,9 +2,12 @@ import Link from "next/link";
 import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
-import { HomeIcon } from "./Icons/HomeIcon";
-import { PlantOverviewIcon } from "./Icons/PlantOverviewIcon";
-import { MyPlantsIcon } from "./Icons/MyPlantsIcon";
+import { HomeIconLight } from "./Icons/HomeIconLight";
+import { HomeIconDark } from "./Icons/HomeIconDark";
+import { OverviewIconLight } from "./Icons/OverviewIconLight";
+import { OverviewIconDark } from "./Icons/OverviewIconDark";
+import { MyPlantsIconLight } from "./Icons/MyPlantsIconLight";
+import { MyPlantsIconDark } from "./Icons/MyPlantsIconDark";
 import LightMode from "./Icons/LightMode.svg";
 import DarkMode from "./Icons/DarkMode.svg";
 
@@ -48,25 +51,40 @@ export default function NavigationBar({ darkMode, onToggleDarkMode }) {
   const getFillColor = (path) =>
     router.pathname === path ? "var(--primary-color)" : "var(--primary-color)";
   const getBackgroundColor = (path) =>
-    router.pathname === path ? "var(--lightest-green)" : "";
-
+    router.pathname === path
+      ? darkMode
+        ? "var(--dark-light-grey)"
+        : "var(--lightest-green)"
+      : "";
   return (
     <StyledFooter darkMode={darkMode}>
       <nav>
         <NavigationList>
           <IconListItem $bgColor={getBackgroundColor("/")}>
             <Link href="/" title="Home">
-              <HomeIcon getFillColor={getFillColor("/")} />
+              {darkMode ? (
+                <HomeIconDark getFillColor={getFillColor("/")} />
+              ) : (
+                <HomeIconLight getFillColor={getFillColor("/")} />
+              )}
             </Link>
           </IconListItem>
           <IconListItem $bgColor={getBackgroundColor("/overview")}>
             <Link href="/overview" title="Plants Overview">
-              <PlantOverviewIcon getFillColor={getFillColor("/overview")} />
+              {darkMode ? (
+                <OverviewIconDark getFillColor={getFillColor("/")} />
+              ) : (
+                <OverviewIconLight getFillColor={getFillColor("/")} />
+              )}
             </Link>
           </IconListItem>
           <IconListItem $bgColor={getBackgroundColor("/myplants")}>
             <Link href="/myplants" title="My Plants">
-              <MyPlantsIcon getFillColor={getFillColor("/myplants")} />
+              {darkMode ? (
+                <MyPlantsIconDark getFillColor={getFillColor("/")} />
+              ) : (
+                <MyPlantsIconLight getFillColor={getFillColor("/")} />
+              )}
             </Link>
           </IconListItem>
           <IconListItem>

@@ -16,11 +16,13 @@ export default function ScheduleFormPage({
   plants,
   handleAddReminder,
   getPlantInfoById,
+  darkMode,
 }) {
   return (
     <FormPageContainer>
       <Heading>Watering-Schedule</Heading>
       <ScheduleForm
+        darkMode={darkMode}
         plants={plants}
         handleAddReminder={handleAddReminder}
         getPlantInfoById={getPlantInfoById}
