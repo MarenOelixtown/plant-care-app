@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Image from "next/image";
+import WateringIcon from "../components/Icons/WateringIcon.svg";
 
 const StyledSection = styled.section`
   position: relative;
@@ -156,7 +157,9 @@ export default function Reminder({
   }
   return (
     <>
-      <ReminderButton onClick={toggleReminder}>To-Do-Today</ReminderButton>
+      <ReminderButton onClick={toggleReminder}>
+        <WateringIcon style={{ fill: "var(--dark-yellowish)" }} /> To-Do-Today
+      </ReminderButton>
       {showReminder && (
         <StyledSection>
           <CloseButton onClick={toggleReminder}>
@@ -183,7 +186,9 @@ export default function Reminder({
             ))}
           </StyledList>
           {plantsWithReminderToday.length === 0 ? (
-            <StyledParagraph>All plants are supplied!</StyledParagraph>
+            <StyledParagraph>
+              Today all plants are supplied, no Watering-To-Do!
+            </StyledParagraph>
           ) : (
             <StyledParagraph>Please push plant, if done!</StyledParagraph>
           )}
