@@ -1,11 +1,19 @@
 import MySchedule from "@/components/Schedule";
 
-export default function MySchedulePage({ plants, getPlantInfoById, darkMode }) {
+export default function MySchedulePage({
+  plants,
+  getPlantInfoById,
+  calculateNextWateringDate,
+  handleAddReminder,
+  darkMode,
+}) {
   return (
     <MySchedule
-      darkMode={darkMode}
       plants={plants}
       getPlantInfoById={getPlantInfoById}
+      calculateNextWateringDate={calculateNextWateringDate}
+      handleAddReminder={handleAddReminder}
+      darkMode={darkMode}
     />
   );
 }

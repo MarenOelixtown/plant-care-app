@@ -73,6 +73,17 @@ export default function App({ Component, pageProps }) {
       )
     );
   }
+  const calculateNextWateringDate = (wateringStartDate, waterNeed) => {
+    let wateringDate = new Date(wateringStartDate);
+    if (waterNeed === "Low") {
+      wateringDate.setDate(wateringDate.getDate() + 6); // 6 days
+    } else if (waterNeed === "Moderate") {
+      wateringDate.setDate(wateringDate.getDate() + 2); // 3 days
+    } else if (waterNeed === "High") {
+      wateringDate.setDate(wateringDate.getDate() + 1); // 1 day
+    }
+    return wateringDate;
+  };
 
   const getPlantInfoById = (id) => {
     const plantInfo = plantsInfo.find((info) => info.id === id);
@@ -108,6 +119,7 @@ export default function App({ Component, pageProps }) {
           handleDeletePlant={handleDeletePlant}
           handleAddReminder={handleAddReminder}
           getPlantInfoById={getPlantInfoById}
+          calculateNextWateringDate={calculateNextWateringDate}
         />
       </Layout>
     </>

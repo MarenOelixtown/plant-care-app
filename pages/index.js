@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
   padding: 20px;
+  position: relative;
 `;
 
 const StyledPDiv = styled.div`
@@ -74,6 +75,9 @@ export default function HomePage({ darkMode }) {
       </StyledLink>
       <StyledLink darkMode={darkMode} href="/createplant">
         Add Plant
+      </StyledLink>
+      <StyledLink darkMode={darkMode} href="/myschedule" title="My Schedule">
+        Watering Schedules
       </StyledLink>
     </StyledDiv>
   );

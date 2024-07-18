@@ -57,6 +57,7 @@ export default function ScheduleForm({
   handleAddReminder,
   getPlantInfoById,
   darkMode,
+  calculateNextWateringDate,
 }) {
   const [selectedPlant, setSelectedPlant] = useState("");
   const [wateringStartDate, setWateringStartDate] = useState("");
@@ -75,18 +76,14 @@ export default function ScheduleForm({
       (plant) => plant.id === scheduleData.name
     );
     if (selectedPlantDetails) {
-      let wateringDate = new Date(scheduleData.wateringStartDate);
-      if (selectedPlantDetails.water_need === "Low") {
-        wateringDate.setDate(wateringDate.getDate() + 6); // 6 weeks
-      } else if (selectedPlantDetails.water_need === "Moderate") {
-        wateringDate.setDate(wateringDate.getDate() + 2); // 3 days
-      } else if (selectedPlantDetails.water_need === "High") {
-        wateringDate.setDate(wateringDate.getDate() + 1); // 1 day
-      }
+      const nextWateringDate = calculateNextWateringDate(
+        scheduleData.wateringStartDate,
+        selectedPlantDetails.water_need
+      );
 
       handleAddReminder(
         scheduleData.name,
-        wateringDate.toISOString().split("T")[0]
+        nextWateringDate.toISOString().split("T")[0]
       );
 
       router.push({

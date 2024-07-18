@@ -13,6 +13,7 @@ import DarkMode from "./Icons/DarkMode.svg";
 
 const StyledFooter = styled.footer`
   position: fixed;
+  z-index: 998;
   left: 0;
   right: 0;
   bottom: 0;
