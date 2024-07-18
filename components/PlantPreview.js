@@ -73,9 +73,19 @@ export default function PlantPreview({
     <StyledDiv>
       <Link href={`/overview/${plant.id}`}>
         {plant.images.length === 0 ? (
-          <StyledImg src={placeholderimage} alt={`${plant.name}`} />
+          <StyledImg
+            src={placeholderimage}
+            width={100}
+            height={100}
+            alt={`${plant.name}`}
+          />
         ) : (
-          <StyledImg src={plant.images[0]} alt={`${plant.name}`} />
+          <StyledImg
+            src={plant.images[0]}
+            width={100}
+            height={100}
+            alt={`${plant.name}`}
+          />
         )}
       </Link>
       <StyledInfo>
