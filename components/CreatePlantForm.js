@@ -118,21 +118,26 @@ export default function CreatePlantForm({
   const [images, setImages] = useState([]);
   const [uploadedFileNames, setUploadedFileNames] = useState([]);
   const [deletedImages, setDeletedImages] = useState([]);
-  const [waterNeed, setWaterNeed] = useState(defaultData?.water_need || "");
-  const [lightNeed, setLightNeed] = useState(defaultData?.light_need || "");
-
-  const [seasons, setSeasons] = useState(
-    {
-      Spring: defaultData?.fertiliser_season.includes("Spring"),
-      Summer: defaultData?.fertiliser_season.includes("Summer"),
-      Fall: defaultData?.fertiliser_season.includes("Fall"),
-      Winter: defaultData?.fertiliser_season.includes("Winter"),
-    } || {}
-  );
+  const [waterNeed, setWaterNeed] = useState("");
+  const [lightNeed, setLightNeed] = useState("");
+  const [seasons, setSeasons] = useState({
+    Spring: false,
+    Summer: false,
+    Fall: false,
+    Winter: false,
+  });
 
   useEffect(() => {
-    if (defaultData?.images) {
-      setUploadedFileNames(defaultData.images);
+    if (defaultData) {
+      setUploadedFileNames(defaultData.images || []);
+      setWaterNeed(defaultData.water_need || "");
+      setLightNeed(defaultData.light_need || "");
+      setSeasons({
+        Spring: defaultData.fertiliser_season?.includes("Spring") || false,
+        Summer: defaultData.fertiliser_season?.includes("Summer") || false,
+        Fall: defaultData.fertiliser_season?.includes("Fall") || false,
+        Winter: defaultData.fertiliser_season?.includes("Winter") || false,
+      });
     }
   }, [defaultData]);
 
@@ -268,7 +273,7 @@ export default function CreatePlantForm({
               id="Spring"
               name="fertiliser_season"
               value="Spring"
-              defaultChecked={seasons.Spring}
+              checked={seasons.Spring}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -279,7 +284,7 @@ export default function CreatePlantForm({
               id="Summer"
               name="fertiliser_season"
               value="Summer"
-              defaultChecked={seasons.Summer}
+              checked={seasons.Summer}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -290,7 +295,7 @@ export default function CreatePlantForm({
               id="Fall"
               name="fertiliser_season"
               value="Fall"
-              defaultChecked={seasons.Fall}
+              checked={seasons.Fall}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -301,7 +306,7 @@ export default function CreatePlantForm({
               id="Winter"
               name="fertiliser_season"
               value="Winter"
-              defaultChecked={seasons.Winter}
+              checked={seasons.Winter}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>
