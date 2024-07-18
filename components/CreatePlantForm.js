@@ -105,8 +105,8 @@ const FileListItem = styled.li`
 
 const DeleteButton = styled.button`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: -5px;
+  right: -5px;
   background: none;
   border: none;
   cursor: pointer;
