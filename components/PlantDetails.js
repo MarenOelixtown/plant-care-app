@@ -204,12 +204,16 @@ export default function PlantDetails({
             />
           </StyledImageWrapper>
         )}
-        <LeftButton type="button" onClick={handlePreviousButtonClick}>
-          <Leftarrow />
-        </LeftButton>
-        <RightButton type="button" onClick={handleNextButtonClick}>
-          <Rightarrow />
-        </RightButton>
+        {plant.images.length > 1 && (
+          <>
+            <LeftButton type="button" onClick={handlePreviousButtonClick}>
+              <Leftarrow />
+            </LeftButton>
+            <RightButton type="button" onClick={handleNextButtonClick}>
+              <Rightarrow />
+            </RightButton>
+          </>
+        )}
       </ImagesContainer>
 
       {plant.care_instructions && (
