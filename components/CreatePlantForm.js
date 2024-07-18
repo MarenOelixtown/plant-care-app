@@ -166,6 +166,12 @@ export default function CreatePlantForm({
     setImages(Array.from(event.target.files));
   };
 
+  /* const handleDeleteImage = (imageName) => {
+    setUploadedFileNames((prevFileNames) =>
+      prevFileNames.filter((name) => name !== imageName)
+    );
+    setDeletedImages((prevDeletedImages) => [...prevDeletedImages, imageName]);
+  }; */
   const handleDeleteImage = (imageName) => {
     setUploadedFileNames((prevFileNames) =>
       prevFileNames.filter((name) => name !== imageName)
@@ -178,13 +184,16 @@ export default function CreatePlantForm({
     const formData = new FormData(event.target);
 
     const imageUrls = await uploadImages(images);
+    const filteredUploadedFileNames = uploadedFileNames.filter(
+      (fileName) => !deletedImages.includes(fileName)
+    );
 
     const plantData = Object.fromEntries(formData);
     const selectedSeasons = Object.keys(seasons).filter(
       (season) => seasons[season]
     );
     plantData.fertiliser_season = selectedSeasons;
-    plantData.images = [...uploadedFileNames, ...imageUrls];
+    plantData.images = [...filteredUploadedFileNames, ...imageUrls];
     plantData.deletedImages = deletedImages;
 
     onSubmit(plantData);
@@ -198,6 +207,9 @@ export default function CreatePlantForm({
       Fall: false,
       Winter: false,
     });
+    setImages([]);
+    setUploadedFileNames([]);
+    setDeletedImages([]);
   };
 
   const uploadImages = async (images) => {
@@ -220,6 +232,7 @@ export default function CreatePlantForm({
 
       const imageUrls = await response.json();
       return imageUrls;
+      setUploadedFileNames((prevFileNames) => [...prevFileNames, ...imageUrls]);
     } catch (error) {
       console.error("Error uploading images:", error);
       return [];
@@ -343,17 +356,20 @@ export default function CreatePlantForm({
         onChange={handleFileChange}
       />
       <FileList>
-        {uploadedFileNames.map((fileName) => (
-          <FileListItem key={fileName}>
-            <Thumbnail src={fileName} alt="Uploaded Image" />
-            <DeleteButton
-              type="button"
-              onClick={() => handleDeleteImage(fileName)}
-            >
-              <FontAwesomeIcon icon={faTimesCircle} />
-            </DeleteButton>
-          </FileListItem>
-        ))}
+        {uploadedFileNames.map(
+          (fileName) =>
+            !deletedImages.includes(fileName) && (
+              <FileListItem key={fileName}>
+                <Thumbnail src={fileName} alt="Uploaded Image" />
+                <DeleteButton
+                  type="button"
+                  onClick={() => handleDeleteImage(fileName)}
+                >
+                  <FontAwesomeIcon icon={faTimesCircle} />
+                </DeleteButton>
+              </FileListItem>
+            )
+        )}
       </FileList>
       <StyledButton type="submit" disabled={isSubmitting}>
         {defaultData ? "Update Plant" : "Add Plant"}
