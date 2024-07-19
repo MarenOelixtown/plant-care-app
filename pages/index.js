@@ -123,7 +123,7 @@ const StyledPDiv = styled.div`
   margin-top: 20px;
 `;
 
-const LinksDiv = styled.div`
+const HeadlineDiv = styled.div`
   ${CommonDivStyles}
   display: flex;
   flex-direction: column;
@@ -135,8 +135,7 @@ const LinksDiv = styled.div`
   padding: 20px;
   border-radius: 1rem;
 `;
-/* const BottomLinksDiv = styled.div`
-  ${CommonDivStyles}
+const BottomLinksDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,7 +143,7 @@ const LinksDiv = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 1rem;
-`; */
+`;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -182,14 +181,14 @@ export default function HomePage({ darkMode }) {
       <StyledAppName>Plant Pro</StyledAppName>
 
       <ContainerDiv>
-        <LinksDiv>
+        <HeadlineDiv>
           <StyledHeadline>
             Welcome to your ultimate plant care companion!
           </StyledHeadline>
           <StyledLink darkMode={darkMode} href="/overview">
             Discover Plants
           </StyledLink>
-        </LinksDiv>
+        </HeadlineDiv>
         <StyledPDiv darkMode={darkMode}>
           <StyledParagraph darkMode={darkMode}>
             Your go-to app for all your plant care needs. Whether you are a
@@ -209,7 +208,7 @@ export default function HomePage({ darkMode }) {
           <StyledParagraph darkMode={darkMode}>
             Start your journey to greener living! Happy Gardening! 🪴
           </StyledParagraph>
-          <div>
+          <BottomLinksDiv>
             <StyledLink darkMode={darkMode} href="/createplant">
               Add Plant
             </StyledLink>
@@ -220,7 +219,7 @@ export default function HomePage({ darkMode }) {
             >
               Watering Schedules
             </StyledLink>
-          </div>
+          </BottomLinksDiv>
         </StyledPDiv>
       </ContainerDiv>
     </StyledDiv>
