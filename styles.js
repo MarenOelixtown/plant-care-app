@@ -5,6 +5,7 @@ import Image from "next/image";
 export default createGlobalStyle`
  /* Import Google Font (example using Poppins) */
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 
   /* Box sizing rules */
