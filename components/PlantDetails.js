@@ -4,6 +4,10 @@ import ButtonAddPlant from "./ButtonAddPlant";
 import { useRouter } from "next/router";
 import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
+import placeholderimage from "../public/placeholderimage.jpg";
+import { useState } from "react";
+import Leftarrow from "../components/Icons/Leftarrow.svg";
+import Rightarrow from "../components/Icons/Rightarrow.svg";
 
 const StyledCard = styled.div`
   display: flex;
@@ -44,17 +48,15 @@ const ButtonContainer = styled.div`
 `;
 
 const ImagesContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  position: relative;
   width: 100%;
+  max-width: 300px; /* Adjust as needed */
   margin-bottom: 20px;
 `;
 
 const StyledImageWrapper = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 300px; /* Adjust as needed */
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -64,6 +66,23 @@ const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const NavigationButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+const LeftButton = styled(NavigationButton)`
+  left: 0;
+`;
+
+const RightButton = styled(NavigationButton)`
+  right: 0;
 `;
 
 const NeedsContainer = styled.div`
@@ -126,6 +145,19 @@ export default function PlantDetails({
   const plantsIndex = plants.findIndex((plant) => plant.id === id);
   const plant = plants[plantsIndex];
 
+  const [currentImageId, setCurrentImageId] = useState(0);
+
+  function handleNextButtonClick() {
+    const nextImageId = (currentImageId + 1) % plant.images.length;
+    setCurrentImageId(nextImageId);
+  }
+
+  function handlePreviousButtonClick() {
+    const previousImageId =
+      currentImageId > 0 ? currentImageId - 1 : plant.images.length - 1;
+    setCurrentImageId(previousImageId);
+  }
+
   if (!plant) {
     return (
       <>
@@ -141,6 +173,7 @@ export default function PlantDetails({
       </>
     );
   }
+
   const plantInfo = getPlantInfoById(plant.id);
   const { isUserPlant, isMyPlant } = plantInfo || {};
 
@@ -150,17 +183,37 @@ export default function PlantDetails({
         <Heading>{plant.name}</Heading>
         <SubHeading>{plant.botanical_name}</SubHeading>
       </StyledHeader>
+
       <ImagesContainer>
-        {plant.images.map((image, index) => (
-          <StyledImageWrapper key={index}>
+        {plant.images.length === 0 ? (
+          <StyledImageWrapper>
             <StyledImage
-              src={image}
+              src={placeholderimage}
               width={300}
               height={300}
-              alt={`${plant.name} image ${index + 1}`}
+              alt={`${plant.name}`}
             />
           </StyledImageWrapper>
-        ))}
+        ) : (
+          <StyledImageWrapper>
+            <StyledImage
+              src={plant.images[currentImageId]}
+              width={300}
+              height={300}
+              alt={`${plant.name}`}
+            />
+          </StyledImageWrapper>
+        )}
+        {plant.images.length > 1 && (
+          <>
+            <LeftButton type="button" onClick={handlePreviousButtonClick}>
+              <Leftarrow />
+            </LeftButton>
+            <RightButton type="button" onClick={handleNextButtonClick}>
+              <Rightarrow />
+            </RightButton>
+          </>
+        )}
       </ImagesContainer>
 
       {plant.care_instructions && (
@@ -195,7 +248,7 @@ export default function PlantDetails({
           <>
             <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
-              OnDeletePlant={handleDeletePlant}
+              onDeletePlant={handleDeletePlant}
               id={plant.id}
             />
           </>

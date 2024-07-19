@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import Image from "next/image";
 import Link from "next/link";
 import ButtonAddPlant from "./ButtonAddPlant";
 import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
+import placeholderimage from "../public/placeholderimage.jpg";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -26,11 +28,16 @@ const StyledDiv = styled.div`
   background-color: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 `;
-const StyledImg = styled.img`
+const StyledImg = styled(Image)`
   border-radius: 0.5rem;
   object-fit: cover;
   margin-right: 50px;
   margin-left: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -62,15 +69,28 @@ export default function PlantPreview({
   handleToggleMyPlants,
   handleDeletePlant,
 }) {
+  const previewImage =
+    plant.images && plant.images.length > 0
+      ? plant.images[0]
+      : placeholderimage;
   return (
     <StyledDiv>
       <Link href={`/overview/${plant.id}`} title="Go to plant-details">
-        <StyledImg
-          src={plant.images[0]}
-          alt={plant.name}
-          width={100}
-          height={100}
-        />
+        {plant.images.length === 0 ? (
+          <StyledImg
+            src={placeholderimage}
+            width={100}
+            height={100}
+            alt={`${plant.name}`}
+          />
+        ) : (
+          <StyledImg
+            src={plant.images[0]}
+            width={100}
+            height={100}
+            alt={`${plant.name}`}
+          />
+        )}
       </Link>
       <StyledInfo>
         <StyledLink href={`/overview/${plant.id}`} title="Go to plant-details">

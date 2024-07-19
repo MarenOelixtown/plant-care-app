@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const FormContainer = styled.form`
   display: grid;
@@ -82,6 +84,52 @@ const Legend = styled.legend`
   font-weight: bold;
 `;
 
+const FileList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const FileListItem = styled.li`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 0.5rem;
+`;
+
+const DeleteButton = styled.button`
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 1.5rem;
+`;
+
+const Thumbnail = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+`;
+
+const UploadMessage = styled.p`
+  color: red;
+  font-size: 0.8rem;
+`;
+const UploadInfo = styled.p`
+  color: grey;
+  font-size: 0.8rem;
+`;
+
 export default function CreatePlantForm({
   defaultData,
   formName,
@@ -90,17 +138,31 @@ export default function CreatePlantForm({
 }) {
   const router = useRouter();
   const [images, setImages] = useState([]);
-  const [waterNeed, setWaterNeed] = useState(defaultData?.water_need);
-  const [lightNeed, setLightNeed] = useState(defaultData?.light_need);
+  const [uploadedFileNames, setUploadedFileNames] = useState([]);
+  const [deletedImages, setDeletedImages] = useState([]);
+  const [waterNeed, setWaterNeed] = useState("");
+  const [lightNeed, setLightNeed] = useState("");
+  const [seasons, setSeasons] = useState({
+    Spring: false,
+    Summer: false,
+    Fall: false,
+    Winter: false,
+  });
+  const [maxUploadsReached, setMaxUploadsReached] = useState(false);
 
-  const [seasons, setSeasons] = useState(
-    {
-      Spring: defaultData?.fertiliser_season.includes("Spring"),
-      Summer: defaultData?.fertiliser_season.includes("Summer"),
-      Fall: defaultData?.fertiliser_season.includes("Fall"),
-      Winter: defaultData?.fertiliser_season.includes("Winter"),
-    } || {}
-  );
+  useEffect(() => {
+    if (defaultData) {
+      setUploadedFileNames(defaultData.images || []);
+      setWaterNeed(defaultData.water_need || "");
+      setLightNeed(defaultData.light_need || "");
+      setSeasons({
+        Spring: defaultData.fertiliser_season?.includes("Spring") || false,
+        Summer: defaultData.fertiliser_season?.includes("Summer") || false,
+        Fall: defaultData.fertiliser_season?.includes("Fall") || false,
+        Winter: defaultData.fertiliser_season?.includes("Winter") || false,
+      });
+    }
+  }, [defaultData]);
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -111,7 +173,21 @@ export default function CreatePlantForm({
   };
 
   const handleFileChange = (event) => {
-    setImages(Array.from(event.target.files));
+    const files = Array.from(event.target.files);
+    if (files.length + uploadedFileNames.length > 3) {
+      setMaxUploadsReached(true);
+      setImages([]);
+    } else {
+      setMaxUploadsReached(false);
+      setImages(files);
+    }
+  };
+
+  const handleDeleteImage = (imageName) => {
+    setUploadedFileNames((oldFileNames) =>
+      oldFileNames.filter((name) => name !== imageName)
+    );
+    setDeletedImages((oldDeletedImages) => [...oldDeletedImages, imageName]);
   };
 
   const handleSubmit = async (event) => {
@@ -119,13 +195,17 @@ export default function CreatePlantForm({
     const formData = new FormData(event.target);
 
     const imageUrls = await uploadImages(images);
+    const filteredUploadedFileNames = uploadedFileNames.filter(
+      (fileName) => !deletedImages.includes(fileName)
+    );
 
     const plantData = Object.fromEntries(formData);
     const selectedSeasons = Object.keys(seasons).filter(
       (season) => seasons[season]
     );
     plantData.fertiliser_season = selectedSeasons;
-    plantData.images = imageUrls;
+    plantData.images = [...filteredUploadedFileNames, ...imageUrls];
+    plantData.deletedImages = deletedImages;
 
     onSubmit(plantData);
 
@@ -138,9 +218,15 @@ export default function CreatePlantForm({
       Fall: false,
       Winter: false,
     });
+    setImages([]);
+    setUploadedFileNames([]);
+    setDeletedImages([]);
+    setMaxUploadsReached(false);
   };
 
   const uploadImages = async (images) => {
+    if (images.length === 0) return [];
+
     const formData = new FormData();
     images.forEach((image) => {
       formData.append("images", image);
@@ -224,7 +310,7 @@ export default function CreatePlantForm({
               id="Spring"
               name="fertiliser_season"
               value="Spring"
-              defaultChecked={seasons.Spring}
+              checked={seasons.Spring}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -235,7 +321,7 @@ export default function CreatePlantForm({
               id="Summer"
               name="fertiliser_season"
               value="Summer"
-              defaultChecked={seasons.Summer}
+              checked={seasons.Summer}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -246,7 +332,7 @@ export default function CreatePlantForm({
               id="Fall"
               name="fertiliser_season"
               value="Fall"
-              defaultChecked={seasons.Fall}
+              checked={seasons.Fall}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>{" "}
@@ -257,7 +343,7 @@ export default function CreatePlantForm({
               id="Winter"
               name="fertiliser_season"
               value="Winter"
-              defaultChecked={seasons.Winter}
+              checked={seasons.Winter}
               onChange={handleCheckboxChange}
             />
           </LabelCheckbox>
@@ -273,14 +359,35 @@ export default function CreatePlantForm({
         defaultValue={defaultData?.care_instructions}
       ></Textarea>
       <br />
-      <Label htmlFor="images">*Add Photos:</Label>
+      <Label htmlFor="images">Add Photos:</Label>
       <StyledFileInput
         id="images"
         name="images"
         multiple
-        required
         onChange={handleFileChange}
+        disabled={uploadedFileNames.length >= 3}
       />
+      <UploadInfo>Maximum 3 images</UploadInfo>
+      {maxUploadsReached && (
+        <UploadMessage>Maximum number of uploads exceeded.</UploadMessage>
+      )}
+
+      <FileList>
+        {uploadedFileNames.map(
+          (fileName) =>
+            !deletedImages.includes(fileName) && (
+              <FileListItem key={fileName}>
+                <Thumbnail src={fileName} alt="Uploaded Image" />
+                <DeleteButton
+                  type="button"
+                  onClick={() => handleDeleteImage(fileName)}
+                >
+                  <FontAwesomeIcon icon={faTimesCircle} />
+                </DeleteButton>
+              </FileListItem>
+            )
+        )}
+      </FileList>
       <StyledButton type="submit" disabled={isSubmitting}>
         {defaultData ? "Update Plant" : "Add Plant"}
       </StyledButton>
