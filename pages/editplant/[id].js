@@ -31,7 +31,11 @@ const ErrorMessage = styled.p`
   padding: 0.5rem;
 `;
 
-export default function EditPlantFormPage({ plants, handleEditPlant }) {
+export default function EditPlantFormPage({
+  plants,
+  handleEditPlant,
+  darkMode,
+}) {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,6 +93,7 @@ export default function EditPlantFormPage({ plants, handleEditPlant }) {
         formName={"edit-plant"}
         onSubmit={editPlant}
         isSubmitting={isSubmitting}
+        darkMode={darkMode}
       />
     </FormPageContainer>
   );

@@ -21,7 +21,8 @@ const StyledCard = styled.div`
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
 `;
 
 const StyledHeader = styled.header`
@@ -30,13 +31,14 @@ const StyledHeader = styled.header`
 `;
 
 const Heading = styled.h2`
-  color: #30482a;
+  color: ${(props) =>
+    props.darkMode ? "var(--dark-yellowish)" : "var(--primary-color)"};
   font-size: 2rem;
   margin-bottom: 10px;
 `;
 
 const SubHeading = styled.h3`
-  color: #607843;
+  color: ${(props) => (props.darkMode ? "var(--light-yellow)" : "#607843")};
   font-size: 1.3rem;
   margin-bottom: 20px;
 `;
@@ -98,7 +100,8 @@ const NeedItem = styled.div`
   width: 200px;
   height: 150px;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-grey)" : "#f0f0f0"};
   border-radius: 1rem;
   margin-right: 30px;
   text-align: center;
@@ -112,7 +115,8 @@ const NeedTitle = styled.h4`
 
 const NeedValue = styled.p`
   font-size: 1rem;
-  color: #555;
+  color: ${(props) =>
+    props.darkMode ? "lightgrey" : "var(--dark-light-grey)"};
 `;
 
 const StyledDiv = styled.div`
@@ -126,7 +130,8 @@ const StyledParagraph = styled.p`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin: 20px auto 40px auto;
   max-width: 550px;
@@ -138,6 +143,7 @@ export default function PlantDetails({
   handleToggleMyPlants,
   handleDeletePlant,
   getPlantInfoById,
+  darkMode,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -163,7 +169,7 @@ export default function PlantDetails({
       <>
         <StyledDiv>
           <h1>No Plants Found!</h1>
-          <StyledPDiv>
+          <StyledPDiv darkMode={darkMode}>
             <StyledParagraph>
               No plants to show at the moment. Feel free to add your plants
               here!
@@ -178,10 +184,10 @@ export default function PlantDetails({
   const { isUserPlant, isMyPlant } = plantInfo || {};
 
   return (
-    <StyledCard>
+    <StyledCard darkMode={darkMode}>
       <StyledHeader>
-        <Heading>{plant.name}</Heading>
-        <SubHeading>{plant.botanical_name}</SubHeading>
+        <Heading darkMode={darkMode}>{plant.name}</Heading>
+        <SubHeading darkMode={darkMode}>{plant.botanical_name}</SubHeading>
       </StyledHeader>
 
       <ImagesContainer>
@@ -224,17 +230,19 @@ export default function PlantDetails({
       )}
 
       <NeedsContainer>
-        <NeedItem>
+        <NeedItem darkMode={darkMode}>
           <NeedTitle>Water Need</NeedTitle>
-          <NeedValue>{plant.water_need}</NeedValue>
+          <NeedValue darkMode={darkMode}>{plant.water_need}</NeedValue>
         </NeedItem>
-        <NeedItem>
+        <NeedItem darkMode={darkMode}>
           <NeedTitle>Fertiliser Cycle</NeedTitle>
-          <NeedValue>{plant.fertiliser_season.join(", ")}</NeedValue>
+          <NeedValue darkMode={darkMode}>
+            {plant.fertiliser_season.join(", ")}
+          </NeedValue>
         </NeedItem>
-        <NeedItem>
+        <NeedItem darkMode={darkMode}>
           <NeedTitle>Light Needs</NeedTitle>
-          <NeedValue>{plant.light_need}</NeedValue>
+          <NeedValue darkMode={darkMode}>{plant.light_need}</NeedValue>
         </NeedItem>
       </NeedsContainer>
 
@@ -248,7 +256,8 @@ export default function PlantDetails({
           <>
             <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
-              onDeletePlant={handleDeletePlant}
+              darkMode={darkMode}
+              OnDeletePlant={handleDeletePlant}
               id={plant.id}
             />
           </>

@@ -27,8 +27,10 @@ const ConfirmationDialog = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  border: 2px solid black;
+  color: ${(props) =>
+    props.darkMode ? "var(--light-green)" : "var(dark-grey)"};
+  background-color: ${(props) => (props.darkMode ? "#333" : "#fff")};
+  border: 2px solid darkgray;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   z-index: 10;
@@ -38,6 +40,14 @@ const ConfirmationDialog = styled.div`
 
 const DialogButton = styled.button`
   margin: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: ${(props) => (props.darkMode ? "#555" : "#ddd")};
+  color: ${(props) => (props.darkMode ? "var(--light-green)" : "black")};
+  &:hover {
+    background-color: ${(props) => (props.darkMode ? "#777" : "#bbb")};
+  }
 `;
 
 const Overlay = styled.div`
@@ -50,7 +60,7 @@ const Overlay = styled.div`
   z-index: 9;
 `;
 
-export default function ButtonDeletePlant({ onDeletePlant, id }) {
+export default function ButtonDeletePlant({ OnDeletePlant, id, darkMode }) {
   const [isConfirming, setIsConfirming] = useState(false);
   const router = useRouter();
 
@@ -59,7 +69,7 @@ export default function ButtonDeletePlant({ onDeletePlant, id }) {
   };
 
   const handleConfirmDelete = () => {
-    onDeletePlant(id);
+    OnDeletePlant(id);
     setIsConfirming(false);
     router.push("/myplants");
   };
@@ -72,10 +82,14 @@ export default function ButtonDeletePlant({ onDeletePlant, id }) {
     <>
       {isConfirming && <Overlay onClick={handleCancelDelete} />}
       {isConfirming && (
-        <ConfirmationDialog>
+        <ConfirmationDialog darkMode={darkMode}>
           <p>Are you sure you want to delete this plant?</p>
-          <DialogButton onClick={handleConfirmDelete}>Yes</DialogButton>
-          <DialogButton onClick={handleCancelDelete}>No</DialogButton>
+          <DialogButton darkMode={darkMode} onClick={handleConfirmDelete}>
+            Yes
+          </DialogButton>
+          <DialogButton darkMode={darkMode} onClick={handleCancelDelete}>
+            No
+          </DialogButton>
         </ConfirmationDialog>
       )}
       <StyledButton title="Delete from My Plants" onClick={handleDeleteClick}>

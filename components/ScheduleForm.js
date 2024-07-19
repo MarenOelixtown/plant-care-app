@@ -3,9 +3,13 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 const StyledButton = styled.button`
-  background-color: var(--primary-color);
-  color: var(--light-yellow);
-  border: 2px solid #30482a;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-primary-color)" : "var(--primary-color)"};
+  color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "var(--light-yellow)"};
+  border: 2px solid
+    ${(props) =>
+      props.darkMode ? "var(--dark-primary-color)" : "var(--primary-color)"};
   border-radius: 2rem;
   padding: 10px;
   font-family: inherit;
@@ -15,15 +19,18 @@ const StyledButton = styled.button`
   max-width: 100px;
   width: 100%;
   &:hover {
-    background-color: var(--light-green);
-    color: var(--primary-color);
+    background-color: ${(props) =>
+      props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
+    color: ${(props) =>
+      props.darkMode ? "var(--dark-primary-color)" : "var(--primary-color)"};
   }
 `;
 
 const FormContainer = styled.form`
   display: grid;
   gap: 0.5rem;
-  background-color: var(--light-green);
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-grey)" : "var(--light-green)"};
   padding: 20px;
   border-radius: 2rem;
 `;
@@ -49,6 +56,7 @@ export default function ScheduleForm({
   plants,
   handleAddReminder,
   getPlantInfoById,
+  darkMode,
   calculateNextWateringDate,
 }) {
   const [selectedPlant, setSelectedPlant] = useState("");
@@ -85,7 +93,7 @@ export default function ScheduleForm({
     }
   }
   return (
-    <FormContainer onSubmit={addSchedule}>
+    <FormContainer onSubmit={addSchedule} darkMode={darkMode}>
       <Label htmlFor="name">Select Plant:</Label>
       <Select
         id="name"
@@ -110,8 +118,14 @@ export default function ScheduleForm({
         value={wateringStartDate}
         onChange={(event) => setWateringStartDate(event.target.value)}
       />
-      <StyledButton type="submit">Add Schedule</StyledButton>
-      <StyledButton type="button" onClick={() => router.push("/myschedule")}>
+      <StyledButton darkMode={darkMode} type="submit">
+        Add Schedule
+      </StyledButton>
+      <StyledButton
+        darkMode={darkMode}
+        type="button"
+        onClick={() => router.push("/myschedule")}
+      >
         Cancel
       </StyledButton>
     </FormContainer>

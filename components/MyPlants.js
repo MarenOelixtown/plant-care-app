@@ -1,7 +1,6 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 import Link from "next/link";
-import CalendarIcon from "../components/Icons/CalendarIcon.svg";
 
 const StyledLink = styled(Link)`
   position: fixed;
@@ -50,7 +49,8 @@ const StyledParagraph = styled.p`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin: 20px auto 40px auto;
   max-width: 550px;
@@ -63,6 +63,7 @@ export default function MyPlants({
   handleDeletePlant,
   getPlantInfoById,
   handleEditPlant,
+  darkMode,
 }) {
   const myPlants = plants.filter(
     (plant) => getPlantInfoById(plant.id)?.isMyPlant
@@ -73,12 +74,12 @@ export default function MyPlants({
       <h1>My Plants</h1>
       {myPlants.length > 0 && (
         <StyledLink href="/myschedule" title="My Schedule">
-          {/* <CalendarIcon /> */} Watering Schedules
+          Watering Schedules
         </StyledLink>
       )}
 
       {myPlants.length === 0 ? (
-        <StyledPDiv>
+        <StyledPDiv darkMode={darkMode}>
           <StyledParagraph>
             No plants to show at the moment. Feel free to add your plants here!
           </StyledParagraph>
@@ -97,6 +98,7 @@ export default function MyPlants({
                   handleToggleMyPlants={handleToggleMyPlants}
                   handleDeletePlant={handleDeletePlant}
                   handleEditPlant={handleEditPlant}
+                  darkMode={darkMode}
                 />
               </StyledItem>
             );

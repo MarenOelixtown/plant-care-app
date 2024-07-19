@@ -5,6 +5,7 @@ export default function MySchedulePage({
   getPlantInfoById,
   calculateNextWateringDate,
   handleAddReminder,
+  darkMode,
 }) {
   return (
     <MySchedule
@@ -12,6 +13,7 @@ export default function MySchedulePage({
       getPlantInfoById={getPlantInfoById}
       calculateNextWateringDate={calculateNextWateringDate}
       handleAddReminder={handleAddReminder}
+      darkMode={darkMode}
     />
   );
 }

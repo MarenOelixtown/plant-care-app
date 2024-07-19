@@ -8,13 +8,10 @@ import Image from "next/image";
 
 const StyledDiv = styled.div`
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const StyledImg = styled(Image)`
-  border-radius: 50%;
+  border-radius: 1rem;
   object-fit: cover;
   margin: 0;
 `;
@@ -51,12 +48,12 @@ const StyledName = styled.h3`
   color: var(--primary-color);
   background-color: white;
   border-radius: 1rem;
-  padding: 0.4rem;
+  padding: 10px;
 `;
 const StyledDate = styled.p`
   background-color: white;
   border-radius: 1rem;
-  padding: 0.4rem;
+  padding: 10px;
 `;
 const StyledSpan = styled.span`
   margin-right: 0.4rem;
@@ -64,18 +61,25 @@ const StyledSpan = styled.span`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  margin: 2rem 0;
-  background-color: var(--primary-color);
-  color: var(--light-yellow);
-  border: 2px solid #30482a;
+  margin-top: 2rem;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
+  color: ${(props) =>
+    props.darkMode ? "var(--primary-color)" : "var(--light-yellow)"};
+  border: 2px solid
+    ${(props) =>
+      props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
   border-radius: 2rem;
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
+  margin-left: 20px;
 
   &:hover {
-    background-color: var(--light-green);
-    color: var(--primary-color);
+    background-color: ${(props) =>
+      props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
+    color: ${(props) =>
+      props.darkMode ? "var(--light-yellow)" : "var(--primary-color)"};
   }
 `;
 
@@ -97,7 +101,8 @@ const StyledParagraph = styled.p`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin: 20px auto 40px auto;
   max-width: 550px;
@@ -109,6 +114,7 @@ export default function MySchedule({
   getPlantInfoById,
   calculateNextWateringDate,
   handleAddReminder,
+  darkMode,
 }) {
   const router = useRouter();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -139,21 +145,26 @@ export default function MySchedule({
     .toSorted((a, b) => new Date(a.wateringDate) - new Date(b.wateringDate));
 
   return (
-    <StyledDiv>
+    <StyledDiv darkMode={darkMode}>
       <h1>My Schedule</h1>
 
       {showSuccessMessage && (
         <SuccessMessage>Watering schedule added successfully!</SuccessMessage>
       )}
-      <StyledLink href="/scheduleform">Add Watering Schedule</StyledLink>
-      <Reminder
-        plants={plants}
-        getPlantInfoById={getPlantInfoById}
-        calculateNextWateringDate={calculateNextWateringDate}
-        handleAddReminder={handleAddReminder}
-      />
+      <div>
+        <StyledLink darkMode={darkMode} href="/scheduleform">
+          Add Watering Schedule
+        </StyledLink>
+        <Reminder
+          plants={plants}
+          getPlantInfoById={getPlantInfoById}
+          calculateNextWateringDate={calculateNextWateringDate}
+          handleAddReminder={handleAddReminder}
+          darkMode={darkMode}
+        />
+      </div>
       {plantsWithReminder.length === 0 ? (
-        <StyledPDiv>
+        <StyledPDiv darkMode={darkMode}>
           <StyledParagraph>
             You currently do not have a schedule set. Would you like to create
             one now?
@@ -172,8 +183,8 @@ export default function MySchedule({
                   <StyledImg
                     src={plant.images[0]}
                     alt={plant.name}
-                    width={130}
-                    height={130}
+                    width={200}
+                    height={200}
                   />
                 </Link>
                 <StyledDate>

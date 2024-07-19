@@ -36,7 +36,8 @@ const StyledParagraph = styled.p`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 10px;
   margin-bottom: 40px;
   margin-top: 20px;
@@ -50,6 +51,7 @@ export default function Overview({
   plants,
   handleToggleMyPlants,
   getPlantInfoById,
+  darkMode,
 }) {
   const [results, setResults] = useState([]);
   const [fuse, setFuse] = useState(null);
@@ -75,17 +77,17 @@ export default function Overview({
   return (
     <StyledDiv>
       <h1>Discover Plants</h1>
-      <Searchbar onChange={handleSearch} />
+      <Searchbar darkMode={darkMode} onChange={handleSearch} />
       {plants.length === 0 ? (
         <StyledPDiv>
-          <StyledParagraph>
+          <StyledParagraph darkMode={darkMode}>
             No plants available at the moment. Please come back later!
           </StyledParagraph>
         </StyledPDiv>
       ) : (
         <>
           {searchTerm !== "" && results.length === 0 && (
-            <p>Sorry... No plants match your search.</p>
+            <p>Sorry! No plants match your search.</p>
           )}
           <StyledList>
             {(searchTerm === "" ? plants : results).map((plant) => {
@@ -96,6 +98,7 @@ export default function Overview({
                     plant={plant}
                     isMyPlant={isMyPlant}
                     handleToggleMyPlants={handleToggleMyPlants}
+                    darkMode={darkMode}
                   />
                 </StyledItem>
               );

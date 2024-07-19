@@ -6,6 +6,7 @@ export default function MyPlantsPage({
   handleDeletePlant,
   getPlantInfoById,
   handleEditPlant,
+  darkMode,
 }) {
   return (
     <MyPlants
@@ -14,6 +15,7 @@ export default function MyPlantsPage({
       handleDeletePlant={handleDeletePlant}
       getPlantInfoById={getPlantInfoById}
       handleEditPlant={handleEditPlant}
+      darkMode={darkMode}
     />
   );
 }

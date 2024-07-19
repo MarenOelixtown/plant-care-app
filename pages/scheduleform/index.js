@@ -1,6 +1,5 @@
 import ScheduleForm from "@/components/ScheduleForm";
 import styled from "styled-components";
-import Link from "next/link";
 
 const FormPageContainer = styled.div`
   width: 300px;
@@ -17,6 +16,7 @@ export default function ScheduleFormPage({
   handleAddReminder,
   getPlantInfoById,
   calculateNextWateringDate,
+  darkMode,
 }) {
   return (
     <FormPageContainer>
@@ -26,6 +26,7 @@ export default function ScheduleFormPage({
         handleAddReminder={handleAddReminder}
         getPlantInfoById={getPlantInfoById}
         calculateNextWateringDate={calculateNextWateringDate}
+        darkMode={darkMode}
       />
     </FormPageContainer>
   );

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Reminder from "@/components/Reminder";
 
 const StyledDiv = styled.div`
   padding: 20px;
@@ -9,7 +8,8 @@ const StyledDiv = styled.div`
 
 const StyledPDiv = styled.div`
   padding: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
   margin-bottom: 40px;
   margin-top: 20px;
@@ -18,9 +18,13 @@ const StyledPDiv = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   margin-top: 2rem;
-  background-color: var(--primary-color);
-  color: var(--light-yellow);
-  border: 2px solid #30482a;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
+  color: ${(props) =>
+    props.darkMode ? "var(--primary-color)" : "var(--light-yellow)"};
+  border: 2px solid
+    ${(props) =>
+      props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
   border-radius: 2rem;
   padding: 10px;
   font-weight: bold;
@@ -28,54 +32,53 @@ const StyledLink = styled(Link)`
   margin-left: 20px;
 
   &:hover {
-    background-color: var(--light-green);
-    color: var(--primary-color);
+    background-color: ${(props) =>
+      props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
+    color: ${(props) =>
+      props.darkMode ? "var(--light-yellow)" : "var(--primary-color)"};
   }
 `;
 
 const StyledParagraph = styled.p`
   margin-top: 1rem;
-  color: var(--dark-yellowish);
+  color: ${(props) =>
+    props.darkMode ? "var(--dark-light-grey)" : "var(--dark-yellowish)"};
 `;
 
-export default function HomePage({
-  plants,
-  getPlantInfoById,
-  calculateNextWateringDate,
-  handleAddReminder,
-}) {
+export default function HomePage({ darkMode }) {
   return (
     <StyledDiv>
       <h1>Plant Pro</h1>
       <h3>Welcome to your ultimate plant care companion!</h3>
-      <StyledPDiv>
-        <StyledParagraph>
+      <StyledPDiv darkMode={darkMode}>
+        <StyledParagraph darkMode={darkMode}>
           Your go-to app for all your plant care needs. Whether you are a
           seasoned gardener or just starting out, our app provides detailed care
           instructions, watering schedules, and tips to keep your plants
           thriving.
         </StyledParagraph>
-        <StyledParagraph>
+        <StyledParagraph darkMode={darkMode}>
           Explore our extensive plant library to learn about different species,
           discover the best plants for your home or garden, and get personalized
           recommendations.
         </StyledParagraph>
-        <StyledParagraph>
+        <StyledParagraph darkMode={darkMode}>
           Additionally, you can easily add your own plants to the app, keeping
           track of their care routines and growth progress.
         </StyledParagraph>
-        <StyledParagraph>
+        <StyledParagraph darkMode={darkMode}>
           Start your journey to greener living! Happy Gardening! 🪴
         </StyledParagraph>
       </StyledPDiv>
-      <StyledLink href="/overview">Discover New Plants</StyledLink>
-      <StyledLink href="/createplant">Add Plant</StyledLink>
-      <Reminder
-        plants={plants}
-        getPlantInfoById={getPlantInfoById}
-        calculateNextWateringDate={calculateNextWateringDate}
-        handleAddReminder={handleAddReminder}
-      />
+      <StyledLink darkMode={darkMode} href="/overview">
+        Discover New Plants
+      </StyledLink>
+      <StyledLink darkMode={darkMode} href="/createplant">
+        Add Plant
+      </StyledLink>
+      <StyledLink darkMode={darkMode} href="/myschedule" title="My Schedule">
+        Watering Schedules
+      </StyledLink>
     </StyledDiv>
   );
 }

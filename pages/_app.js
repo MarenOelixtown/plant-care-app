@@ -7,6 +7,7 @@ import useLocalStorageState from "use-local-storage-state";
 import LoadingWrapper from "@/components/LoadingWrapper";
 
 export default function App({ Component, pageProps }) {
+  const [darkMode, setDarkMode] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [plants, setPlants] = useLocalStorageState("plants", {
     defaultValue: initialPlants,
@@ -89,16 +90,28 @@ export default function App({ Component, pageProps }) {
     return plantInfo;
   };
 
+  useEffect(() => {
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setDarkMode(systemPrefersDark);
+  }, []);
+
+  function handleToggleDarkMode() {
+    setDarkMode((prevMode) => !prevMode);
+  }
+
   if (!isInitialized) {
     return <LoadingWrapper />;
   }
 
   return (
     <>
-      <Layout>
-        <GlobalStyle />
+      <GlobalStyle darkMode={darkMode} />
+      <Layout darkMode={darkMode} onToggleDarkMode={handleToggleDarkMode}>
         <Component
           {...pageProps}
+          darkMode={darkMode}
           plants={plants}
           handleToggleMyPlants={handleToggleMyPlants}
           handleAddPlant={handleAddPlant}

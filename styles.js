@@ -23,15 +23,26 @@ export default createGlobalStyle`
     --dark-grey: #a3aca4;
     --light-grey: #bbc4bc;
     --light-pink: #dea2a4; 
+
+    --dark-bg: #121212;
+    --dark-primary: #bb86fc;
+    --dark-secondary: #03dac6;
+    --dark-text: #ffffff;
+    --dark-card-bg: #1e1e1e;
+    --dark-light-green: #30322d;
+    --dark-primary-color: #e6ece0;
+    --dark-light-grey: #949790;
   }
 
   /* Global styles */
   body {
     margin: 0;
-   font-family: 'Poppins, sans-serif';
-    background:  var(--lightest-green);
+    font-family: 'Poppins, sans-serif';
+    background: ${(props) =>
+      props.darkMode ? "var(--dark-bg)" : "var(--lightest-green)"};
+    color: ${(props) =>
+      props.darkMode ? "var(--dark-primary-color)" : "var(--primary-color)"};
     min-height: 100vh;
-    color: var(--primary-color);
   }
 
   /* Main element styles */

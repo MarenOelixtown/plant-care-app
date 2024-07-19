@@ -10,6 +10,12 @@ const StyledName = styled.p`
   margin-right: 5px;
   font-weight: bolder;
   font-size: large;
+  color: ${(props) =>
+    props.darkMode ? "var(--dark-yellowish)" : "var(--primary-color)"};
+  &:hover {
+    color: ${(props) =>
+      props.darkMode ? "var(--light-green)" : "var(--dark-yellowish)"};
+  }
 `;
 
 const StyledBotanicalName = styled.p`
@@ -25,7 +31,8 @@ const StyledDiv = styled.div`
   color: var(--dark-grey);
   padding: 10px;
   margin: 10px;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "white"};
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 `;
 const StyledImg = styled(Image)`
@@ -42,9 +49,11 @@ const StyledImg = styled(Image)`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: var(--primary-color);
+  color: ${(props) =>
+    props.darkMode ? "var(--dark-yellowish)" : "var(--primary-color)"};
   &:hover {
-    color: var(--dark-yellowish);
+    color: ${(props) =>
+      props.darkMode ? "var(--primary-color)" : "var(--dark-yellowish)"};
   }
 `;
 
@@ -68,13 +77,14 @@ export default function PlantPreview({
   isUserPlant,
   handleToggleMyPlants,
   handleDeletePlant,
+  darkMode,
 }) {
   const previewImage =
     plant.images && plant.images.length > 0
       ? plant.images[0]
       : placeholderimage;
   return (
-    <StyledDiv>
+    <StyledDiv darkMode={darkMode}>
       <Link href={`/overview/${plant.id}`} title="Go to plant-details">
         {plant.images.length === 0 ? (
           <StyledImg
@@ -93,8 +103,12 @@ export default function PlantPreview({
         )}
       </Link>
       <StyledInfo>
-        <StyledLink href={`/overview/${plant.id}`} title="Go to plant-details">
-          <StyledName>{plant.name}</StyledName>
+        <StyledLink
+          darkMode={darkMode}
+          href={`/overview/${plant.id}`}
+          title="Go to plant-details"
+        >
+          <StyledName darkMode={darkMode}>{plant.name}</StyledName>
         </StyledLink>
         <StyledBotanicalName>{plant.botanical_name}</StyledBotanicalName>
       </StyledInfo>
@@ -108,6 +122,7 @@ export default function PlantPreview({
           <>
             <ButtonEditPlant id={plant.id} />
             <ButtonDeletePlant
+              darkMode={darkMode}
               OnDeletePlant={handleDeletePlant}
               id={plant.id}
             />

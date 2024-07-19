@@ -1,4 +1,4 @@
-const HomeIcon = ({ getFillColor }) => (
+export const HomeIconLight = ({ getFillColor }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="45"
@@ -12,5 +12,3 @@ const HomeIcon = ({ getFillColor }) => (
     </g>
   </svg>
 );
-
-export { HomeIcon };
