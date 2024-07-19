@@ -1,6 +1,7 @@
 import PlantPreview from "./PlantPreview";
 import styled from "styled-components";
 import Link from "next/link";
+import { StyledList } from "@/styles";
 
 const StyledLink = styled(Link)`
   position: fixed;
@@ -25,10 +26,10 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledList = styled.ul`
+/* const StyledList = styled.ul`
   list-style: none;
   padding: 0;
-`;
+`; */
 const StyledItem = styled.li`
   display: block;
   align-items: left;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import { useState, useEffect } from "react";
 import Fuse from "fuse.js";
+import { StyledList } from "@/styles";
 
 const fuseOptions = {
   isCaseSensitive: false,
@@ -16,10 +17,12 @@ const fuseOptions = {
   ],
 };
 
-const StyledList = styled.ul`
+/* const StyledList = styled.ul`
   list-style: none;
   padding: 0;
-`;
+  margin-left: 20px;
+  margin-right: 20px;
+`; */
 const StyledItem = styled.li`
   display: block;
   align-items: left;

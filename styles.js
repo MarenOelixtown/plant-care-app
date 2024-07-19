@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 export default createGlobalStyle`
  /* Import Google Font (example using Poppins) */
@@ -49,4 +50,25 @@ export default createGlobalStyle`
   main {
     padding-bottom: 4rem;
   }
+`;
+export const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin-left: 5%;
+  margin-right: 5%;
+
+  @media (min-width: 900px) {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+
+  /* @media (min-width: 1600px) {
+    margin-left: 30%;
+    margin-right: 40%;
+  } */
 `;
