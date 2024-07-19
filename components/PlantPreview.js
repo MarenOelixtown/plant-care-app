@@ -5,6 +5,7 @@ import ButtonAddPlant from "./ButtonAddPlant";
 import ButtonDeletePlant from "./ButtonDeletePlant";
 import ButtonEditPlant from "./ButtonEditPlant";
 import placeholderimage from "../public/placeholderimage.jpg";
+import { ButtonContainer } from "@/styles";
 
 const StyledName = styled.p`
   margin-right: 5px;
@@ -38,12 +39,17 @@ const StyledDiv = styled.div`
 const StyledImg = styled(Image)`
   border-radius: 0.5rem;
   object-fit: cover;
+  margin-top: 5px;
   margin-right: 50px;
   margin-left: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 900px) {
+    margin-right: 30px;
+    margin-left: 10px;
   }
 `;
 
@@ -62,13 +68,6 @@ const StyledInfo = styled.div`
   flex-direction: column;
   text-align: left;
   margin-right: 5px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  gap: 10px;
 `;
 
 export default function PlantPreview({

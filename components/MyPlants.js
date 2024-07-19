@@ -5,13 +5,17 @@ import { StyledList } from "@/styles";
 
 const StyledLink = styled(Link)`
   position: fixed;
-  top: 2rem;
-  right: 7.8rem;
-  color: var(--light-yellow);
-  background-color: var(--primary-color);
+  bottom: 6rem;
+  right: 2.5rem;
+  color: ${(props) =>
+    props.darkMode ? "var(--primary-color)" : "var(--light-yellow)"};
+  background-color: ${(props) =>
+    props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
   padding: 0.8rem 0.8rem;
   border-radius: 2rem;
-  border: 2px solid var(--primary-color);
+  border: 2px solid
+    ${(props) =>
+      props.darkMode ? "var(--light-green)" : "var(--primary-color)"};
   text-decoration: none;
   font-weight: bold;
   z-index: 1000;
@@ -24,12 +28,11 @@ const StyledLink = styled(Link)`
     background-color: var(--light-green);
     border-color: var(--primary-color);
   }
+  @media (max-width: 900px) {
+    right: 1rem;
+  }
 `;
 
-/* const StyledList = styled.ul`
-  list-style: none;
-  padding: 0;
-`; */
 const StyledItem = styled.li`
   display: block;
   align-items: left;
@@ -53,7 +56,7 @@ const StyledPDiv = styled.div`
   background-color: ${(props) =>
     props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 1rem;
-  margin: 20px auto 40px auto;
+  margin: 30px auto 40px auto;
   max-width: 550px;
   width: 100%;
 `;
@@ -74,7 +77,7 @@ export default function MyPlants({
     <StyledDiv>
       <h1>My Plants</h1>
       {myPlants.length > 0 && (
-        <StyledLink href="/myschedule" title="My Schedule">
+        <StyledLink darkMode={darkMode} href="/myschedule" title="My Schedule">
           Watering Schedules
         </StyledLink>
       )}

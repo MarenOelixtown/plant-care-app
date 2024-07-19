@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+import Image from "next/image";
 
 export default createGlobalStyle`
  /* Import Google Font (example using Poppins) */
@@ -58,17 +59,51 @@ export const StyledList = styled.ul`
   margin-right: 5%;
 
   @media (min-width: 900px) {
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
   @media (min-width: 1200px) {
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
   }
+`;
 
-  /* @media (min-width: 1600px) {
-    margin-left: 30%;
-    margin-right: 40%;
-  } */
+export const StyledButtonImage = styled(Image)`
+  align-items: center;
+  width: 25px;
+  height: 25px;
+
+  @media (max-width: 900px) {
+    align-items: center;
+    width: 20px;
+    height: 20px;
+  }
+`;
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 10px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 5px;
+  }
+`;
+
+export const StyledButton = styled.button`
+  padding: 4.5px 12px;
+  border: 1px solid var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  background-color: white;
+  margin-right: 10px;
+  border-radius: 1rem;
+  &:hover {
+    border-color: var(--light-green);
+  }
+  @media (max-width: 900px) {
+    border: 0;
+    box-shadow: none;
+  }
 `;
