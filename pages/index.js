@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-const StyledDiv = styled.div`
+/* const StyledDiv = styled.div`
   padding: 20px;
   position: relative;
 `;
@@ -81,9 +81,9 @@ export default function HomePage({ darkMode }) {
       </StyledLink>
     </StyledDiv>
   );
-}
+} */
 
-/* const ContainerDiv = styled.div`
+const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,6 +101,7 @@ const StyledAppName = styled.h1`
 `;
 const StyledHeadline = styled.h3`
   text-align: center;
+  color: var(--primary-color);
 `;
 const CommonDivStyles = `
   width: 100%;
@@ -134,6 +135,16 @@ const LinksDiv = styled.div`
   padding: 20px;
   border-radius: 1rem;
 `;
+/* const BottomLinksDiv = styled.div`
+  ${CommonDivStyles}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+`; */
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -169,23 +180,14 @@ export default function HomePage({ darkMode }) {
   return (
     <StyledDiv>
       <StyledAppName>Plant Pro</StyledAppName>
-      <StyledHeadline>
-        Welcome to your ultimate plant care companion!
-      </StyledHeadline>
+
       <ContainerDiv>
         <LinksDiv>
+          <StyledHeadline>
+            Welcome to your ultimate plant care companion!
+          </StyledHeadline>
           <StyledLink darkMode={darkMode} href="/overview">
-            Discover New Plants
-          </StyledLink>
-          <StyledLink darkMode={darkMode} href="/createplant">
-            Add Plant
-          </StyledLink>
-          <StyledLink
-            darkMode={darkMode}
-            href="/myschedule"
-            title="My Schedule"
-          >
-            Watering Schedules
+            Discover Plants
           </StyledLink>
         </LinksDiv>
         <StyledPDiv darkMode={darkMode}>
@@ -207,8 +209,20 @@ export default function HomePage({ darkMode }) {
           <StyledParagraph darkMode={darkMode}>
             Start your journey to greener living! Happy Gardening! 🪴
           </StyledParagraph>
+          <div>
+            <StyledLink darkMode={darkMode} href="/createplant">
+              Add Plant
+            </StyledLink>
+            <StyledLink
+              darkMode={darkMode}
+              href="/myschedule"
+              title="My Schedule"
+            >
+              Watering Schedules
+            </StyledLink>
+          </div>
         </StyledPDiv>
       </ContainerDiv>
     </StyledDiv>
   );
-} */
+}
