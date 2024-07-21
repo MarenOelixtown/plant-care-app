@@ -1,6 +1,25 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { Marck_Script } from "@next/font/google";
+import { Outfit } from "@next/font/google";
 
+const marckScript = Marck_Script({
+  weight: "400",
+  subsets: ["latin"],
+});
+const outfit = Outfit({
+  weight: "400",
+  subsets: ["latin"],
+});
+const StyledH1Div = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
+`;
 const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,18 +33,14 @@ const StyledDiv = styled.div`
   position: relative;
   width: 100%;
 `;
-const StyledAppName = styled.h1`
-  font-family: "Lobster Two", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-  text-align: center;
-  font-size: 50px;
-  margin-bottom: 0;
-`;
+
 const StyledHeadline = styled.h3`
   text-align: center;
   color: var(--primary-color);
+  font-family: ${marckScript.style.fontFamily}, sans-serif;
+  font-size: 24px;
 `;
+
 const CommonDivStyles = `
   width: 100%;
   height: 50vh; 
@@ -44,7 +59,13 @@ const StyledPDiv = styled.div`
     props.darkMode ? "var(--dark-light-green)" : "white"};
   border-radius: 0px 0px 10px 10px;
 `;
-
+const StyledAppName = styled.h1`
+  font-family: ${outfit.style.fontFamily}, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 0;
+`;
 const HeadlineDiv = styled.div`
   ${CommonDivStyles}
   display: flex;
@@ -104,13 +125,15 @@ const StyledParagraph = styled.p`
   margin-top: 1rem;
   color: ${(props) =>
     props.darkMode ? "var(--dark-light-grey)" : "var(--dark-yellowish)"};
+  font-size: 14px;
 `;
 
 export default function HomePage({ darkMode }) {
   return (
     <StyledDiv>
-      <StyledAppName>Plant Pro</StyledAppName>
-
+      <StyledH1Div darkMode={darkMode}>
+        <StyledAppName>Plant Pro</StyledAppName>
+      </StyledH1Div>
       <ContainerDiv>
         <HeadlineDiv>
           <StyledHeadline>

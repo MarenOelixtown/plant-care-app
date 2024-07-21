@@ -1,7 +1,5 @@
-import styled from "styled-components";
 import myPlantBlank from "../public/myPlantBlank.png";
 import myPlantColored from "../public/myPlantColored.png";
-import Image from "next/image";
 import { StyledButtonImage } from "@/styles";
 import { StyledButton } from "@/styles";
 

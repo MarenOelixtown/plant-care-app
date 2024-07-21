@@ -1,10 +1,15 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 import Image from "next/image";
+import { Poppins } from "@next/font/google";
+
+const poppins = Poppins({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
  /* Import Google Font (example using Poppins) */
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 
@@ -40,7 +45,7 @@ export default createGlobalStyle`
   /* Global styles */
   body {
     margin: 0;
-    font-family: 'Poppins, sans-serif';
+    font-family: ${poppins.style.fontFamily}, sans-serif;
     background: ${(props) =>
       props.darkMode ? "var(--dark-bg)" : "var(--lightest-green)"};
     color: ${(props) =>
@@ -77,8 +82,8 @@ export const StyledButtonImage = styled(Image)`
 
   @media (max-width: 900px) {
     align-items: center;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
 `;
 export const ButtonContainer = styled.div`
@@ -107,4 +112,13 @@ export const StyledButton = styled.button`
     border: 0;
     box-shadow: none;
   }
+`;
+
+export const StyledPageHeadingDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
 `;
