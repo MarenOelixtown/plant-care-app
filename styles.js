@@ -41,7 +41,13 @@ export default createGlobalStyle`
     --dark-primary-color: #e6ece0;
     --dark-light-grey: #949790;
   }
-
+ /* Import local font */
+ @font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/Outfit-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
   /* Global styles */
   body {
     margin: 0;
