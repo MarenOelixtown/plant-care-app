@@ -1,14 +1,14 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { Marck_Script } from "@next/font/google";
+//import { Marck_Script } from "@next/font/google";
 import { Outfit } from "@next/font/google";
 import LogoLeaf from "../public/LogoLeaf.png";
 import Image from "next/image";
 
-const marckScript = Marck_Script({
+/* const marckScript = Marck_Script({
   weight: "400",
   subsets: ["latin"],
-});
+}); */
 const outfit = Outfit({
   weight: "400",
   subsets: ["latin"],
@@ -38,7 +38,7 @@ const StyledDiv = styled.div`
 const StyledHeadline = styled.h3`
   text-align: center;
   color: var(--primary-color);
-  font-family: ${marckScript.style.fontFamily}, sans-serif;
+  font-family: "Marck Script", sans-serif;
   font-size: 24px;
 `;
 

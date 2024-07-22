@@ -48,6 +48,12 @@ export default createGlobalStyle`
     font-weight: 400;
     font-style: normal;
   }
+  @font-face {
+    font-family: 'Marck Script';
+    src: url('/fonts/MarckScript-Regular.ttf') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
   /* Global styles */
   body {
     margin: 0;
