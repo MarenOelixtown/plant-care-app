@@ -101,7 +101,7 @@ const NeedItem = styled.div`
   height: 150px;
   padding: 10px;
   background-color: ${(props) =>
-    props.darkMode ? "var(--dark-light-grey)" : "#f0f0f0"};
+    props.darkMode ? "var(--dark-light-grey)" : "var(--lightest-green)"};
   border-radius: 1rem;
   margin-right: 30px;
   text-align: center;

@@ -16,7 +16,7 @@ const FormContainer = styled.form`
 const Input = styled.input`
   padding: 0.5rem;
   font-size: inherit;
-  border: 3px solid ${(props) => (props.darkMode ? "white" : "black")};
+  border: 1px solid ${(props) => (props.darkMode ? "white" : "black")};
   background-color: ${(props) =>
     props.darkMode ? "var(--dark-light-grey)" : "white"};
   color: ${(props) => (props.darkMode ? "var(--dark-text-color)" : "black")};
@@ -24,7 +24,7 @@ const Input = styled.input`
 `;
 
 const Select = styled.select`
-  border: 3px solid ${(props) => (props.darkMode ? "white" : "black")};
+  border: 1px solid ${(props) => (props.darkMode ? "white" : "black")};
   background-color: ${(props) =>
     props.darkMode ? "var(--dark-light-grey)" : "white"};
   color: ${(props) => (props.darkMode ? "var(--dark-text-color)" : "black")};
@@ -71,7 +71,7 @@ const StyledFileInput = styled(Input).attrs({
 
 const Textarea = styled.textarea`
   font-family: inherit;
-  border: 3px solid ${(props) => (props.darkMode ? "white" : "black")};
+  border: 1px solid ${(props) => (props.darkMode ? "white" : "black")};
   background-color: ${(props) =>
     props.darkMode ? "var(--dark-input-bg)" : "white"};
   color: ${(props) => (props.darkMode ? "var(--dark-text-color)" : "black")};
@@ -80,7 +80,7 @@ const Textarea = styled.textarea`
 `;
 
 const Fieldset = styled.fieldset`
-  border: 3px solid ${(props) => (props.darkMode ? "white" : "black")};
+  border: 1px solid ${(props) => (props.darkMode ? "white" : "black")};
   border-radius: 0.5rem;
 `;
 
@@ -89,7 +89,7 @@ const CheckboxContainer = styled.div`
 `;
 
 const LabelCheckbox = styled.label`
-  margin: 1rem;
+  margin: 0.5rem;
   font-weight: bold;
 `;
 

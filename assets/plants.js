@@ -10,6 +10,8 @@ export const initialPlants = [
       "Water occasionally, allow soil to dry between waterings. Thrives in indirect light.",
     images: [
       "https://images.pexels.com/photos/2123482/pexels-photo-2123482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1695742339593-9d0488a7dfe7?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1601467860749-56d59825dcb7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -23,6 +25,7 @@ export const initialPlants = [
       "Water when the top inch of soil is dry. Prefers bright, indirect light.",
     images: [
       "https://images.pexels.com/photos/7084309/pexels-photo-7084309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1593350388409-6b6abd511f42?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -36,6 +39,7 @@ export const initialPlants = [
       "Water deeply but infrequently, allowing soil to dry out. Needs bright, indirect light.",
     images: [
       "https://images.pexels.com/photos/2272643/pexels-photo-2272643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1553256791-d251a54449b1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -49,6 +53,7 @@ export const initialPlants = [
       "Keep soil slightly moist. Grows well in indirect light.",
     images: [
       "https://images.pexels.com/photos/11363534/pexels-photo-11363534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1643895818224-36a1ecf85ba5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -62,6 +67,7 @@ export const initialPlants = [
       "Water regularly to keep soil consistently moist. Best in low to moderate light.",
     images: [
       "https://images.pexels.com/photos/3698376/pexels-photo-3698376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1687858001773-d58b6cec5bdf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -75,6 +81,7 @@ export const initialPlants = [
       "Water when the top inch of soil is dry. Prefers bright, indirect light.",
     images: [
       "https://images.pexels.com/photos/6208090/pexels-photo-6208090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1669392597221-bbfd4b6e13ff?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -88,6 +95,8 @@ export const initialPlants = [
       "Water infrequently, allowing soil to dry out between waterings. Thrives in low light conditions.",
     images: [
       "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1632900931939-9a1028f7cef6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1714379773217-6ce519ea16a5?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -101,6 +110,7 @@ export const initialPlants = [
       "Water when the top inch of soil is dry. Prefers indirect light and can tolerate low light.",
     images: [
       "https://images.unsplash.com/photo-1599791641365-18738b8ffb25?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1684738054008-6fcab69c48b0?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -114,6 +124,8 @@ export const initialPlants = [
       "Allow soil to dry between waterings. Grows well in low to moderate light.",
     images: [
       "https://images.pexels.com/photos/20075996/pexels-photo-20075996/free-photo-of-close-up-of-a-pothos-plant-in-a-white-pot.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1600411833867-a85cd3c2349e?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1591958911259-bee2173bdccc?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -140,6 +152,8 @@ export const initialPlants = [
       "Water thoroughly but infrequently. Needs bright, indirect light.",
     images: [
       "https://images.pexels.com/photos/1136888/pexels-photo-1136888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1556216750-2108e1e54e9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/1542937/pexels-photo-1542937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     ],
   },
   {
@@ -153,6 +167,7 @@ export const initialPlants = [
       "Water deeply but infrequently, allowing soil to dry out. Needs bright, indirect light.",
     images: [
       "https://images.unsplash.com/photo-1643579265541-2a6359ff8b57?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1699498706183-fb6539572d3b?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -165,7 +180,8 @@ export const initialPlants = [
     care_instructions:
       "Keep soil moist but not waterlogged. Thrives in indirect light.",
     images: [
-      "https://images.pexels.com/photos/4870776/pexels-photo-4870776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1637289086271-e89f164d93e3?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1688369631906-5f113869aaa2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -179,6 +195,7 @@ export const initialPlants = [
       "Water sparingly, allowing soil to dry out completely. Needs bright, direct light.",
     images: [
       "https://images.pexels.com/photos/7159917/pexels-photo-7159917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?q=80&w=2026&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -192,6 +209,7 @@ export const initialPlants = [
       "Water deeply but infrequently, allowing soil to dry out. Needs full sun.",
     images: [
       "https://images.pexels.com/photos/207518/pexels-photo-207518.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.unsplash.com/photo-1531112998639-59af23e7a65e?q=80&w=1982&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -205,6 +223,8 @@ export const initialPlants = [
       "Water sparingly, allowing soil to dry out completely. Needs bright, indirect light.",
     images: [
       "https://images.unsplash.com/photo-1484325602102-04f5b6bc3ec5?q=80&w=1626&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1416339411116-62e1226aacd8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1490370946242-34092dbf29f8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -218,6 +238,8 @@ export const initialPlants = [
       "Keep soil consistently moist. Prefers low to moderate light and high humidity.",
     images: [
       "https://images.pexels.com/photos/6754892/pexels-photo-6754892.png?auto=compress&cs=tinysrgb&w=600",
+      "https://images.unsplash.com/photo-1599463099031-d6b8a407a501?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1602879946327-8b4a148c367d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -231,6 +253,7 @@ export const initialPlants = [
       "Water infrequently, allowing soil to dry out between waterings. Needs bright, indirect light.",
     images: [
       "https://images.pexels.com/photos/12909853/pexels-photo-12909853.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.unsplash.com/photo-1526484790296-f9589766cde2?q=80&w=1930&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -244,6 +267,7 @@ export const initialPlants = [
       "Keep soil slightly moist. Grows well in indirect light.",
     images: [
       "https://www.shutterstock.com/image-illustration/dracaena-braunii-plants-flowerpot-bamboo-600nw-446159569.jpg",
+      "https://images.unsplash.com/photo-1567331711402-509c12c41959?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
   },
   {
@@ -257,6 +281,7 @@ export const initialPlants = [
       "Water when the top inch of soil is dry. Prefers indirect light and high humidity.",
     images: [
       "https://images.pexels.com/photos/4040679/pexels-photo-4040679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/20600925/pexels-photo-20600925/free-photo-of-natur-blutenblatter-pflanze-blatter.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     ],
   },
 ];

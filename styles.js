@@ -1,8 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+import Image from "next/image";
+import { Poppins } from "@next/font/google";
+
+const poppins = Poppins({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
  /* Import Google Font (example using Poppins) */
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 
   /* Box sizing rules */
@@ -33,11 +41,17 @@ export default createGlobalStyle`
     --dark-primary-color: #e6ece0;
     --dark-light-grey: #949790;
   }
-
+ /* Import local font */
+ @font-face {
+    font-family: 'Outfit';
+    src: url('/fonts/Outfit-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
   /* Global styles */
   body {
     margin: 0;
-    font-family: 'Poppins, sans-serif';
+    font-family: ${poppins.style.fontFamily}, sans-serif;
     background: ${(props) =>
       props.darkMode ? "var(--dark-bg)" : "var(--lightest-green)"};
     color: ${(props) =>
@@ -49,4 +63,68 @@ export default createGlobalStyle`
   main {
     padding-bottom: 4rem;
   }
+`;
+export const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin-left: 5%;
+  margin-right: 5%;
+
+  @media (min-width: 900px) {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+`;
+
+export const StyledButtonImage = styled(Image)`
+  align-items: center;
+  width: 25px;
+  height: 25px;
+
+  @media (max-width: 900px) {
+    align-items: center;
+    width: 25px;
+    height: 25px;
+  }
+`;
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 10px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 5px;
+  }
+`;
+
+export const StyledButton = styled.button`
+  padding: 4.5px 12px;
+  border: 1px solid var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  background-color: white;
+  margin-right: 10px;
+  border-radius: 1rem;
+  &:hover {
+    border-color: var(--light-green);
+  }
+  @media (max-width: 900px) {
+    border: 0;
+    box-shadow: none;
+  }
+`;
+
+export const StyledPageHeadingDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) =>
+    props.darkMode ? "var(--dark-light-green)" : "var(--light-green)"};
 `;
