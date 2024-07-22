@@ -1,5 +1,7 @@
 # Plant Pro - the plant care companion
 
+![image](https://github.com/user-attachments/assets/7c31051a-dd5f-4430-894f-73730fea9af1)
+
 
 ## What you can do ...
 🪴 Plant Pro supports plant-friends to manage, nurture and care their plant collections.
@@ -9,6 +11,11 @@
 +🪴You can select plants from the overview or set up your own plants with detailed informations and pictures for your personal my-plants-page.
 
 💧⏰ You can set up a reminder to help you watering your plants in time.
+
+🌙 You can choose a darkmode-functionality
+
+![image](https://github.com/user-attachments/assets/5eaa9d84-719f-421a-9576-a8f75104cb24)
+
 
 
 
