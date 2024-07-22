@@ -89,7 +89,7 @@ const CheckboxContainer = styled.div`
 `;
 
 const LabelCheckbox = styled.label`
-  margin: 1rem;
+  margin: 0.5rem;
   font-weight: bold;
 `;
 
