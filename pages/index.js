@@ -2,6 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Marck_Script } from "@next/font/google";
 import { Outfit } from "@next/font/google";
+import LogoLeaf from "../public/LogoLeaf.png";
+import Image from "next/image";
 
 const marckScript = Marck_Script({
   weight: "400",
@@ -27,7 +29,6 @@ const ContainerDiv = styled.div`
   width: 100%;
   padding: 20px;
 `;
-
 const StyledDiv = styled.div`
   padding: 20px;
   position: relative;
@@ -132,6 +133,7 @@ export default function HomePage({ darkMode }) {
   return (
     <StyledDiv>
       <StyledH1Div darkMode={darkMode}>
+        <Image src={LogoLeaf} alt="Logo" width={60} height={80} />
         <StyledAppName>Plant Pro</StyledAppName>
       </StyledH1Div>
       <ContainerDiv>
