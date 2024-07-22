@@ -1,5 +1,23 @@
-# New Next Project
+# Plant Pro - the plant care companion
 
+
+## What you can do ...
+
+## Tech-Stack & Tools
+- React.js
+- Next.js
+- JavaScript
+- Cloudinary
+- formidable
+- Fuse.js
+- Node.js
+- Vercel
+  
+## Team
+- [Jeevareka Lakshmanan](https://github.com/Reka27) 
+- [Sabeen Javaid](https://github.com/isabeen) 
+- [Maren Ehlers](https://github.com/MarenOelixtown) 
+  
 ### Local Development
 
 To work locally, please install the dependencies using `npm i` first.
